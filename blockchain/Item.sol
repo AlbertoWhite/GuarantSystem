@@ -4,7 +4,7 @@ contract Item {
     address id = address(this);
     string serial;
     string info;
-    address manfacturerID;
+    address manufacturerID;
     address vendorID;
     address ownerID;
     Time created;
@@ -16,7 +16,7 @@ contract Item {
     // Action[] history;
 
     constructor() internal {
-        ownerID = msg.sender;
+        manufacturerID = msg.sender;
     }
 
     struct Time {
