@@ -15,7 +15,7 @@ contract Item {
     // Status status;
     // Action[] history;
 
-    constructor() internal {
+    constructor() public {
         manufacturerID = msg.sender;
     }
 
