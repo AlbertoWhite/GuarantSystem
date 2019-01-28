@@ -24,7 +24,11 @@ contract Item {
         warrantyPeriod = warrantyPeriodArg;
         warrantyTerms = warrantyTermsArg;
     }
-}
+
+    function newOwner(address owner){
+    ownerID = owner;
+    }
+    }
 
 
 
@@ -190,6 +194,8 @@ contract ServiceCenter {
     string registrationNumber;
     address[] manufacturers;
     address[] pendingManufacturers;
+    address[] requests;
+    mapping(address => address) product;
 
     constructor (string memory nameArg, string memory physicalAddressArg, string memory registrationNumberArg) public {
         ownerID = msg.sender;
@@ -233,4 +239,79 @@ contract ServiceCenter {
             mInstance.removeServiceCenter(id);
         }
     }
+    
+
+    function putRequest(address _owner, address _item) {
+        for(uint i = 0; i < reqests.length; i++){
+         if( requests[i] = _owner) 
+         return;
+    }
+        reqests.push(_owner);
+        product[requests[requests.length-1]=_item; 
+    }
+    
+    function checkRequests() returns(bool){
+        for(uint i = 0; i < requests.length; i++){
+            for(uint j = 0; j < manufacturers.length; j++){
+            if(request[i].manufacturerID == manufactures[j])
+            return true;
+            }
+        }
+        return false;
+    }
+    
+}
+
+contract User {
+     address id = address(this);
+     address owner;
+     address[] offers;
+     mapping (address => address) offerToOwner;
+     
+    constructor (){
+        owner = msg.sender;
+    }
+      
+     function buy(address _item, address owner) {
+     Item i = Item(_item);
+     i.newOwner(owner);
+     }
+     
+    
+     function present(address _item, address _newOwner) {
+     require (msg.sender == owner);   
+     Item i = Item(_item);
+     i.newOwner(_newOwner);
+     }
+     
+     function sell(address _item, address _newOwner){
+     require (msg.sender == owner);
+     User u = User(_newOwner);
+     for(uint i = 0; i < offers.lenght; i++){
+            if(offers[i] == _newOwner && offerToOwner[offers[i]] == _item){
+            delete offerToOwner[offers[i]];
+            delete offers[i];
+            Item i = Item(_item);
+            i.newOwner(_newOwner);
+            return;
+            }
+        }
+     }
+
+
+     function Offer (address _newOwner, address _item) { 
+       User u = User(_newOwner);
+       u.addOffer(_item);
+     }
+
+     
+     function addOffer( address _item) {
+        offers.push(_newOwner);
+        offerToOwner[offers[offers.length-1]] = _item;
+      }
+    
+    function addRequest(address _SC, address _item) {
+        ServiceCenter SC =  ServiceCenter(_SC);
+        SC.putRequest(owner, _item);
+    } 
 }
