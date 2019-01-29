@@ -7,7 +7,12 @@ const guarantee = require('./guarantee');
 
 
 router.get('/', function (req, res) {
-  res.render('index.html');
+  
+  var data = {
+    name : 'Slava'
+  }
+
+  return res.render('index.html',data);
 });
 
 router.use('/signup', signup);
