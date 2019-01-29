@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Единая гарантийная система</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <section class="navbar-section" ></section>
+    <section class="navbar-section">
+      <div class="btn-group btn-group-block" >
+        </p><a href="/signin.html" class="btn">Вход</a>
+        <a href="/signup.html" class="btn">Регистрация</a>
+      </div> 
+        </section>
+  </header>
+    
+<h1>Устройства:</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Наименование</th>
+      <th>Срок гарантии</th>
+      <th>Дата активации</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for guarantee in guaranteeList %}
+    <tr class="active">
+      <td>
+        <a href="/guarantee/info/{{guarantee.id}}">{{guarantee.info}}</a>
+      </td>
+      <td>
+        {{guarantee.}}
+      </td>
+      <td>
+        {{guarantee.info}}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html
