@@ -4,6 +4,10 @@ var nunjucks = require('nunjucks');
 var app = express();
 var bodyParser  = require('body-parser');
 const path = require('path');
+const mongoose = require("mongoose");
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var passport       = require('passport');
 
 const routes = require('./routes');
 
@@ -12,6 +16,23 @@ nunjucks.configure(PATH_TO_TEMPLATES, {
    autoescape: true,
    express: app
 });
+
+mongoose.connect("mongodb://heroku_31cdhg9h:2kdc5691ggjsp14egdhpgjomnc@ds243344.mlab.com:43344/heroku_31cdhg9h", { useNewUrlParser: true });
+// mongoose.on('connection', function (err) {
+//   if (!err) console.log('db connected');
+// })
+
+
+
+// Middlewares, которые должны быть определены до passport:
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(cookieSession({ secret: 'yuyr7igjgfyjki6fmctkucdhgtch' }));
+ 
+// Passport:
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
