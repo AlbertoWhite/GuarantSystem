@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Единая гарантийная система</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <section class="navbar-section">
+        <a href="/guarantee/list" class="btn">Назад</a>
+    </section>
+    <section class="navbar-section">
+       <div class="btn-group btn-group-block" >
+        <a href="/requests/list" class="btn">Запросы</a>
+        <a href="/signout" class="btn">Выход</a>
+        </div>
+    </section>
+  </header>
+
+<div class="columns">
+    <div class="column col-2"></div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Устройствo:</h1>
+      </div>
+        <ul>
+             <li>
+                Наименование: {{guarantee.info}}
+            </li>
+            <li>
+                ID: {{guarantee.id}}
+            </li>
+            
+            <li>
+                Серийный номер: {{guarantee.serial}}
+            </li>
+            
+            <li>
+                Производитель: {{guarantee.manufacturerID}}
+            </li>
+            
+            <li>
+                Продавец: {{guarantee.vendorID}}
+            </li>
+            
+            <li>
+                Дата создания: {{guarantee.created}}
+            </li>
+          <li>
+                Срок гарантии: {{guarantee.warrantyPeriod}}
+          </li>
+          <li>
+                Дата активации гарантии: {{guarantee.activated}}
+          </li>
+          
+            <li>
+                Статус: {{guarantee.status}}
+            </li>
+        </ul>
+</div>
+    <div class="column col-2">
+    </div>
+    </div>
+
+  </body>
+  </html>

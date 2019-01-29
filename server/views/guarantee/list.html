@@ -1,6 +1,12 @@
 <html>
 <head>
 <title>Единая гарантийная система</title>
+
+  <style>
+   body {
+      background-image: url(/static/fonbok.jpg);
+    }
+  </style>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -9,41 +15,49 @@
 <body>
 
   <header class="navbar">
-    <section class="navbar-section" ></section>
+    <section class="navbar-section" >
+    </section>
     <section class="navbar-section">
-      <div class="btn-group btn-group-block" >
-        </p><a href="/signin.html" class="btn">Вход</a>
-        <a href="/signup.html" class="btn">Регистрация</a>
-      </div> 
-        </section>
+       <div class="btn-group btn-group-block" >
+        <a href="/requests/list" class="btn">Запросы</a>
+        <a href="/signout" class="btn">Выход</a>
+        </div>
+    </section>
   </header>
     
-<h1>Устройства:</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Наименование</th>
-      <th>Срок гарантии</th>
-      <th>Дата активации</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for guarantee in guaranteeList %}
-    <tr class="active">
-      <td>
-        <a href="/guarantee/info/{{guarantee.id}}">{{guarantee.info}}</a>
-      </td>
-      <td>
-        {{guarantee.}}
-      </td>
-      <td>
-        {{guarantee.info}}
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
+<div class="columns">
+    <div class="column col-2"></div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Устройства:</h1>
+      </div>
+      <table class="table">
+      <thead>
+       <tr>
+        <th>Наименование</th>
+        <th>Срок гарантии</th>
+        <th>Дата активации</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for guarantee in guaranteeList %}
+        <tr class="active">
+          <td>
+            <a href="/guarantee/info/{{guarantee.id}}">{{guarantee.info}}</a>
+          </td>
+          <td>
+            {{guarantee.warrantyPeriod}}
+          </td>
+          <td>
+            {{guarantee.activated}}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+</div>
+    <div class="column col-2">
+    </div>
+    </div>
 </body>
-</html
+</html>

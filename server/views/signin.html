@@ -11,15 +11,28 @@
         <section class="navbar-section" ></section>
         <section class="navbar-section">
           <div class="btn-group btn-group-block" >
-          </p><a href="/signin.html" class="btn">Вход</a>
-          <a href="/signup.html" class="btn">Регистрация</a>
+          </p><a href="/signin" class="btn">Вход</a>
+          <a href="/signup" class="btn">Регистрация</a>
           </div> 
             </section>
-      </header
+      </header>
 
-<p align="center"><h1>Вход</h1></p>
-
-<div class="form-group">
-  <label class="form-label" for="input-example-1">Введите id</label>
-  <input class="form-input" type="text" id="input-example-1" placeholder="id:">
-</div>
+  <div class="columns">
+    <div class="column col-2"></div>
+    <div class="column col-8">
+      <div class="text-center">
+        <h1>Вход</h1>
+      </div>
+      <form action="/signin" method="POST">
+        <label class="form-label" for="input-example-1">Введите id</label>
+        <div class="input-group">
+           <input class="form-input" type="text" id="input-example-1" placeholder="your id">
+           <button class="btn">Войти</button>
+        </div>
+      </form>
+      </p>
+    </div>
+    <div class="column col-2">
+    </div>
+  </div>
+</body>
