@@ -14,6 +14,4 @@ router.use('/signup', signup);
 router.use('/signin', signin);
 router.use('/guarantee', guarantee);
 
-
-
 module.exports = router;

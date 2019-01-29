@@ -1,3 +1,4 @@
+const fs = require('fs');
 var express = require('express');
 var app = express();
 var bodyParser  = require('body-parser');
@@ -13,13 +14,14 @@ app.engine('html', function (filePath, options, callback) {
 });
 app.set('view engine', 'html');
 
+
 // support parsing of application/json type post data
 app.use(bodyParser.json());
-
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('views', path.join(__dirname, 'views'));
+app.use('/static', express.static(path.join(__dirname, '../bundle')));
 app.use('/', routes);
 
 app.listen(3000, function () {
