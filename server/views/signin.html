@@ -26,7 +26,8 @@
       <form action="/signin" method="POST">
         <label class="form-label" for="input-example-1">Введите id</label>
         <div class="input-group">
-           <input class="form-input" type="text" id="input-example-1" placeholder="your id">
+           <input class="form-input" type="text" id="input-example-1" name="email" placeholder="your id">
+           <input type="hidden" name="password" value="pass">
            <button class="btn">Войти</button>
         </div>
       </form>

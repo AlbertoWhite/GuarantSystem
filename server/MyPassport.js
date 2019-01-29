@@ -3,9 +3,11 @@ var LocalStrategy  = require('passport-local').Strategy;
 var User = require('./db/UserSchema');
 
 passport.use(new LocalStrategy({
-  usernameField: 'email'
-}, function(username, done){
-    User.findOne({ username : username},function(err,user){
+  usernameField: 'email',
+  passwordField: 'password'
+}, function(email, password, done){
+    User.findOne({ email : email },function(err,user){
+        console.log(user);
         return err 
           ? done(err)
           : user
@@ -28,16 +30,23 @@ passport.deserializeUser(function(id, done) {
 });
 
 module.exports.register = function(req, res, next) {
-    var user = new User({ username: req.body.email});
-    user.save(function(err) {
-    return err
-      ? next(err)
-      : req.logIn(user, function(err) {
-        return err
-          ? next(err)
-          : res.redirect('/guarantee/list');
+    var user = new User({ email: req.body.email, password: 'pass'});
+    User.findOne({ email : user.email },function(err,user){
+        return err 
+          ? done(err)
+          : user
+              ? next(new Error('User already exists.'))
+            : user.save(function(err, user) {
+                return err
+                  ? next(err)
+                  : req.logIn(user, function(err) {
+                    return err
+                      ? next(err)
+                      : res.redirect('/guarantee/list');
+                  });
+              });
       });
-  });
+    
 };
 
 module.exports.logout = function(req, res) {
@@ -56,7 +65,7 @@ module.exports.login = function(req, res, next) {
                 ? next(err)
                 : res.redirect('/guarantee/list');
             })
-          : res.send('Произошла ошибка: ' + err.message);
+          : res.redirect('/signin');
     }
   )(req, res, next);
 };

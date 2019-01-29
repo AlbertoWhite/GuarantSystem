@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
   
 // установка схемы
 const userScheme = new Schema({
-    login: String
+    email: String,
+    password: String
     //TODO key
 });
 

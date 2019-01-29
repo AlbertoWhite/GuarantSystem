@@ -29,8 +29,9 @@
       <form action="/signup" method="POST">
         <label class="form-label" for="input-example-1">Введите email</label>
         <div class="input-group">
-           <input class="form-input" type="email" email="input-example-1" placeholder="example@yandex.ru">
-           <button class="btn">Зарегистрироваться</button>
+          <input class="form-input" type="email" email="input-example-1" name="email" placeholder="example@yandex.ru">
+          <input type="hidden" name="password" value="pass">
+          <button class="btn">Зарегистрироваться</button>
         </div>
       </form>
       </p>
