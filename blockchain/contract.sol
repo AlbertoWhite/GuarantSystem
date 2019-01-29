@@ -17,18 +17,14 @@ contract Item {
     // Status status;
     // Action[] history;
 
-    constructor (string memory serialArg, string memory infoArg, uint warrantyPeriodArg, string memory warrantyTermsArg) public {
+    constructor (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) public {
         manufacturerID = msg.sender;
-        serial = serialArg;
-        info = infoArg;
-        warrantyPeriod = warrantyPeriodArg;
-        warrantyTerms = warrantyTermsArg;
+        serial = _serial;
+        info = _info;
+        warrantyPeriod = _warrantyPeriod;
+        warrantyTerms = _warrantyTerms;
     }
-
-    function newOwner(address owner){
-    ownerID = owner;
-    }
-    }
+}
 
 
 
@@ -44,19 +40,19 @@ contract Manufacturer {
     address[] pendingServiceCenters;
     address[] pendingItems;
 
-    constructor (string memory nameArg, string memory physicalAddressArg, string memory registrationNumberArg) public {
+    constructor (string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
         ownerID = msg.sender;
-        name = nameArg;
-        physicalAddress = physicalAddressArg;
-        registrationNumber = registrationNumberArg;
+        name = _name;
+        physicalAddress = _physicalAddress;
+        registrationNumber = _registrationNumber;
     }
 
-    function createItem (string memory serialArg, string memory infoArg, uint warrantyPeriodArg, string memory warrantyTermsArg) public {
-        Item newItem = new Item(serialArg, infoArg, warrantyPeriodArg, warrantyTermsArg);
+    function createItem (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) onlyOwner public {
+        Item newItem = new Item(_serial, _info, _warrantyPeriod, _warrantyTerms);
         pendingItems.push(newItem.id());
     }
 
-    function addVendor (address v) public {
+    function addVendor (address v) onlyOwner public {
         for (uint i = 0; i < pendingVendors.length; i++) {
             if (v == pendingVendors[i]) {
                 vendors.push(v);
@@ -77,7 +73,7 @@ contract Manufacturer {
         pendingVendors.push(v);
     }
 
-    function removeVendor (address v) public {
+    function removeVendor (address v) onlyOwnerOrVendor public {
         bool exists = false;
         for (uint i = 0; i < vendors.length; i++) {
             if (v == vendors[i]) {
@@ -92,7 +88,7 @@ contract Manufacturer {
         }
     }
 
-    function addServiceCenter (address sc) public {
+    function addServiceCenter (address sc) onlyOwner public {
         for (uint i = 0; i < pendingServiceCenters.length; i++) {
             if (sc == pendingServiceCenters[i]) {
                 serviceCenters.push(sc);
@@ -113,7 +109,7 @@ contract Manufacturer {
         pendingServiceCenters.push(sc);
     }
 
-    function removeServiceCenter (address sc) public {
+    function removeServiceCenter (address sc) onlyOwnerOrServiceCenter public {
         bool exists = false;
         for (uint i = 0; i < serviceCenters.length; i++) {
             if (sc == serviceCenters[i]) {
@@ -140,14 +136,14 @@ contract Vendor {
     address[] manufacturers;
     address[] pendingManufacturers;
 
-    constructor (string memory nameArg, string memory physicalAddressArg, string memory registrationNumberArg) public {
+    constructor (string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
         ownerID = msg.sender;
-        name = nameArg;
-        physicalAddress = physicalAddressArg;
-        registrationNumber = registrationNumberArg;
+        name = _name;
+        physicalAddress = _physicalAddress;
+        registrationNumber = _registrationNumber;
     }
 
-    function addManufacturer (address m) public {
+    function addManufacturer (address m) onlyOwner public {
         for (uint i = 0; i < pendingManufacturers.length; i++) {
             if (m == pendingManufacturers[i]) {
                 manufacturers.push(m);
@@ -168,7 +164,7 @@ contract Vendor {
         pendingManufacturers.push(m);
     }
 
-    function removeManufacturer (address m) public {
+    function removeManufacturer (address m) onlyOwnerOrManufacturer public {
         bool exists = false;
         for (uint i = 0; i < manufacturers.length; i++) {
             if (m == manufacturers[i]) {
@@ -197,14 +193,14 @@ contract ServiceCenter {
     address[] requests;
     mapping(address => address) product;
 
-    constructor (string memory nameArg, string memory physicalAddressArg, string memory registrationNumberArg) public {
+    constructor (string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
         ownerID = msg.sender;
-        name = nameArg;
-        physicalAddress = physicalAddressArg;
-        registrationNumber = registrationNumberArg;
+        name = _name;
+        physicalAddress = _physicalAddress;
+        registrationNumber = _registrationNumber;
     }
 
-    function addManufacturer (address m) public {
+    function addManufacturer (address m) onlyOwner public {
         for (uint i = 0; i < pendingManufacturers.length; i++) {
             if (m == pendingManufacturers[i]) {
                 manufacturers.push(m);
@@ -225,7 +221,7 @@ contract ServiceCenter {
         pendingManufacturers.push(m);
     }
 
-    function removeManufacturer (address m) public {
+    function removeManufacturer (address m) onlyOwnerOrManufacturer public {
         bool exists = false;
         for (uint i = 0; i < manufacturers.length; i++) {
             if (m == manufacturers[i]) {
@@ -239,17 +235,17 @@ contract ServiceCenter {
             mInstance.removeServiceCenter(id);
         }
     }
-    
+
 
     function putRequest(address _owner, address _item) {
         for(uint i = 0; i < reqests.length; i++){
-         if( requests[i] = _owner) 
+         if( requests[i] = _owner)
          return;
     }
         reqests.push(_owner);
-        product[requests[requests.length-1]=_item; 
+        product[requests[requests.length-1]=_item;
     }
-    
+
     function checkRequests() returns(bool){
         for(uint i = 0; i < requests.length; i++){
             for(uint j = 0; j < manufacturers.length; j++){
@@ -259,7 +255,7 @@ contract ServiceCenter {
         }
         return false;
     }
-    
+
 }
 
 contract User {
@@ -267,23 +263,23 @@ contract User {
      address owner;
      address[] offers;
      mapping (address => address) offerToOwner;
-     
+
     constructor (){
         owner = msg.sender;
     }
-      
+
      function buy(address _item, address owner) {
      Item i = Item(_item);
      i.newOwner(owner);
      }
-     
-    
+
+
      function present(address _item, address _newOwner) {
-     require (msg.sender == owner);   
+     require (msg.sender == owner);
      Item i = Item(_item);
      i.newOwner(_newOwner);
      }
-     
+
      function sell(address _item, address _newOwner){
      require (msg.sender == owner);
      User u = User(_newOwner);
@@ -299,19 +295,19 @@ contract User {
      }
 
 
-     function Offer (address _newOwner, address _item) { 
+     function Offer (address _newOwner, address _item) {
        User u = User(_newOwner);
        u.addOffer(_item);
      }
 
-     
+
      function addOffer( address _item) {
         offers.push(_newOwner);
         offerToOwner[offers[offers.length-1]] = _item;
       }
-    
+
     function addRequest(address _SC, address _item) {
         ServiceCenter SC =  ServiceCenter(_SC);
         SC.putRequest(owner, _item);
-    } 
+    }
 }
