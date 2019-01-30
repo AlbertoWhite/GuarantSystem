@@ -31,10 +31,10 @@ passport.deserializeUser(function(id, done) {
 
 module.exports.register = function(req, res, next) {
     var user = new User({ email: req.body.email, password: 'pass'});
-    User.findOne({ email : user.email },function(err,user){
+    User.findOne({ email : user.email },function(err, user_l){
         return err 
           ? done(err)
-          : user
+          : user_l
               ? next(new Error('User already exists.'))
             : user.save(function(err, user) {
                 return err
