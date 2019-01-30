@@ -6,6 +6,7 @@ const signin = require('./signin');
 const signout = require('./signout');
 const guarantee = require('./guarantee');
 const players = require('./players');
+const requests = require('./requests');
 
 
 router.get('/', function (req, res) {
@@ -22,5 +23,6 @@ router.use('/signin', signin);
 router.use('/signout', signout);
 router.use('/guarantee', guarantee);
 router.use('/players',players);
+router.use('/requests',requests);
 
 module.exports = router;

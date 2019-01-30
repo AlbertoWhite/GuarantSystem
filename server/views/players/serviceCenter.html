@@ -1,0 +1,117 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Сервис-центр</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <section class="navbar-section">
+        <a href="/players/index" class="btn">Назад</a>
+    </section>
+    <section class="navbar-section">
+       <div class="btn-group btn-group-block" >
+        <a href="/requests/list" class="btn">Запросы</a>
+        <a href="/signout" class="btn">Выход</a>
+        </div>
+    </section>
+  </header>
+
+<div class="columns">
+    <div class="column col-2">
+    <div class="container">
+       </div>
+       <img src="/static/fonlight2.jpg" width=100% height=100% />
+    <style>
+       img {
+          object-fit: cover;
+        }
+    </style>
+    </div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Сервис-центр:</h1>
+      </div>
+        <ul>
+             <li>
+                Наименование: {{serviceCenter.name}}
+            </li>
+            <li>
+                ID: {{serviceCenter.id}}
+            </li>
+            
+            <li>
+                Адрес: {{serviceCenter.physicalAddress }}
+            </li>
+            
+            <li>
+                Регистрационный номер: {{serviceCenter.registrationNumber}}
+            </li>
+            
+            <li>
+          <h3>Производители-партнеры:</h3>
+      <table class="table">
+      <thead>
+       <tr>
+        <th>Наименование</th>
+        <th>Адрес</th>
+        <th>Регистрационный номер</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for manufacturer in listOfManufacterer %}
+             <tr class="active">
+             <td>
+                <a href="/players/manufacturer/{{manufacturer.id}}" {{manifacturer.name}} </a>
+             </td>
+             <td>
+                {{manufacturer.physicalAddress}}
+            </td>
+            <td>
+                {{manufacturer.registrationNumber}}   
+            </td>
+       {% endfor %}
+    </tbody>
+    </table>
+</li>
+     <li>
+            <h3>Товары:</h3>
+      <table class="table">
+      <thead>
+       <tr>
+        <th>Наименование</th>
+        <th>Срок гарантиии</th>
+    </tr>
+      </thead>
+      <tbody>
+      {% for pendingItem in listOfpendingItems %}
+             <tr class="active">
+             <td>
+                {{pendingItem.info}}
+            </td>
+            <td>
+                {{pendingItem.warrantyPeriod}}   
+            </td>
+       {% endfor %}
+    </tbody>
+    </table>
+</li>    
+</ul>
+</div>
+    <div class="column col-2"><div class="container">
+       </div>
+       <img src="/static/fonlight2.jpg" width=100% height=100% />
+    <style>
+       img {
+          object-fit: cover;
+        }
+    </style>
+    </div>
+    </div>
+
+  </body>
+  </html>

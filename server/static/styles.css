@@ -1,0 +1,33 @@
+.bg-image-1 {
+    background-image: url(/static/fonlight3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image-main {
+    background-image: url(/static/d.jpg);
+    padding: 2em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 800px;
+}
+.bg-image-2 {
+    background-image: url(/static/fonlight.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+
+.bg-image-3 {
+    background-image: url(/static/fonlight2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+
+.bg-image-4 {
+    background-image: url(/static/fonlight2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
