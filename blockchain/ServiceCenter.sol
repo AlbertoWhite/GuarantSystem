@@ -36,21 +36,21 @@ contract ServiceCenter is Organization {
 
 
 
-    function _addPartner (address pID) internal {
+    function _addPartnerMethod (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         _addManufacturer(pID);
     }
 
-    function _removePartner (address pID) internal {
+    function _removePartnerMethod (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         _removeManufacturer(pID);
     }
 
-    function _requestPartnership (address pID) internal {
+    function _sendPartnershipRequest (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
@@ -58,7 +58,23 @@ contract ServiceCenter is Organization {
         oInstance.receivePartnershipRequest();
     }
 
-    function _requestCancelPartnership (address pID) internal {
+    function _sendPartnershipDecline (address pID) internal {
+        Main.ContractType pType = main.getContractType(pID);
+        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipDecline();
+    }
+
+    function _sendPartnershipRevert (address pID) internal {
+        Main.ContractType pType = main.getContractType(pID);
+        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipRevert();
+    }
+
+    function _sendPartnershipCancel (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
@@ -71,5 +87,21 @@ contract ServiceCenter is Organization {
 
     function _addManufacturer (address mID) internal { _addTo(manufacturers, isInManufacturers, mID); }
     function _removeManufacturer (address mID) internal { _removeFrom(manufacturers, isInManufacturers, mID); }
+
+
+
+// Modifiers
+
+
+
+    modifier onlyOwner {
+        require(msg.sender == ownerID, "Only owner can call this function");
+        _;
+    }
+
+    modifier onlyOwnerOrPartner {
+        require(((msg.sender == ownerID) || (isInPartnership[msg.sender] == true)), "Only owner or partner can call this function");
+        _;
+    }
 }
 
