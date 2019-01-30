@@ -35,9 +35,10 @@ contract Manufacturer is Organization {
 
 
 
-    function createItem (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) onlyOwner public {
+    function createItem (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) onlyOwner public returns (address) {
         Item newItem = new Item(_serial, _info, _warrantyPeriod, _warrantyTerms);
         _addPendingItem(address(newItem));
+        return (address(newItem));
     }
 
 
@@ -46,7 +47,7 @@ contract Manufacturer is Organization {
 
 
 
-    function _addPartner (address pID) internal {
+    function _addPartnerMethod (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
@@ -54,7 +55,7 @@ contract Manufacturer is Organization {
         else if (pType == Main.ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
     }
 
-    function _removePartner (address pID) internal {
+    function _removePartnerMethod (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
@@ -62,7 +63,7 @@ contract Manufacturer is Organization {
         else if (pType == Main.ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
     }
 
-    function _requestPartnership (address pID) internal {
+    function _sendPartnershipRequest (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
@@ -70,7 +71,23 @@ contract Manufacturer is Organization {
         oInstance.receivePartnershipRequest();
     }
 
-    function _requestCancelPartnership (address pID) internal {
+    function _sendPartnershipDecline (address pID) internal {
+        Main.ContractType pType = main.getContractType(pID);
+        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipDecline();
+    }
+
+    function _sendPartnershipRevert (address pID) internal {
+        Main.ContractType pType = main.getContractType(pID);
+        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipRevert();
+    }
+
+    function _sendPartnershipCancel (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
         require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
@@ -86,4 +103,20 @@ contract Manufacturer is Organization {
 
     function _addServiceCenter (address scID) internal { _addTo(serviceCenters, isInServiceCenters, scID); }
     function _removeServiceCenter (address scID) internal { _removeFrom(serviceCenters, isInServiceCenters, scID); }
+
+
+
+// Modifiers
+
+
+
+    modifier onlyOwner {
+        require(msg.sender == ownerID, "Only owner can call this function");
+        _;
+    }
+
+    modifier onlyOwnerOrPartner {
+        require(((msg.sender == ownerID) || (isInPartnership[msg.sender] == true)), "Only owner or partner can call this function");
+        _;
+    }
 }

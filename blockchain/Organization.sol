@@ -23,19 +23,44 @@ contract Organization {
 
 
     function requestPartnership (address pID) onlyOwner public {
-        if (isReceivedPartnership[pID] == true) {
-            _addPartner(pID);
-            _removeReceivedPartnership(pID);
-        } else {
-            _addRequestedPartnership(pID);
-        }
+        require(isRequestedPartnership[pID] == false, "Partnership has already been requested");
 
-        _requestPartnership(pID);
+        _addRequestedPartnership(pID);
+        _sendPartnershipRequest(pID);
+    }
+
+    function acceptPartnership (address pID) onlyOwner public {
+        require(isReceivedPartnership[pID] == true, "No such request");
+        _addPartner(pID);
+        _removeReceivedPartnership(pID);
+        _sendPartnershipRequest(pID);
+    }
+
+    function declinePartnership (address pID) onlyOwner public {
+        require(isReceivedPartnership[pID] == true, "No such request");
+        _removeReceivedPartnership(pID);
+        _sendPartnershipDecline(pID);
+    }
+
+    function revertPartnership (address pID) onlyOwner public {
+        require(isRequestedPartnership[pID] == true, "No such request");
+        _removeRequestedPartnership(pID);
+        _sendPartnershipRevert(pID);
+    }
+
+
+    function cancelPartnership (address pID) onlyOwnerOrPartner public {
+        require(((msg.sender == ownerID) || (msg.sender == pID)), "Not enough permissions");
+        require(isInPartnership[pID] == true, "No such partner");
+
+        _removePartner(pID);
+
+        _sendPartnershipCancel(pID);
     }
 
     function receivePartnershipRequest () public {
         address pID = msg.sender;
-        require(isReceivedPartnership[pID] == false, "Partnership request has already been sent");
+        require(isReceivedPartnership[pID] == false, "Partnership has already been requested");
 
         if (isRequestedPartnership[pID] == true) {
             _addPartner(pID);
@@ -45,13 +70,18 @@ contract Organization {
         }
     }
 
-    function cancelPartnership (address pID) onlyOwnerOrPartner public {
-        require((msg.sender == ownerID) || (msg.sender == pID), "Not enough permissions");
-        require(isInPartnership[pID] == true, "No such partner");
+    function receivePartnershipDecline () public {
+        address pID = msg.sender;
+        require(isRequestedPartnership[pID] == true, "Partnership has not been requested");
 
-        _removePartner(pID);
+        _removeRequestedPartnership(pID);
+    }
 
-        _requestCancelPartnership(pID);
+    function receivePartnershipRevert () public {
+        address pID = msg.sender;
+        require(isReceivedPartnership[pID] == true, "Partnership has not been requested");
+
+        _removeReceivedPartnership(pID);
     }
 
 
@@ -59,14 +89,38 @@ contract Organization {
 // Internal
 
 
+    function _addPartnerMethod (address pID) internal {}
+    function _removePartnerMethod (address pID) internal {}
 
-    function _addPartner (address pID) internal {}
+    function _addPartner (address pID) internal {
+        isInPartnership[pID] = true;
+        _addPartnerMethod(pID);
+    }
 
-    function _removePartner (address pID) internal {}
+    function _removePartner (address pID) internal {
+        isInPartnership[pID] = false;
+        _removePartnerMethod(pID);
+    }
 
-    function _requestPartnership (address pID) internal {}
+    function _sendPartnershipRequest (address pID) internal {
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipRequest();
+    }
 
-    function _requestCancelPartnership (address pID) internal {}
+    function _sendPartnershipDecline (address pID) internal {
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipDecline();
+    }
+
+    function _sendPartnershipRevert (address pID) internal {
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipRevert();
+    }
+
+    function _sendPartnershipCancel (address pID) internal {
+        Organization oInstance = Organization(pID);
+        oInstance.cancelPartnership(id);
+    }
 
     function _addRequestedPartnership (address pID) internal { _addTo(requestedPartnerships, isRequestedPartnership, pID); }
     function _removeRequestedPartnership (address pID) internal { _removeFrom(requestedPartnerships, isRequestedPartnership, pID); }
@@ -93,7 +147,7 @@ contract Organization {
             if (array[i] == value) {
               array[i] = array[array.length - 1];
               delete array[array.length - 1];
-              array.length = array.length - 1;
+              array.length--;
             }
         }
     }
