@@ -9,7 +9,7 @@ import "./ServiceCenter.sol"
 
 
 contract Main {
-    enum ContractType {ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER};
+    enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER};
     mapping (address => ContractType) public getContractType;
 
     function registerUser () public returns (address) {
