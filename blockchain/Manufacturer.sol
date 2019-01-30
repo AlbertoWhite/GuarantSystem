@@ -55,11 +55,11 @@ contract Manufacturer {
             _addVendor(vID);
             _removeReceivedVendor(vID);
         } else {
-            Vendor vInstance = Vendor(vID);
-            vInstance.receiveManufacturer();
-
             _addRequestedVendor(vID);
         }
+
+        Vendor vInstance = Vendor(vID);
+        vInstance.receiveManufacturer();
     }
 
     function receiveVendor () public {

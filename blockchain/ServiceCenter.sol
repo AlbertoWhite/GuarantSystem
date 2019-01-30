@@ -41,11 +41,11 @@ contract ServiceCenter {
             _addManufacturer(mID);
             _removeReceivedManufacturer(mID);
         } else {
-            Manufacturer mInstance = Manufacturer(mID);
-            mInstance.receiveServiceCenter();
-
             _addRequestedManufacturer(mID);
         }
+
+        Manufacturer mInstance = Manufacturer(mID);
+        mInstance.receiveServiceCenter();
     }
 
     function receiveManufacturer () public {
