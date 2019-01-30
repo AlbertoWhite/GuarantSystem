@@ -1,6 +1,5 @@
 pragma solidity ^0.5.1;
 
-import "./Item.sol";
 // import "./User.sol";
 import "./Manufacturer.sol";
 import "./Vendor.sol";
@@ -11,10 +10,7 @@ import "./ServiceCenter.sol";
 contract Main {
     enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER}
     mapping (address => ContractType) contractType;
-
-    function getContractType (address a) public returns (ContractType) {
-        return contractType[a];
-    }
+    function getContractType (address a) view public returns (ContractType) { return contractType[a]; }
 
 //    function registerUser () public returns (address) {
 //        User newUser = new User(msg.sender);

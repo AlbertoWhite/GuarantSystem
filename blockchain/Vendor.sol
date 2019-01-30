@@ -5,7 +5,6 @@ import "./Manufacturer.sol";
 
 contract Vendor {
     Main main;
-    enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER}
 
     address public id = address(this);
     address private ownerID;
@@ -80,30 +79,30 @@ contract Vendor {
 
 
     function _addPartner (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require(pType == ContractType.MANUFACTURER);
+        Main.ContractType pType = main.getContractType(pID);
+        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         _addManufacturer(pID);
     }
 
     function _removePartner (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require(pType == ContractType.MANUFACTURER);
+        Main.ContractType pType = main.getContractType(pID);
+        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         _removeManufacturer(pID);
     }
 
     function _requestPartnership (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require(pType == ContractType.MANUFACTURER);
+        Main.ContractType pType = main.getContractType(pID);
+        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         Manufacturer mInstance = Manufacturer(pID);
         mInstance.receivePartnershipRequest();
     }
 
     function _requestCancelPartnership (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require(pType == ContractType.MANUFACTURER);
+        Main.ContractType pType = main.getContractType(pID);
+        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         Manufacturer mInstance = Manufacturer(pID);
         mInstance.cancelPartnership(id);

@@ -9,7 +9,6 @@ import "./ServiceCenter.sol";
 
 contract Manufacturer {
     Main main;
-    enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER}
 
     address public id = address(this);
     address private ownerID;
@@ -91,44 +90,44 @@ contract Manufacturer {
 
 
     function _addPartner (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require((pType == ContractType.Vendor) || (pType == ContractType.SERVICE_CENTER));
+        Main.ContractType pType = main.getContractType(pID);
+        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
-        if (pType == ContractType.VENDOR) { _addVendor(pID); }
-        else if (pType == ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
+        if (pType == Main.ContractType.VENDOR) { _addVendor(pID); }
+        else if (pType == Main.ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
     }
 
     function _removePartner (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require((pType == ContractType.Vendor) || (pType == ContractType.SERVICE_CENTER));
+        Main.ContractType pType = main.getContractType(pID);
+        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
-        if (pType == ContractType.VENDOR) { _removeVendor(pID); }
-        else if (pType == ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
+        if (pType == Main.ContractType.VENDOR) { _removeVendor(pID); }
+        else if (pType == Main.ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
     }
 
     function _requestPartnership (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require((pType == ContractType.Vendor) || (pType == ContractType.SERVICE_CENTER));
+        Main.ContractType pType = main.getContractType(pID);
+        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
-        if (pType == ContractType.VENDOR) {
+        if (pType == Main.ContractType.VENDOR) {
             Vendor vInstance = Vendor(pID);
             vInstance.receivePartnershipRequest();
         }
-        else if (pType == ContractType.SERVICE_CENTER) {
+        else if (pType == Main.ContractType.SERVICE_CENTER) {
             ServiceCenter scInstance = ServiceCenter(pID);
             scInstance.receivePartnershipRequest();
         }
     }
 
     function _requestCancelPartnership (address pID) internal {
-        ContractType pType = main.getContractType(pID);
-        require((pType == ContractType.Vendor) || (pType == ContractType.SERVICE_CENTER));
+        Main.ContractType pType = main.getContractType(pID);
+        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
 
-        if (pType == ContractType.VENDOR) {
+        if (pType == Main.ContractType.VENDOR) {
             Vendor vInstance = Vendor(pID);
             vInstance.cancelPartnership(id);
         }
-        else if (pType == ContractType.SERVICE_CENTER) {
+        else if (pType == Main.ContractType.SERVICE_CENTER) {
             ServiceCenter scInstance = ServiceCenter(pID);
             scInstance.cancelPartnership(id);
         }
