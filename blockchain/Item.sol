@@ -12,8 +12,8 @@ contract Item {
     string public warrantyTerms;
     uint public activated;
 
-    // Status public status;
-    // Action[] public history;
+    Status public status;
+    Action[] public history;
 
     constructor (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) public {
         manufacturerID = msg.sender;
@@ -28,8 +28,11 @@ contract Item {
 
 // Public
 
+// Internal
 
+    enum Status {NORMAL, ON_SERVICE, DEFECTED, RETURNED}
 
+    enum Action {CREATION, TRANSFER, CHANGED_OWNER, SERVICE, RETURN}
 
 // Modifiers
 
