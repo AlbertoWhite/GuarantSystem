@@ -23,8 +23,8 @@ contract Item {
     constructor (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) public {
         main = Manufacturer(msg.sender).main();
 
-        Main.ContractType pType = main.getContractType(msg.sender);
-        require((pType == Main.ContractType.MANUFACTURER), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(msg.sender);
+        require((cType == Main.ContractType.MANUFACTURER), "Wrong contract type");
 
         manufacturerID = msg.sender;
         serial = _serial;
@@ -39,23 +39,27 @@ contract Item {
 
 
 
+    function activateWarranty () onlyManufacturerOrVendor public {
+        activated = now;
+    }
+
     function setVendor (address vID) onlyManufacturer public {
         require((vendorID == address(0)), "Vendor is already set");
-        Main.ContractType pType = main.getContractType(vID);
-        require((pType == Main.ContractType.VENDOR), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(vID);
+        require((cType == Main.ContractType.VENDOR), "Wrong contract type");
         vendorID = vID;
     }
 
     function setOwner (address uID) onlyVendor public {
         require((ownerID == address(0)), "Owner is already set");
-        Main.ContractType pType = main.getContractType(uID);
-        require((pType == Main.ContractType.USER), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(uID);
+        require((cType == Main.ContractType.USER), "Wrong contract type");
         ownerID = uID;
     }
 
     function changeOwner (address uID) onlyOwner public {
-        Main.ContractType pType = main.getContractType(uID);
-        require((pType == Main.ContractType.USER), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(uID);
+        require((cType == Main.ContractType.USER), "Wrong contract type");
         ownerID = uID;
     }
 
@@ -87,6 +91,11 @@ contract Item {
 
     modifier onlyVendor {
         require((msg.sender == vendorID), "Permission denied");
+        _;
+    }
+
+    modifier onlyManufacturerOrVendor {
+        require(((msg.sender == manufacturerID) || (msg.sender == vendorID)), "Permission denied");
         _;
     }
 }
