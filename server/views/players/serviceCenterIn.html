@@ -16,16 +16,34 @@
     </section>
     <section class="navbar-section">
        <div class="btn-group btn-group-block" >
-        <a href="/players/vendor/requests/list" class="btn">Запросы</a>
-        <a href="/players/vendor/partners/list" class="btn">Партнеры</a>
-        <a href="/players/vendor/In" class="btn">Товары</a>
+        <a href="/players/serviceCenter/requests/list" class="btn">Запросы</a>
+        <a href="/players/serviceCenter/partners/list" class="btn">Партнеры</a>
+        <a href="/players/serviceCenter/In" class="btn">Товары</a>
                 
         <a href="/players/signout" class="btn">Выход</a>
         </div>
     </section>
   </header>
 
-
+<div class="columns">
+    <div class="column col-2 bg-image-6">
+    </div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Товары:</h1>
+      </div>
+      <ul>
+      
+        {% for pendingItem in listOfpendingItems %}
+             <li>
+             Наименование: {{pendingItem.name}};  Серийный номер: {{pendingItem.serial}}
+               </li>
+             {% endfor %}
+        </ul>
+</div>
+    <div class="column col-2 bg-image-6">
+   </div>
+    </div>
 
   </body>
   </html>
