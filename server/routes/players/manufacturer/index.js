@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/In', function (req, res) {
-  res.render('players/manufactererIn.html');
+  res.render('players/manufacturerIn.html');
 });
 
 router.get('/:id', function (req, res) {
