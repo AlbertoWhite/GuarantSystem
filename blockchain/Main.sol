@@ -1,6 +1,6 @@
 pragma solidity ^0.5.1;
 
-//import "./User.sol";
+import "./User.sol";
 import "./Manufacturer.sol";
 import "./Vendor.sol";
 import "./ServiceCenter.sol";
@@ -16,17 +16,17 @@ contract Main {
     function getContractType (address a) view public returns (ContractType) { return contractType[a]; }
 
     constructor () public {
-//        userDeployer = new UserDeployer;
+        userDeployer = new UserDeployer();
         manufacturerDeployer = new ManufacturerDeployer();
         vendorDeployer = new VendorDeployer();
         serviceCenterDeployer = new ServiceCenterDeployer();
     }
 
-//    function registerUser (address _ownerID) public returns (address) {
-//        address newUser = userDeployer.deploy(_ownerID, "", "", "");
-//        contractType[newUser] = ContractType.USER;
-//        return newUser;
-//    }
+    function registerUser (address _ownerID) public returns (address) {
+        address newUser = userDeployer.deploy(_ownerID, "", "", "");
+        contractType[newUser] = ContractType.USER;
+        return newUser;
+    }
 
     function registerManufacturer (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {
         address newManufacturer = manufacturerDeployer.deploy(_ownerID, _name, _physicalAddress, _registrationNumber);
@@ -53,16 +53,16 @@ contract Deployer {
     function deploy (address a, string memory s1, string memory s2, string memory s3) public returns (address) {}
 }
 
-//contract UserDeployer is Deployer {
-//    constructor () public {
-//        main = Main(msg.sender);
-//    }
-//
-//    function deploy (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {
-//        User newUser = new User(_ownerID);
-//        return address(newUser);
-//    }
-//}
+contract UserDeployer is Deployer {
+    constructor () public {
+        main = Main(msg.sender);
+    }
+
+    function deploy (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {
+        User newUser = new User(_ownerID);
+        return address(newUser);
+    }
+}
 
 contract ManufacturerDeployer is Deployer {
     constructor () public {

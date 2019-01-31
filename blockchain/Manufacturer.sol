@@ -1,7 +1,8 @@
 pragma solidity ^0.5.1;
 
-import "./Item.sol";
+import "./Main.sol";
 import "./Organization.sol";
+import "./Item.sol";
 
 contract Manufacturer is Organization {
     address[] public vendors;
@@ -34,6 +35,19 @@ contract Manufacturer is Organization {
         return (address(newItem));
     }
 
+    function setVendorToItem (address vID, address iID) onlyOwner public {
+        Main.ContractType cType = main.getContractType(vID);
+        require((cType == Main.ContractType.VENDOR), "Wrong contract type");
+
+        Item iInstance = Item(iID);
+        iInstance.setVendor(vID);
+    }
+
+    function activateWarranty (address iID) onlyOwner public {
+        Item iInstance = Item(iID);
+        iInstance.activateWarranty();
+    }
+
 
 
 // Internal
@@ -41,48 +55,48 @@ contract Manufacturer is Organization {
 
 
     function _addPartnerMethod (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
-        if (pType == Main.ContractType.VENDOR) { _addVendor(pID); }
-        else if (pType == Main.ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
+        if (cType == Main.ContractType.VENDOR) { _addVendor(pID); }
+        else if (cType == Main.ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
     }
 
     function _removePartnerMethod (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
-        if (pType == Main.ContractType.VENDOR) { _removeVendor(pID); }
-        else if (pType == Main.ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
+        if (cType == Main.ContractType.VENDOR) { _removeVendor(pID); }
+        else if (cType == Main.ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
     }
 
     function _sendPartnershipRequest (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipRequest();
     }
 
     function _sendPartnershipDecline (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipDecline();
     }
 
     function _sendPartnershipRevert (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipRevert();
     }
 
     function _sendPartnershipCancel (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.cancelPartnership(id);

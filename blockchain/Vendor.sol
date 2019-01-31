@@ -1,6 +1,8 @@
 pragma solidity ^0.5.1;
 
+import "./Main.sol";
 import "./Organization.sol";
+import "./Item.sol";
 
 contract Vendor is Organization {
     address[] public manufacturers;
@@ -25,51 +27,66 @@ contract Vendor is Organization {
 
 
 
+    function setOwnerToItem (address uID, address iID) onlyOwner public {
+        Main.ContractType cType = main.getContractType(uID);
+        require((cType == Main.ContractType.USER), "Wrong contract type");
+
+        Item iInstance = Item(iID);
+        iInstance.setOwner(uID);
+    }
+
+    function activateWarranty (address iID) onlyOwner public {
+        Item iInstance = Item(iID);
+        iInstance.activateWarranty();
+    }
+
+
+
 // Internal
 
 
 
     function _addPartnerMethod (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         _addManufacturer(pID);
     }
 
     function _removePartnerMethod (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         _removeManufacturer(pID);
     }
 
     function _sendPartnershipRequest (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipRequest();
     }
 
     function _sendPartnershipDecline (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipDecline();
     }
 
     function _sendPartnershipRevert (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipRevert();
     }
 
     function _sendPartnershipCancel (address pID) internal {
-        Main.ContractType pType = main.getContractType(pID);
-        require(pType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.cancelPartnership(id);
