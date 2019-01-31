@@ -12,4 +12,8 @@ const playersScheme = new Schema({
 });
 
 
-module.exports = mongoose.model("playersScheme", playersScheme);
+module.exports = {
+    Vendor: mongoose.model("Vendor", playersScheme),
+    Manufacturer: mongoose.model("Manufacturer", playersScheme),
+    ServiceCenter: mongoose.model("ServiceCenter", playersScheme)
+}
