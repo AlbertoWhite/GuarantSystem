@@ -5,5 +5,8 @@ module.exports = function (f, args) {
       res(data);
     }))
   })
-  .catch(console.error);
+  .catch(err => {
+    console.error(err);
+    return null;
+  });
 }
