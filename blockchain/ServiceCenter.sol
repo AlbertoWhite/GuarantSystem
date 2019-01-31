@@ -1,30 +1,21 @@
 pragma solidity ^0.5.1;
 
-import "./Manufacturer.sol";
+import "./Main.sol";
+import "./Organization.sol";
+import "./Item.sol";
 
-contract ServiceCenter {
-    address public id = address(this);
-    address private ownerID;
-    string public name;
-    string public physicalAddress;
-    string public registrationNumber;
-
+contract ServiceCenter is Organization {
     address[] public manufacturers;
-    address[] public receivedManufacturers;
-    address[] public requestedManufacturers;
     address[] public pendingItems;
 
-
-
-    mapping (address => bool) isManufacturer;
-    mapping (address => bool) isReceivedManufacturer;
-    mapping (address => bool) isRequestedManufacturer;
+    mapping (address => bool) isInManufacturers;
     mapping (address => bool) isPendingItem;
 
 
 
-    constructor (string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        ownerID = msg.sender;
+    constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
+        main = Deployer(msg.sender).main();
+        ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
         registrationNumber = _registrationNumber;
@@ -36,95 +27,60 @@ contract ServiceCenter {
 
 
 
-    function addManufacturer (address mID) onlyOwner public {
-        if (isReceivedManufacturer[mID] == true) {
-            _addManufacturer(mID);
-            _removeReceivedManufacturer(mID);
-        } else {
-            _addRequestedManufacturer(mID);
-        }
-
-        Manufacturer mInstance = Manufacturer(mID);
-        mInstance.receiveServiceCenter();
-    }
-
-    function receiveManufacturer () public {
-        address mID = msg.sender;
-        require(isReceivedManufacturer[mID] == false, "Partnership request has already been sent");
-
-        if (isRequestedManufacturer[mID] == true) {
-            _addManufacturer(mID);
-            _removeRequestedManufacturer(mID);
-        } else {
-            _addReceivedManufacturer(mID);
-        }
-    }
-
-    function removeManufacturer (address mID) onlyOwnerOrManufacturer public {
-        require((msg.sender == ownerID) || (msg.sender == mID), "Not enough permissions");
-        require(isManufacturer[mID] == true, "No such manufacturer");
-
-        _removeManufacturer(mID);
-
-        Manufacturer mInstance = Manufacturer(mID);
-        mInstance.removeServiceCenter(id);
-    }
-
-
-
 // Internal
 
 
 
-    function _removeFromAddressArray (address[] storage array, address value) internal {
-        for (uint i = 0; i < array.length; i++) {
-            if (array[i] == value) {
-              array[i] = array[array.length - 1];
-              delete array[array.length - 1];
-              array.length = array.length - 1;
-            }
-        }
+    function _addPartnerMethod (address pID) internal {
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+
+        _addManufacturer(pID);
     }
 
-    function _addTo (address[] storage array, mapping (address => bool) storage map, address aID) internal {
-        require(map[aID] == false, "Already exists");
+    function _removePartnerMethod (address pID) internal {
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
-        array.push(aID);
-        map[aID] = true;
+        _removeManufacturer(pID);
     }
 
-    function _removeFrom (address[] storage array, mapping (address => bool) storage map, address aID) internal {
-        require(map[aID] == true, "Not found");
+    function _sendPartnershipRequest (address pID) internal {
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
-        _removeFromAddressArray(array, aID);
-        map[aID] = false;
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipRequest();
+    }
+
+    function _sendPartnershipDecline (address pID) internal {
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipDecline();
+    }
+
+    function _sendPartnershipRevert (address pID) internal {
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.receivePartnershipRevert();
+    }
+
+    function _sendPartnershipCancel (address pID) internal {
+        Main.ContractType cType = main.getContractType(pID);
+        require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+
+        Organization oInstance = Organization(pID);
+        oInstance.cancelPartnership(id);
     }
 
     function _addPendingItem (address iID) internal { _addTo(pendingItems, isPendingItem, iID); }
     function _removePendingItem (address iID) internal { _removeFrom(pendingItems, isPendingItem, iID); }
 
-    function _addManufacturer (address mID) internal { _addTo(manufacturers, isManufacturer, mID); }
-    function _removeManufacturer (address mID) internal { _removeFrom(manufacturers, isManufacturer, mID); }
-
-    function _addReceivedManufacturer (address mID) internal { _addTo(receivedManufacturers, isReceivedManufacturer, mID); }
-    function _removeReceivedManufacturer (address mID) internal { _removeFrom(receivedManufacturers, isReceivedManufacturer, mID); }
-
-    function _addRequestedManufacturer (address mID) internal { _addTo(requestedManufacturers, isRequestedManufacturer, mID); }
-    function _removeRequestedManufacturer (address mID) internal { _removeFrom(requestedManufacturers, isRequestedManufacturer, mID); }
-
-
-
-// Modifiers
-
-
-
-    modifier onlyOwner {
-        require(msg.sender == ownerID, "Only owner can call this function");
-        _;
-    }
-
-    modifier onlyOwnerOrManufacturer {
-        require(((msg.sender == ownerID) || (isManufacturer[msg.sender] == true)), "Only owner or partner manufacturer can call this function");
-        _;
-    }
+    function _addManufacturer (address mID) internal { _addTo(manufacturers, isInManufacturers, mID); }
+    function _removeManufacturer (address mID) internal { _removeFrom(manufacturers, isInManufacturers, mID); }
 }
+
