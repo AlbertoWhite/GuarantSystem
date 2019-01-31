@@ -1,16 +1,9 @@
 pragma solidity ^0.5.1;
 
-import "./Main.sol";
 import "./Item.sol";
 import "./Organization.sol";
 
-
-
 contract Manufacturer is Organization {
-    Main main;
-
-    address private ownerID;
-
     address[] public vendors;
     address[] public serviceCenters;
     address[] public pendingItems;
@@ -22,7 +15,7 @@ contract Manufacturer is Organization {
 
 
     constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Main(msg.sender);
+        main = Deployer(msg.sender).main();
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
@@ -49,7 +42,7 @@ contract Manufacturer is Organization {
 
     function _addPartnerMethod (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
-        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         if (pType == Main.ContractType.VENDOR) { _addVendor(pID); }
         else if (pType == Main.ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
@@ -57,7 +50,7 @@ contract Manufacturer is Organization {
 
     function _removePartnerMethod (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
-        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         if (pType == Main.ContractType.VENDOR) { _removeVendor(pID); }
         else if (pType == Main.ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
@@ -65,7 +58,7 @@ contract Manufacturer is Organization {
 
     function _sendPartnershipRequest (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
-        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipRequest();
@@ -73,7 +66,7 @@ contract Manufacturer is Organization {
 
     function _sendPartnershipDecline (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
-        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipDecline();
@@ -81,7 +74,7 @@ contract Manufacturer is Organization {
 
     function _sendPartnershipRevert (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
-        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.receivePartnershipRevert();
@@ -89,7 +82,7 @@ contract Manufacturer is Organization {
 
     function _sendPartnershipCancel (address pID) internal {
         Main.ContractType pType = main.getContractType(pID);
-        require((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER), "Wrong contract type");
+        require(((pType == Main.ContractType.VENDOR) || (pType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
         Organization oInstance = Organization(pID);
         oInstance.cancelPartnership(id);
@@ -103,20 +96,4 @@ contract Manufacturer is Organization {
 
     function _addServiceCenter (address scID) internal { _addTo(serviceCenters, isInServiceCenters, scID); }
     function _removeServiceCenter (address scID) internal { _removeFrom(serviceCenters, isInServiceCenters, scID); }
-
-
-
-// Modifiers
-
-
-
-    modifier onlyOwner {
-        require(msg.sender == ownerID, "Only owner can call this function");
-        _;
-    }
-
-    modifier onlyOwnerOrPartner {
-        require(((msg.sender == ownerID) || (isInPartnership[msg.sender] == true)), "Only owner or partner can call this function");
-        _;
-    }
 }

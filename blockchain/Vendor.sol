@@ -1,15 +1,8 @@
 pragma solidity ^0.5.1;
 
-import "./Main.sol";
 import "./Organization.sol";
 
-
-
 contract Vendor is Organization {
-    Main main;
-
-    address private ownerID;
-
     address[] public manufacturers;
     address[] public pendingItems;
 
@@ -19,7 +12,7 @@ contract Vendor is Organization {
 
 
     constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Main(msg.sender);
+        main = Deployer(msg.sender).main();
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
@@ -87,20 +80,4 @@ contract Vendor is Organization {
 
     function _addManufacturer (address mID) internal { _addTo(manufacturers, isInManufacturers, mID); }
     function _removeManufacturer (address mID) internal { _removeFrom(manufacturers, isInManufacturers, mID); }
-
-
-
-// Modifiers
-
-
-
-    modifier onlyOwner {
-        require(msg.sender == ownerID, "Only owner can call this function");
-        _;
-    }
-
-    modifier onlyOwnerOrPartner {
-        require(((msg.sender == ownerID) || (isInPartnership[msg.sender] == true)), "Only owner or partner can call this function");
-        _;
-    }
 }
