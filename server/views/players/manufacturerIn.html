@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Устройства</title>
+<title>Товары</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -13,11 +13,11 @@
 
   <header class="navbar">
     <section class="navbar-section" >
+      <a href="/players/makeGuarantee" class="btn">Создать</a>
     </section>
     <section class="navbar-section">
-       
        <div class="btn-group btn-group-block" >
-       <a href="/players/makeGuarantee" class="btn">Создать</a>
+       
         <a href="/players/vendor/requests/list" class="btn">Запросы</a>
         <a href="/players/vendor/partners/list" class="btn">Партнеры</a>
         <a href="/players/vendor/In" class="btn">Товары</a>
@@ -27,7 +27,40 @@
     </section>
   </header>
 
+<div class="columns">
+    <div class="column col-2 bg-image-7">
+    </div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Товары:</h1>
+      </div>
+      <ul>
+      
+        {% for pendingItem in listOfpendingItems %}
+             <li>
+               <form action="/players/vendor/In" method="POST">
+                <input class="form-input" type="text" id="input-example-1" name="pendingItem" placeholder="Наименование: {{pendingItem.name}}"> 
+                
+                <div class="form-group">
+                    <select class="form-select" name="user">
+                        <option value="">Выберите магазин</option>
+                        {% for vendor in listOfVendors %}
+                             <option value = {{vendor.id}}>{{vendor.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
+                    <input type="hidden" name="sell" value="sell">
+                    <button class="btn">Продать</button>
+            </form>
+
+            </li>
+             {% endfor %}
+        </ul>
+</div>
+    <div class="column col-2 bg-image-7">
+   </div>
+    </div>
 
   </body>
   </html>
