@@ -3,7 +3,7 @@ pragma solidity ^0.5.1;
 import "./Main.sol";
 
 contract Organization {
-    Main internal main;
+    Main public main;
 
     address public id = address(this);
     address internal ownerID;

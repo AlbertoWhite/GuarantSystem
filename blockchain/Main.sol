@@ -48,14 +48,14 @@ contract Main {
 }
 
 contract Deployer {
-    address public main;
+    Main public main;
 
     function deploy (address a, string memory s1, string memory s2, string memory s3) public returns (address) {}
 }
 
 //contract UserDeployer is Deployer {
 //    constructor () public {
-//        main = msg.sender;
+//        main = Main(msg.sender);
 //    }
 //
 //    function deploy (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {
@@ -66,7 +66,7 @@ contract Deployer {
 
 contract ManufacturerDeployer is Deployer {
     constructor () public {
-        main = msg.sender;
+        main = Main(msg.sender);
     }
 
     function deploy (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {
@@ -77,7 +77,7 @@ contract ManufacturerDeployer is Deployer {
 
 contract VendorDeployer is Deployer {
     constructor () public {
-        main = msg.sender;
+        main = Main(msg.sender);
     }
 
     function deploy (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {
@@ -88,7 +88,7 @@ contract VendorDeployer is Deployer {
 
 contract ServiceCenterDeployer is Deployer {
     constructor () public {
-        main = msg.sender;
+        main = Main(msg.sender);
     }
 
     function deploy (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public returns (address) {

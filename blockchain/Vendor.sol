@@ -12,7 +12,7 @@ contract Vendor is Organization {
 
 
     constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Main(Deployer(msg.sender).main());
+        main = Deployer(msg.sender).main();
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
