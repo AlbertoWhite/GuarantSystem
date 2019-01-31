@@ -38,13 +38,13 @@
       {% for manufacturer in listOfManufacterer %}
              <tr class="active">
              <td>
-                <a href="/players/manufacturer/{{manufacturer.id}}" {{manifacturer.name}} </a>
+                <a href="/players/manufacturer/{{manufacturer._id}}" {{manufacturer.name}} </a>
              </td>
              <td>
-                {{manufacturer.physicalAddress}}
+                {{ manufacturer.physicalAddress}}
             </td>
             <td>
-                {{manufacturer.registrationNumber}}   
+                {{ manufacturer.registrationNumber }}   
             </td>
        {% endfor %}
     </tbody>
@@ -65,7 +65,7 @@
       {% for vendor in listOfVendors %}
              <tr class="active">
              <td>
-                <a href="/players/vendor/{{vendor.id}}" {{vendor.name}} </a>
+                <a href="/players/vendor/{{vendor._id}}" {{vendor.name}} </a>
              </td>
              <td>
                 {{vendor.physicalAddress}}
@@ -92,7 +92,7 @@
       {% for serviceCenter in listOfServiceCenters %}
              <tr class="active">
              <td>
-                <a href="/players/serviceCenter/{{serviceCenter.id}}" {{serviceCenter.name}} </a>
+                <a href="/players/serviceCenter/{{serviceCenter._id}}" {{serviceCenter.name}} </a>
              </td>
              <td>
                 {{serviceCenter.physicalAddress}}

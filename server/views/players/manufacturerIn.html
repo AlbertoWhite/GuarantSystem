@@ -18,9 +18,9 @@
     <section class="navbar-section">
        <div class="btn-group btn-group-block" >
        
-        <a href="/players/vendor/requests/list" class="btn">Запросы</a>
-        <a href="/players/vendor/partners/list" class="btn">Партнеры</a>
-        <a href="/players/vendor/In" class="btn">Товары</a>
+        <a href="/players/manufacturer/requests/list" class="btn">Запросы</a>
+        <a href="/players/manufacturer/partners/list" class="btn">Партнеры</a>
+        <a href="/players/manufacturer/In" class="btn">Товары</a>
                 
         <a href="/players/signout" class="btn">Выход</a>
         </div>
@@ -45,7 +45,7 @@
                     <select class="form-select" name="user">
                         <option value="">Выберите магазин</option>
                         {% for vendor in listOfVendors %}
-                             <option value = {{vendor.id}}>{{vendor.name}}</option>
+                             <option value = {{vendor._id}}>{{vendor.name}}</option>
                         {% endfor %}
                     </select>
                 </div>
