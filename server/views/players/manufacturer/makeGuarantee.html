@@ -1,0 +1,60 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Создание гарантии</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+      <header class="navbar">
+    <section class="navbar-section" >
+      <a href="/players/manufacterer/In" class="btn">Назад</a>
+    </section>
+    <section class="navbar-section">
+       <div class="btn-group btn-group-block" >
+       
+        <a href="/players/manufacturer/requests/list" class="btn">Запросы</a>
+        <a href="/players/manufacturer/partners/list" class="btn">Партнеры</a>
+        <a href="/players/manufacturer/In" class="btn">Товары</a>
+                
+        <a href="/players/signout" class="btn">Выход</a>
+        </div>
+    </section>
+  </header>
+
+
+<div class="columns">
+        <div class="column col-2 bg-image-7"></div>
+        <div class="column col-8">
+            <div class="text-center">
+                <h1>Создание гарантии</h1>
+            </div>
+            <form action="/players/manufacturer/makeGuarantee" method="POST">
+
+                <label class="form-label" for="input-example-1">Введите серийный номер устройства:</label>
+                <input class="form-input" type="text" id="input-example-1" name="serial" placeholder="серийный номер">
+
+                <label class="form-label" for="input-example-2">Введите информацию об устройстве:</label>
+                <input class="form-input" type="text" id="input-example-2" name="info" placeholder="название устройства и модель">
+
+
+                <label class="form-label" for="input-example-3">Введите срок гарантии:</label>
+                <input class="form-input" type="text" id="input-example-3" name="warrantyPeriod" placeholder="срок гарантии">
+
+                <label class="form-label" for="input-example-3">Введите условия эксплуатации:</label>
+                <input class="form-input" type="text" id="input-example-3" name="warrantyTerms" placeholder="условия эксплуатации">
+
+                <div class="p-centered">
+                    <button class="btn">Создать</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="column col-2 bg-image-7">
+        </div>
+    </div>
+</body>
+</html>

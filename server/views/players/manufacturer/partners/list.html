@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Товары</title>
+<title>Партнеры</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -9,11 +9,9 @@
 <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-
-
-  <header class="navbar">
+      <header class="navbar">
     <section class="navbar-section" >
-      <a href="/players/manufacturer/makeGuarantee" class="btn">Создать</a>
+      <a href="/players/makeGuarantee" class="btn">Создать</a>
     </section>
     <section class="navbar-section">
        <div class="btn-group btn-group-block" >
@@ -27,39 +25,35 @@
     </section>
   </header>
 
+
 <div class="columns">
     <div class="column col-2 bg-image-7">
     </div>
     <div class="column col-8">
       <div class="text-center">    
-        <h1>Товары:</h1>
+        <h1>Полученные запросы:</h1>
       </div>
       <ul>
-      
-        {% for pendingItem in listOfpendingItems %}
+      {% for ReceivedPartnership in  listofReceivedPartnerships %}
              <li>
-               <form action="/players/vendor/In" method="POST">
-                <input class="form-input" type="text" id="input-example-1" name="pendingItem" placeholder="Наименование: {{pendingItem.name}}"> 
-                
-                <div class="form-group">
-                    <select class="form-select" name="user">
-                        <option value="">Выберите магазин</option>
-                        {% for vendor in listOfVendors %}
-                             <option value ="{{vendor._id}}">{{vendor.name}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <button class="btn">Продать</button>
-            </form>
-
+                {{ReceivedPartnership}}
+                <a href="/players/manufacturer/requests/list/apply/{{ReceivedPartnership}}" class="btn">Принять</a>
             </li>
              {% endfor %}
         </ul>
+      <div class="text-center">    
+        <h1>Отправленные запросы:</h1>
+      </div>
+      <ul>
+      {% for RequestedPartnership in  listofRequestedPartnerships %}
+            <li>
+                {{RequestedPartnership}}
+            </li>
+             {% endfor %}
+        </ul>  
 </div>
     <div class="column col-2 bg-image-7">
    </div>
     </div>
-
-  </body>
-  </html>
+</body>
+</html>
