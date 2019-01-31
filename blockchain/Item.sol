@@ -7,7 +7,7 @@ contract Item {
     Main public main;
 
     address public id = address(this);
-    address public ownerID;
+    address private ownerID;
     string public serial;
     string public info;
     address public manufacturerID;
