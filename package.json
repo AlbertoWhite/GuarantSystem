@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp",
+    "start": "node ./server/app.js",
     "testrpc": "node ./web3/index.js",
     "compile": "truffle compile"
   },
