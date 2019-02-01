@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var playersScheme = require('../../../db/DBSchema')
 
 router.get('/In', function (req, res) {
   res.render('players/manufacturerIn.html');
@@ -18,7 +19,21 @@ router.get('/makeGuarantee', function (req, res) {
 });
 
 router.get('/:id', function (req, res) {
-  res.render('players/manufacturer.html');
+  var pManufacturer = new Promise(function(resolve, reject) {
+    console.log('ID: '+req.params.id);
+    var manuf = playersScheme.Manufacturer.findOne({_id : req.params.id}, function(err, manuf) {
+      if(err) return reject(err);
+      console.log('Manufacturer',err, manuf);
+      resolve(manuf);
+    });
+  });
+
+  pManufacturer.then(function(manuf){
+    res.render('players/manufacturer.html',{manufacturer : manuf});
+  }).catch(function(err){
+    console.log('Error: '+ err);
+  });
+  
 });
 
 router.post('/:man_id/create', function (req, res) {
