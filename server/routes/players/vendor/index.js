@@ -29,6 +29,18 @@ router.get('/partners/list', function (req, res) {
   res.render('players/vendor/partners/list.html');
 });
 
+router.get('/partners/addPartners', function (req, res) {
+  var pManufacturer = dbhelper.getAllManufacturers;//TODO tmp
+
+  Promise.all([pManufacturer]).then(function([manuf]){//TODO tmp
+    res.render('players/vendor/partners/addPartners.html',{
+        listOfManufacterer : manuf
+    });
+  }).catch(function(err){
+    console.log('Error: '+ err);
+  });
+});
+
 router.get('/:id', function (req, res) {
   var pVendor = new Promise(function(resolve, reject) {
     console.log('ID: '+req.params.id);

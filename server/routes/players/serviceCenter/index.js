@@ -59,6 +59,18 @@ router.get('/:id', function (req, res) {
   });
 });
 
+router.get('/partners/addPartners', function (req, res) {
+  var pManufacturer = dbhelper.getAllManufacturers;//TODO tmp
+
+  Promise.all([pManufacturer]).then(function([manuf]){//TODO tmp
+    res.render('players/serviceCenter/partners/addPartners.html',{
+        listOfManufacterer : manuf
+    });
+  }).catch(function(err){
+    console.log('Error: '+ err);
+  });
+});
+
 router.post('requests/apply/:reqId',function(req,res){
   res.redirect('/players/serviceCenter/requests/list');
 });
