@@ -34,12 +34,12 @@ router.get('/', function (req, res) {
         });
       });
 
-      Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function(manuf,vend,sc){
+      Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){
         res.render('players/index.html',{
             listOfManufacterer : manuf,
             listOfVendors : vend,
             listOfServiceCenters : sc
-        },function(){console.log('------------')});
+        });
       });
     
 });
