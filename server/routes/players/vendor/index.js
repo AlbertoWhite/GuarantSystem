@@ -24,8 +24,21 @@ router.get('/:id', function (req, res) {
     });
   });
 
-  pVendor.then(function(ven){
-    res.render('players/vendor.html',{vendor : ven});
+  //TODO товары
+
+  var pManufacturer = new Promise(function(resolve, reject) {//TODO tmp
+    var manuf = playersScheme.Manufacturer.find({}, function(err, manuf) {
+      if(err) return reject(err);
+      console.log('Manufacturer',err, manuf, manuf.length);
+      resolve(manuf);
+    });
+  });
+
+  Promise.all([pManufacturer,pVendor]).then(function([manuf,vend]){//TODO tmp
+    res.render('players/vendor.html',{
+        listOfManufacterer : manuf,
+        vendor : vend,
+    });
   }).catch(function(err){
     console.log('Error: '+ err);
   });

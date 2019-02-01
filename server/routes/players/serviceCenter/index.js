@@ -15,7 +15,7 @@ router.get('/partners/list', function (req, res) {
 });
 
 router.get('/:id', function (req, res) {
-  var pserviceCenter = new Promise(function(resolve, reject) {
+  var pServiceCenter = new Promise(function(resolve, reject) {
     console.log('ID: '+req.params.id);
     var serviceCenter = playersScheme.ServiceCenter.findOne({_id : req.params.id}, function(err, serviceCenter) {
       if(err) return reject(err);
@@ -24,8 +24,21 @@ router.get('/:id', function (req, res) {
     });
   });
 
-  pserviceCenter.then(function(sc){
-    res.render('players/serviceCenter.html',{serviceCenter : sc});
+  //TODO товары
+
+  var pManufacturer = new Promise(function(resolve, reject) {//TODO tmp
+    var manuf = playersScheme.Manufacturer.find({}, function(err, manuf) {
+      if(err) return reject(err);
+      console.log('Manufacturer',err, manuf, manuf.length);
+      resolve(manuf);
+    });
+  });
+
+  Promise.all([pManufacturer,pServiceCenter]).then(function([manuf,sc]){//TODO tmp
+    res.render('players/serviceCenter.html',{
+        listOfManufacterer : manuf,
+        serviceCenter : sc
+    });
   }).catch(function(err){
     console.log('Error: '+ err);
   });

@@ -28,8 +28,30 @@ router.get('/:id', function (req, res) {
     });
   });
 
-  pManufacturer.then(function(manuf){
-    res.render('players/manufacturer.html',{manufacturer : manuf});
+  //TODO товары
+
+  var pVendor = new Promise(function(resolve, reject) {//TODO tmp
+    var vend = playersScheme.Vendor.find({}, function(err, vend) { 
+      if(err) return reject(err);
+      console.log('Vendor',err, vend, vend.length);
+      resolve(vend);
+    });
+  });
+
+  var pServiceCenter = new Promise(function(resolve, reject) {//TODO tmp
+    var sc = playersScheme.ServiceCenter.find({}, function(err, sc) { 
+      if(err) return reject(err);
+      console.log('ServiceCenter',err, sc, sc.length);
+      resolve(sc);
+    });
+  });
+
+  Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){//TODO tmp
+    res.render('players/manufacturer.html',{
+        manufacturer : manuf,
+        listOfVendors : vend,
+        listOfServiceCenters : sc
+    });
   }).catch(function(err){
     console.log('Error: '+ err);
   });
