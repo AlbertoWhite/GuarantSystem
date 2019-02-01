@@ -71,11 +71,11 @@ router.get('/:id', function (req, res) {
   });
 });
 
-router.get('requests/apply/:reqId',function(req,res){
+router.get('/requests/apply/:reqId',function(req,res){
   res.redirect('/players/vendor/requests/list');
 });
 
-router.get('partners/addPartners/apply/:reqId',function(req,res){
+router.get('/partners/addPartners/apply/:reqId',function(req,res){
   res.redirect('/players/vendor/partners/addPartners');
 });
 

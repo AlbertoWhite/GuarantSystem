@@ -83,11 +83,11 @@ router.get('/:man_id/create', function (req, res) {
   res.redirect('/players/manufacturer/:man_id');
 });
 
-router.get('requests/apply/:reqId',function(req,res){
+router.get('/requests/apply/:reqId',function(req,res){
   res.redirect('/players/manufacturer/requests/list');
 });
 
-router.get('partners/addPartners/apply/:reqId',function(req,res){
+router.get('/partners/addPartners/apply/:reqId',function(req,res){
   res.redirect('/players/manufacturer/partners/addPartners');
 });
 
