@@ -54,7 +54,7 @@
          {% endfor %}
 
       <div class="text-center">    
-        <h1>Сервис-центры:</h1>
+        <h1>Партнеры-сервис-центры:</h1>
       </div>
       <ul>
       {% for ServiceCenter in  listOfServiceCenters %}
@@ -66,6 +66,8 @@
     <tr class="active">
       <td> Название: {{ServiceCenter.name}}</td>
       <td> ID: {{ServiceCenter._id}}</td>
+      <td> Адрес: {{ServiceCenter.physicalAddress}}</td>
+      
     </tr>
   </tbody>
 </table>
