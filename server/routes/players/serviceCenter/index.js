@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var playersScheme = require('../../../db/DBSchema');
+var dbhelper = require('../../../db/DBHelper');
 
 router.get('/In', function (req, res) {
   res.render('players/serviceCenterIn.html');
@@ -26,18 +27,18 @@ router.get('/:id', function (req, res) {
 
   //TODO товары
 
-  var pManufacturer = new Promise(function(resolve, reject) {//TODO tmp
-    var manuf = playersScheme.Manufacturer.find({}, function(err, manuf) {
-      if(err) return reject(err);
-      console.log('Manufacturer',err, manuf, manuf.length);
-      resolve(manuf);
-    });
-  });
+  var pManufacturer = dbhelper.getAllManufacturers;//TODO tmp
 
   Promise.all([pManufacturer,pServiceCenter]).then(function([manuf,sc]){//TODO tmp
     res.render('players/serviceCenter.html',{
         listOfManufacterer : manuf,
-        serviceCenter : sc
+        serviceCenter : sc,
+        listOfpendingItems : [{
+          serial : 'serial',
+          info : 'info',
+          warrantyPeriod : 'warrantyPeriod',
+          warrantyTerms : 'warrantyTerms'
+        }]
     });
   }).catch(function(err){
     console.log('Error: '+ err);

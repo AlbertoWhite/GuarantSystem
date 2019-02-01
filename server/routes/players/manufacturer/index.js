@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var playersScheme = require('../../../db/DBSchema')
+var playersScheme = require('../../../db/DBSchema');
+var dbhelper = require('../../../db/DBHelper');
 
 router.get('/In', function (req, res) {
   res.render('players/manufacturerIn.html');
@@ -30,27 +31,21 @@ router.get('/:id', function (req, res) {
 
   //TODO товары
 
-  var pVendor = new Promise(function(resolve, reject) {//TODO tmp
-    var vend = playersScheme.Vendor.find({}, function(err, vend) { 
-      if(err) return reject(err);
-      console.log('Vendor',err, vend, vend.length);
-      resolve(vend);
-    });
-  });
+  var pVendor = dbhelper.getAllVendors;//TODO tmp
 
-  var pServiceCenter = new Promise(function(resolve, reject) {//TODO tmp
-    var sc = playersScheme.ServiceCenter.find({}, function(err, sc) { 
-      if(err) return reject(err);
-      console.log('ServiceCenter',err, sc, sc.length);
-      resolve(sc);
-    });
-  });
+  var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
 
   Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){//TODO tmp
     res.render('players/manufacturer.html',{
         manufacturer : manuf,
         listOfVendors : vend,
-        listOfServiceCenters : sc
+        listOfServiceCenters : sc,
+        listOfpendingItems : [{
+          serial : 'serial',
+          info : 'info',
+          warrantyPeriod : 'warrantyPeriod',
+          warrantyTerms : 'warrantyTerms'
+        }]
     });
   }).catch(function(err){
     console.log('Error: '+ err);
