@@ -34,7 +34,7 @@ router.post('/', function (req, res, next){
       });
     }
 
-    res.redirect('/');
+    res.redirect('/players');
   });
 
 module.exports = router;
