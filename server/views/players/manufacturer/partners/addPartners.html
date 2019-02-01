@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Добавть партнеров</title>
+<title>Добавить партнеров</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -60,6 +60,37 @@
 {% endfor %}
         </ul>
       
+
+<div class="text-center">    
+        <h1>Сервис-центры:</h1>
+      </div>
+      <ul>
+      {% for ServiceCenter in  listOfServiceCenters %}
+    <li>
+    
+<table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>Название: {{ServiceCenter.name}}</td>
+       <td>ID: {{ServiceCenter._id}}</td>
+        <td>
+                Адрес: {{ ServiceCenter.physicalAddress}}
+            </td>
+            <td>
+                Регистрационный номер: {{ ServiceCenter.registrationNumber }}   
+            </td>
+      <td><a href="/players/manufacturer/partners/addPartners/apply/{{ServiceCenter._id}}" class="btn">Отправить запрос</a></td>
+    </tr>
+  </tbody>
+</table> 
+</li>
+{% endfor %}
+        </ul>
+
        
 </div>
     <div class="column col-2 bg-image-7">

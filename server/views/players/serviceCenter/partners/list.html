@@ -31,10 +31,10 @@
     </div>
     <div class="column col-8">
       <div class="text-center">    
-        <h1>Полученные запросы:</h1>
+        <h1>Производители-партнеры:</h1>
       </div>
       <ul>
-      {% for ReceivedPartnership in  listofReceivedPartnerships %}
+      {% for Manufacturer in  listOfManufacterer  %}
              <li>
 
 <table class="table">
@@ -44,28 +44,16 @@
   </thead>
   <tbody>
     <tr class="active">
-      <td> {{ReceivedPartnership}}</td>
-      <td><a href="/players/manufacturer/requests/list/apply/{{ReceivedPartnership}}" class="btn">Принять</a>"</td>
+      <td> Название: {{Manufacturer.name}}</td>
+      <td>ID: {{Manufacturer._id}}</td>
+      <td>Адрес: {{Manufacturer.physicalAddress}}</td>
     </tr>
   </tbody>
 </table> 
-
-             
-                
-                
             </li>
              {% endfor %}
         </ul>
-      <div class="text-center">    
-        <h1>Отправленные запросы:</h1>
-      </div>
-      <ul>
-      {% for RequestedPartnership in  listofRequestedPartnerships %}
-            <li>
-                {{RequestedPartnership}}
-            </li>
-             {% endfor %}
-        </ul>  
+     
 </div>
     <div class="column col-2 bg-image-6">
    </div>
