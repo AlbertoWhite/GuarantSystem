@@ -79,16 +79,20 @@ router.get('/partners/addPartners', function (req, res) {
   });
 });
 
-router.post('/:man_id/create', function (req, res) {
+router.get('/:man_id/create', function (req, res) {
   res.redirect('/players/manufacturer/:man_id');
 });
 
-router.post('requests/apply/:reqId',function(req,res){
+router.get('requests/apply/:reqId',function(req,res){
   res.redirect('/players/manufacturer/requests/list');
 });
 
-router.post('partners/addPartners/apply/:reqId',function(req,res){
+router.get('partners/addPartners/apply/:reqId',function(req,res){
   res.redirect('/players/manufacturer/partners/addPartners');
+});
+
+router.post('/In', function (req, res) {
+  res.redirect('/players/manufacturer/In');
 });
 
 module.exports = router;

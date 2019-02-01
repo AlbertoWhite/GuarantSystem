@@ -71,12 +71,16 @@ router.get('/partners/addPartners', function (req, res) {
   });
 });
 
-router.post('requests/apply/:reqId',function(req,res){
+router.get('requests/apply/:reqId',function(req,res){
   res.redirect('/players/serviceCenter/requests/list');
 });
 
-router.post('partners/addPartners/apply/:reqId',function(req,res){
+router.get('partners/addPartners/apply/:reqId',function(req,res){
   res.redirect('/players/serviceCenter/partners/addPartners');
+});
+
+router.post('/In', function (req, res) {
+  res.redirect('/players/serviceCenter/In');
 });
 
 module.exports = router;
