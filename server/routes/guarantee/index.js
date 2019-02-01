@@ -9,7 +9,7 @@ router.get('/list', function (req, res) {
         id              : 'id',
         ownerID : 'ownerID'    ,   
         serial     : 'serial' ,   
-        nfo         : 'info'  ,
+        info         : 'info'  ,
         manufacturerID  : 'manufacturerID' ,
         vendorID : 'vendorID'     ,
         created    : 'created'    ,
