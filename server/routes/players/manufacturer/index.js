@@ -23,11 +23,24 @@ router.get('/In', function (req, res) {
 });
 
 router.get('/requests/list', function (req, res) {
-  res.render('players/manufacturer/requests/list.html');
+  res.render('players/manufacturer/requests/list.html',{//TODO tmp
+    listofReceivedPartnerships : ['listofReceivedPartnerships1','listofReceivedPartnerships2'],
+    listofRequestedPartnerships : ['listofRequestedPartnerships1','listofRequestedPartnerships2']
+  });
 });
 
 router.get('/partners/list', function (req, res) {
-  res.render('players/manufacturer/partners/list.html');
+  var pVendor = dbhelper.getAllVendors;//TODO tmp
+  var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
+
+  Promise.all([pVendor,pServiceCenter]).then(function([vend,sc]){//TODO tmp
+    res.render('players/manufacturer/partners/list.html',{
+        listOfVendors : vend,
+        listOfServiceCenters : sc
+    });
+  }).catch(function(err){
+    console.log('Error: '+ err);
+  });
 });
 
 router.get('/makeGuarantee', function (req, res) {

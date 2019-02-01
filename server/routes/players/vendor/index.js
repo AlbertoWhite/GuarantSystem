@@ -22,11 +22,22 @@ router.get('/In', function (req, res) {
 });
 
 router.get('/requests/list', function (req, res) {
-  res.render('players/vendor/requests/list.html');
+  res.render('players/vendor/requests/list.html',{//TODO tmp
+    listofReceivedPartnerships : ['listofReceivedPartnerships1','listofReceivedPartnerships2'],
+    listofRequestedPartnerships : ['listofRequestedPartnerships1','listofRequestedPartnerships2']
+  });
 });
 
 router.get('/partners/list', function (req, res) {
-  res.render('players/vendor/partners/list.html');
+  var pManufacturer = dbhelper.getAllManufacturers;//TODO tmp
+
+  Promise.all([pManufacturer]).then(function([manuf]){//TODO tmp
+    res.render('players/vendor/partners/list.html',{
+        listOfManufacterer : manuf
+    });
+  }).catch(function(err){
+    console.log('Error: '+ err);
+  });
 });
 
 router.get('/partners/addPartners', function (req, res) {
