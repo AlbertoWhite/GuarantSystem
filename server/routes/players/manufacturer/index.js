@@ -4,7 +4,22 @@ var playersScheme = require('../../../db/DBSchema');
 var dbhelper = require('../../../db/DBHelper');
 
 router.get('/In', function (req, res) {
-  res.render('players/manufacturerIn.html');
+
+  var pVendor = dbhelper.getAllVendors;//TODO tmp
+
+  Promise.all([pVendor]).then(function([vend]){//TODO tmp
+    res.render('players/manufacturerIn.html',{
+        listOfVendors : vend,
+        listOfpendingItems : [{
+          serial : 'serial',
+          info : 'info',
+          warrantyPeriod : 'warrantyPeriod',
+          warrantyTerms : 'warrantyTerms'
+        }]
+    });
+  }).catch(function(err){
+    console.log('Error: '+ err);
+  });
 });
 
 router.get('/requests/list', function (req, res) {
@@ -30,9 +45,7 @@ router.get('/:id', function (req, res) {
   });
 
   //TODO товары
-
   var pVendor = dbhelper.getAllVendors;//TODO tmp
-
   var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
 
   Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){//TODO tmp

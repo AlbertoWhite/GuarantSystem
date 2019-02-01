@@ -4,7 +4,21 @@ var playersScheme = require('../../../db/DBSchema');
 var dbhelper = require('../../../db/DBHelper');
 
 router.get('/In', function (req, res) {
-  res.render('players/serviceCenterIn.html');
+      var pUser = dbhelper.getAllUsers;//TODO tmp
+
+      Promise.all([pUser]).then(function([user]){//TODO tmp
+        res.render('players/serviceCenterIn.html',{
+            listOfUsers : user,
+            listOfpendingItems : [{
+              serial : 'serial',
+              info : 'info',
+              warrantyPeriod : 'warrantyPeriod',
+              warrantyTerms : 'warrantyTerms'
+            }]
+        });
+      }).catch(function(err){
+        console.log('Error: '+ err);
+      });
 });
 
 router.get('/requests/list', function (req, res) {

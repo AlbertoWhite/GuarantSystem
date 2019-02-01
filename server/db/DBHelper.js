@@ -1,4 +1,5 @@
 var playersScheme = require('../db/DBSchema');
+var User = require('../db/UserSchema');
 
 module.exports = {
     getAllManufacturers :  new Promise(function(resolve, reject) {
@@ -20,6 +21,13 @@ module.exports = {
           if(err) return reject(err);
           console.log('ServiceCenter',err, sc, sc.length);
           resolve(sc);
+        });
+      }),
+      getAllUsers : new Promise(function(resolve, reject) {
+        var user = User.find({}, function(err, user) { 
+          if(err) return reject(err);
+          console.log('ServiceCenter',err, user);
+          resolve(user);
         });
       })
     
