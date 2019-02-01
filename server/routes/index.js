@@ -10,12 +10,7 @@ const requests = require('./requests');
 
 
 router.get('/', function (req, res) {
-  
-  var data = {
-    name : 'Slava'
-  }
-
-  return res.render('index.html',data);
+    res.render('index.html');
 });
 
 router.use('/signup', signup);
