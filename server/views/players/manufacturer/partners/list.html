@@ -31,38 +31,47 @@
     </div>
     <div class="column col-8">
       <div class="text-center">    
-        <h1>Полученные запросы:</h1>
+        <h1>Продавцы:</h1>
       </div>
       <ul>
-      {% for ReceivedPartnership in  listofReceivedPartnerships %}
+      {% for Vendor in  listOfVendors %}
              <li>
 
 <table class="table">
   <thead>
-    <tr>
-    </tr>
   </thead>
   <tbody>
     <tr class="active">
-      <td> {{ReceivedPartnership}}</td>
-      <td> <a href="/players/manufacturer/requests/list/apply/{{ReceivedPartnership}}" class="btn">Принять</a></td>
+      <td> Название: {{Vendor.name}}</td>
+      <td> ID: {{Vendor._id}}</td>
     </tr>
   </tbody>
 </table>
                
             </li>
-             {% endfor %}
+            
         </ul>
+         {% endfor %}
+
       <div class="text-center">    
-        <h1>Отправленные запросы:</h1>
+        <h1>Сервис-центры:</h1>
       </div>
       <ul>
-      {% for RequestedPartnership in  listofRequestedPartnerships %}
+      {% for ServiceCenter in  listOfServiceCenters %}
             <li>
-                {{RequestedPartnership}}
+                <table class="table">
+  <thead>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td> Название: {{ServiceCenter.name}}</td>
+      <td> ID: {{ServiceCenter._id}}</td>
+    </tr>
+  </tbody>
+</table>
             </li>
-             {% endfor %}
-        </ul>  
+             
+        </ul>  {% endfor %}
 </div>
     <div class="column col-2 bg-image-7">
    </div>
