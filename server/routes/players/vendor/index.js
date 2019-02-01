@@ -59,4 +59,8 @@ router.get('/:id', function (req, res) {
   });
 });
 
+router.post('requests/apply/:reqId',function(req,res){
+  res.redirect('/players/vendor/requests/list');
+});
+
 module.exports = router;
