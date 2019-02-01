@@ -65,7 +65,7 @@
       {% for vendor in listOfVendors %}
              <tr class="active">
              <td>
-                <a href="/players/vendor/{{vendor._id}}" {{vendor.name}} </a>
+                <a href="/players/vendor/{{vendor._id}}"> {{vendor.name}} </a>
              </td>
              <td>
                 {{vendor.physicalAddress}}
@@ -92,7 +92,7 @@
       {% for serviceCenter in listOfServiceCenters %}
              <tr class="active">
              <td>
-                <a href="/players/serviceCenter/{{serviceCenter._id}}" {{serviceCenter.name}} </a>
+                <a href="/players/serviceCenter/{{serviceCenter._id}}"> {{serviceCenter.name}} </a>
              </td>
              <td>
                 {{serviceCenter.physicalAddress}}
