@@ -63,4 +63,8 @@ router.post('requests/apply/:reqId',function(req,res){
   res.redirect('/players/vendor/requests/list');
 });
 
+router.post('partners/addPartners/apply/:reqId',function(req,res){
+  res.redirect('/players/vendor/partners/addPartners');
+});
+
 module.exports = router;

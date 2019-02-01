@@ -63,4 +63,8 @@ router.post('requests/apply/:reqId',function(req,res){
   res.redirect('/players/serviceCenter/requests/list');
 });
 
+router.post('partners/addPartners/apply/:reqId',function(req,res){
+  res.redirect('/players/serviceCenter/partners/addPartners');
+});
+
 module.exports = router;

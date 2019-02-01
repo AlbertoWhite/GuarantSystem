@@ -74,4 +74,8 @@ router.post('requests/apply/:reqId',function(req,res){
   res.redirect('/players/manufacturer/requests/list');
 });
 
+router.post('partners/addPartners/apply/:reqId',function(req,res){
+  res.redirect('/players/manufacturer/partners/addPartners');
+});
+
 module.exports = router;
