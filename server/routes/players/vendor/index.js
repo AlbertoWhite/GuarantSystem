@@ -33,7 +33,7 @@ router.get('/partners/list', function (req, res) {
 
   Promise.all([pManufacturer]).then(function([manuf]){//TODO tmp
     res.render('players/vendor/partners/list.html',{
-        listOfManufacterer : manuf
+        listOfManufacturer : manuf
     });
   }).catch(function(err){
     console.log('Error: '+ err);
