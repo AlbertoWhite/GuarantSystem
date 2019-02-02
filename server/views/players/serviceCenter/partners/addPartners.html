@@ -1,0 +1,69 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Добавить партнеров</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+       <header class="navbar">
+    <section class="navbar-section" >
+     <a href="/players/serviceCenter/partners/addPartners" class="btn">Добавить</a>
+    </section>
+    <section class="navbar-section">
+       <div class="btn-group btn-group-block" >
+        <a href="/players/serviceCenter/requests/list" class="btn">Запросы</a>
+        <a href="/players/serviceCenter/partners/list" class="btn">Партнеры</a>
+        <a href="/players/serviceCenter/In" class="btn">Товары</a>
+                
+        <a href="/players/signout" class="btn">Выход</a>
+        </div>
+    </section>
+  </header>
+
+
+<div class="columns">
+    <div class="column col-2 bg-image-6">
+    </div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Производители:</h1>
+      </div>
+      <ul>
+      {% for Manufacturer in  listOfManufacterer  %}
+    <li>
+    
+<table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>Название: {{Manufacturer.name}}</td>
+       <td>ID: {{Manufacturer._id}}</td>
+        <td>
+                Адрес: {{ Manufacturer.physicalAddress}}
+            </td>
+            <td>
+                Регистрационный номер: {{ Manufacturer.registrationNumber }}   
+            </td>
+      <td><a href="/players/serviceCenter/partners/addPartners/apply/{{Manufacturer._id}}" class="btn">Отправить запрос</a></td>
+    </tr>
+  </tbody>
+</table> 
+</li>
+{% endfor %}
+        </ul>
+      
+       
+</div>
+    <div class="column col-2 bg-image-6">
+   </div>
+    </div>
+</body>
+</html>

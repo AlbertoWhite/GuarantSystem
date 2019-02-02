@@ -1,0 +1,53 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Вход</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+<body>
+
+<style>
+	body {
+		background: rgba(0, 0, 0, 0.9); /* Цвет фона */
+    background: #000 url("/static/fonmanufact5.jpg");
+    
+    background-repeat: no-repeat
+    background-attachment: fixed; 
+    background-size: 100%
+    
+		
+	}
+   </style>
+    <header class="navbar">
+        <section class="navbar-section" ></section>
+        <section class="navbar-section">
+          <div class="btn-group btn-group-block" >
+          </p><a href="players/signin" class="btn">Вход</a>
+          <a href="players/signup" class="btn">Регистрация</a>
+          </div> 
+            </section>
+      </header>
+
+  <div class="columns">
+    <div class="column col-2"></div>
+    <div class="column col-8">
+      <div class="text-center">
+        <h1>Вход</h1>
+      </div>
+      <form action="/players/signin" method="POST">
+        <label class="form-label" for="input-example-1">Введите id</label>
+        <div class="input-group">
+           <input class="form-input" type="text" id="input-example-1" name="email" placeholder="your id">
+           <input type="hidden" name="password" value="pass">
+           <button class="btn">Войти</button>
+        </div>
+      </form>
+      </p>
+    </div>
+    <div class="column col-2">
+    </div>
+  </div>
+</body>

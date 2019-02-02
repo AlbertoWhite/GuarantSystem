@@ -31,11 +31,12 @@ passport.deserializeUser(function(id, done) {
 
 module.exports.register = function(req, res, next) {
     var user = new User({ email: req.body.email, password: 'pass'});
+    if(user.email!="")
     User.findOne({ email : user.email },function(err, user_l){
         return err 
-          ? done(err)
+          ? next(err)
           : user_l
-              ? next(new Error('User already exists.'))
+            ? next(new Error('User already exists.'))
             : user.save(function(err, user) {
                 return err
                   ? next(err)
@@ -46,7 +47,6 @@ module.exports.register = function(req, res, next) {
                   });
               });
       });
-    
 };
 
 module.exports.logout = function(req, res) {

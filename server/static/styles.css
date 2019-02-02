@@ -1,0 +1,51 @@
+.bg-image-1 {
+    background-image: url(/static/fonlight3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image-main {
+    background-image: url(/static/d.jpg);
+    padding: 2em;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 800px;
+}
+.bg-image-2 {
+    background-image: url(/static/fonlight.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+
+.bg-image-3 {
+    background-image: url(/static/fonlight2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+
+.bg-image-4 {
+    background-image: url(/static/fonmanufact1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+.bg-image-5 {
+    background-image: url(/static/fonmanufact3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+.bg-image-6 {
+    background-image: url(/static/fonmanufact2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}
+.bg-image-7 {
+    background-image: url(/static/fonmanufact4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 900px
+}

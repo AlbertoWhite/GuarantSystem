@@ -1,0 +1,79 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Товары</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+
+  <header class="navbar">
+    <section class="navbar-section" >
+      <a href="/players/manufacturer/makeGuarantee" class="btn">Создать</a>
+    </section>
+    <section class="navbar-section">
+       <div class="btn-group btn-group-block" >
+       
+        <a href="/players/manufacturer/requests/list" class="btn">Запросы</a>
+        <a href="/players/manufacturer/partners/list" class="btn">Партнеры</a>
+        <a href="/players/manufacturer/In" class="btn">Товары</a>
+                
+        <a href="/players/signout" class="btn">Выход</a>
+        </div>
+    </section>
+  </header>
+
+<div class="columns">
+    <div class="column col-2 bg-image-7">
+    </div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Товары:</h1>
+      </div>
+      <ul>
+      
+        {% for pendingItem in listOfpendingItems %}
+             <li>
+             
+               <form action="/players/manufacturer/In" method="POST">
+             <div class="form-group">
+
+
+<table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>Наименование: {{pendingItem.info}}</td>
+      <td><div class="form-group">
+                    <select class="form-select" name="vendor">
+                        <option value="">Выберите магазин</option>
+                        {% for vendor in listOfVendors %}
+                             <option value ={{vendor._id}}> {{vendor.name}} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                </td>
+      <td><button class="btn">Продать</button></td>
+    </tr>
+  </tbody>
+</table>
+               </div>
+            </form>
+
+            </li>
+             {% endfor %}
+        </ul>
+</div>
+    <div class="column col-2 bg-image-7">
+   </div>
+    </div>
+
+  </body>
+  </html>

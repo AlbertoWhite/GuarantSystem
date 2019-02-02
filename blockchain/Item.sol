@@ -1,13 +1,12 @@
 pragma solidity ^0.5.1;
 
 import "./Main.sol";
-import "./Manufacturer.sol";
 
 contract Item {
     Main public main;
 
     address public id = address(this);
-    address public ownerID;
+    address private ownerID;
     string public serial;
     string public info;
     address public manufacturerID;
@@ -20,8 +19,8 @@ contract Item {
     Status public status;
     Action[] public history;
 
-    constructor (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) public {
-        main = Manufacturer(msg.sender).main();
+    constructor (address _main, string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) public {
+        main = Main(_main);
 
         Main.ContractType cType = main.getContractType(msg.sender);
         require((cType == Main.ContractType.MANUFACTURER), "Wrong contract type");

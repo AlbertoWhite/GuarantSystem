@@ -1,10 +1,12 @@
 <html>
 <head>
-<title>Единая гарантийная система</title>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Запросы</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+<link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
        <header class="navbar">
@@ -21,21 +23,34 @@
 
 
 <div class="columns">
-    <div class="column col-2"></div>
+    <div class="column col-2 bg-image-2">
+    </div>
     <div class="column col-8">
       <div class="text-center">    
         <h1>Запросы:</h1>
       </div>
       <ul>
-      {% for reguest in listOfRequests %}
+      {% for request in listOfRequests %}
              <li>
-                {{request}}
-                <a href="/requests/apply/{{request}} class="btn"">Подтвердить</a>
+
+<table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>{{request.info}}</td>
+      <td><a href="/requests/apply/{{request._id}}" class="btn">Подтвердить</a></td>
+    </tr>
+  </tbody>
+</table>  
             </li>
+             {% endfor %}
         </ul>
 </div>
-    <div class="column col-2">
-    </div>
+    <div class="column col-2 bg-image-2">
+   </div>
     </div>
 </body>
 </html>

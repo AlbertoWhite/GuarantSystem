@@ -1,10 +1,15 @@
 pragma solidity ^0.5.1;
 
-import "./Main.sol";
+import "./Requestable.sol";
 import "./Organization.sol";
+
+import "./Main.sol";
 import "./Item.sol";
 
+
 contract Manufacturer is Organization {
+    Main public main;
+
     address[] public vendors;
     address[] public serviceCenters;
     address[] public pendingItems;
@@ -15,8 +20,8 @@ contract Manufacturer is Organization {
 
 
 
-    constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Deployer(msg.sender).main();
+    constructor (address _main, address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
+        main = Main(_main);
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
@@ -30,8 +35,8 @@ contract Manufacturer is Organization {
 
 
     function createItem (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) onlyOwner public returns (address) {
-        Item newItem = new Item(_serial, _info, _warrantyPeriod, _warrantyTerms);
-        _addPendingItem(address(newItem));
+        Item newItem = new Item(address(main), _serial, _info, _warrantyPeriod, _warrantyTerms);
+        addPendingItem(address(newItem));
         return (address(newItem));
     }
 
@@ -54,60 +59,85 @@ contract Manufacturer is Organization {
 
 
 
-    function _addPartnerMethod (address pID) internal {
-        Main.ContractType cType = main.getContractType(pID);
-        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
-
-        if (cType == Main.ContractType.VENDOR) { _addVendor(pID); }
-        else if (cType == Main.ContractType.SERVICE_CENTER) { _addServiceCenter(pID); }
+    function addSentRequestHook (address _id, Requestable.Request memory req) internal {
+        if (req.Type == Requestable.RequestType.PARTNERSHIP) {
+            Main.ContractType cType = main.getContractType(_id);
+            require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        }
+    }
+    function removeSentRequestHook (address _id, Requestable.Request memory req) internal {
+        if (req.Type == Requestable.RequestType.PARTNERSHIP) {
+            Main.ContractType cType = main.getContractType(_id);
+            require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        }
     }
 
-    function _removePartnerMethod (address pID) internal {
-        Main.ContractType cType = main.getContractType(pID);
-        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
-
-        if (cType == Main.ContractType.VENDOR) { _removeVendor(pID); }
-        else if (cType == Main.ContractType.SERVICE_CENTER) { _removeServiceCenter(pID); }
+    function addReceivedRequestHook (address _id, Requestable.Request memory req) internal {
+        if (req.Type == Requestable.RequestType.PARTNERSHIP) {
+            Main.ContractType cType = main.getContractType(_id);
+            require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        }
+    }
+    function removeReceivedRequestHook (address _id, Requestable.Request memory req) internal {
+        if (req.Type == Requestable.RequestType.PARTNERSHIP) {
+            Main.ContractType cType = main.getContractType(_id);
+            require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        }
     }
 
-    function _sendPartnershipRequest (address pID) internal {
-        Main.ContractType cType = main.getContractType(pID);
-        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+    function addCompletedRequestHook (address _id, Requestable.Request memory req) internal {
+        if (req.Type == Requestable.RequestType.PARTNERSHIP) {
+            Main.ContractType cType = main.getContractType(_id);
+            require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
-        Organization oInstance = Organization(pID);
-        oInstance.receivePartnershipRequest();
+            if (cType == Main.ContractType.VENDOR) { addVendor(_id); }
+            else if (cType == Main.ContractType.SERVICE_CENTER) { addServiceCenter(_id); }
+        }
+    }
+    function removeCompletedRequestHook (address _id, Requestable.Request memory req) internal {
+        if (req.Type == Requestable.RequestType.PARTNERSHIP) {
+            Main.ContractType cType = main.getContractType(_id);
+            require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+
+            if (cType == Main.ContractType.VENDOR) { removeVendor(_id); }
+            else if (cType == Main.ContractType.SERVICE_CENTER) { removeServiceCenter(_id); }
+        }
     }
 
-    function _sendPartnershipDecline (address pID) internal {
-        Main.ContractType cType = main.getContractType(pID);
-        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
 
-        Organization oInstance = Organization(pID);
-        oInstance.receivePartnershipDecline();
+
+    function addPendingItem (address iID) internal { addAddress(pendingItems, isPendingItem, iID); }
+    function removePendingItem (address iID) internal { removeAddress(pendingItems, isPendingItem, iID); }
+
+    function addVendor (address vID) internal { addAddress(vendors, isInVendors, vID); }
+    function removeVendor (address vID) internal { removeAddress(vendors, isInVendors, vID); }
+
+    function addServiceCenter (address scID) internal { addAddress(serviceCenters, isInServiceCenters, scID); }
+    function removeServiceCenter (address scID) internal { removeAddress(serviceCenters, isInServiceCenters, scID); }
+
+
+
+    function addAddress (address[] storage array, mapping (address => bool) storage map, address aID) internal {
+        require(!map[aID], "Already exists");
+
+        array.push(aID);
+        map[aID] = true;
     }
 
-    function _sendPartnershipRevert (address pID) internal {
-        Main.ContractType cType = main.getContractType(pID);
-        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+    function removeAddress (address[] storage array, mapping (address => bool) storage map, address aID) internal {
+        require(map[aID], "Not found");
 
-        Organization oInstance = Organization(pID);
-        oInstance.receivePartnershipRevert();
+        removeFromAddressArray(array, aID);
+        map[aID] = false;
     }
 
-    function _sendPartnershipCancel (address pID) internal {
-        Main.ContractType cType = main.getContractType(pID);
-        require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
-
-        Organization oInstance = Organization(pID);
-        oInstance.cancelPartnership(id);
+    function removeFromAddressArray (address[] storage array, address value) internal {
+        for (uint i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+              array[i] = array[array.length - 1];
+              delete array[array.length - 1];
+              array.length--;
+            }
+        }
     }
-
-    function _addPendingItem (address iID) internal { _addTo(pendingItems, isPendingItem, iID); }
-    function _removePendingItem (address iID) internal { _removeFrom(pendingItems, isPendingItem, iID); }
-
-    function _addVendor (address vID) internal { _addTo(vendors, isInVendors, vID); }
-    function _removeVendor (address vID) internal { _removeFrom(vendors, isInVendors, vID); }
-
-    function _addServiceCenter (address scID) internal { _addTo(serviceCenters, isInServiceCenters, scID); }
-    function _removeServiceCenter (address scID) internal { _removeFrom(serviceCenters, isInServiceCenters, scID); }
 }

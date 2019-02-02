@@ -1,0 +1,130 @@
+<html>
+<head>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Производитель</title>
+<meta http-equiv="Content-Type"content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+    <section class="navbar-section">
+    <a href="/players" class="btn">Назад</a>
+    </section>
+    <section class="navbar-section">
+      <div class="btn-group btn-group-block">
+        <a href="/players/signin" class="btn">Вход</a>
+        <a href="/players/signup" class="btn">Регистрация</a>
+      </div>
+    </section>
+  </header>
+
+<div class="columns">
+    <div class="column col-2 bg-image-7">
+    </div>
+    <div class="column col-8">
+      <div class="text-center">    
+        <h1>Производитель:</h1>
+      </div>
+        <ul>
+             <li>
+                Наименование: {{manufacturer.name}}
+            </li>
+            <li>
+                ID: {{manufacturer._id}}
+            </li>
+            
+            <li>
+                Адрес: {{manufacturer.physicalAddress }}
+            </li>
+            
+            <li>
+                Регистрационный номер: {{manufacturer.registrationNumber}}
+            </li>
+            
+            <li>
+          <h3>Продавцы-партнеры:</h3>
+      <table class="table">
+      <thead>
+       <tr>
+        <th>Наименование</th>
+        <th>Адрес</th>
+        <th>Регистрационный номер</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for vendor in listOfVendors %}
+             <tr class="active">
+             <td>
+                <a href="/players/vendor/{{vendor._id}}"> {{vendor.name}} </a>
+             </td>
+             <td>
+                {{vendor.physicalAddress}}
+            </td>
+            <td>
+                {{vendor.registrationNumber}}   
+            </td>
+       {% endfor %}
+    </tbody>
+    </table>
+</li>
+
+<li>
+    <h3>Партнеры Сервис-Центры:</h3>
+      <table class="table">
+      <thead>
+       <tr>
+        <th>Наименование</th>
+        <th>Адрес</th>
+        <th>Регистрационный номер</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for serviceCenter in listOfServiceCenters %}
+             <tr class="active">
+             <td>
+                <a href="/players/serviceCenter/{{serviceCenter._id}}"> {{serviceCenter.name}} </a>
+             </td>
+             <td>
+                {{serviceCenter.physicalAddress}}
+            </td>
+            <td>
+                {{serviceCenter.registrationNumber}}   
+            </td>
+       {% endfor %}
+    </tbody>
+    </table>
+</li>
+     <li>
+            <h3>Товары:</h3>
+      <table class="table">
+      <thead>
+       <tr>
+        <th>Наименование</th>
+        <th>Срок гарантиии</th>
+    </tr>
+      </thead>
+      <tbody>
+      {% for pendingItem in listOfpendingItems %}
+             <tr class="active">
+             <td>
+                {{pendingItem.info}}
+            </td>
+            <td>
+                {{pendingItem.warrantyPeriod}}   
+            </td>
+       {% endfor %}
+    </tbody>
+    </table>
+</li>    
+</ul>
+</div>
+    <div class="column col-2 bg-image-7">
+    </div>
+    </div>
+
+  </body>
+  </html>

@@ -17,7 +17,7 @@ nunjucks.configure(PATH_TO_TEMPLATES, {
    express: app
 });
 
-mongoose.connect("mongodb://heroku_31cdhg9h:2kdc5691ggjsp14egdhpgjomnc@ds243344.mlab.com:43344/heroku_31cdhg9h", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_0zdbrh08:pvmuqgam253ucpoo6nao4h529b@ds227481.mlab.com:27481/heroku_0zdbrh08", { useNewUrlParser: true });
 // mongoose.on('connection', function (err) {
 //   if (!err) console.log('db connected');
 // })
@@ -27,7 +27,7 @@ mongoose.connect("mongodb://heroku_31cdhg9h:2kdc5691ggjsp14egdhpgjomnc@ds243344.
 // Middlewares, которые должны быть определены до passport:
 app.use(cookieParser());
 app.use(bodyParser());
-app.use(cookieSession({ secret: 'yuyr7igjgfyjki6fmctkucdhgtch' }));
+app.use(cookieSession({ secret: Math.random().toString(32)+Math.random().toString(32) }));
  
 // Passport:
 app.use(passport.initialize());
@@ -42,6 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/static', express.static(path.join(__dirname, './static')));
 app.use('/', routes);
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT || 3000, function () {
+  console.log('App listening on port 3000!');
+  console.log('Click to open in browser: http://localhost:'+(process.env.PORT||3000));
 });
