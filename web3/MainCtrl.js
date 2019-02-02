@@ -3,7 +3,7 @@ const Web3 = require('web3');
 const promiseWrap = require('./promiseWrap');
 const Tx = require('ethereumjs-tx');
 
-const provider = "https://guarantee-test-bc2.herokuapp.com";
+const provider = "http://54.185.11.58:8545";
 
 var web3 = new Web3(new Web3.providers.HttpProvider(provider), {
   // gasPrice: 1, gasLimit: 3000000
@@ -11,8 +11,8 @@ var web3 = new Web3(new Web3.providers.HttpProvider(provider), {
 let MainContractObj = getContract('Main');
 
 const MainCtrl = {
-  publicKey: '0x50ed9bfc4e50c7c57eb71a22288f5118a082a050',
-  privateKey: 'c01755ef9c8844e1e1b96412160b43f115c0536c1f7d1d4143f914b29e483996',
+  publicKey: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
+  privateKey: '9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
   provider,
   web3,
   initMain,
@@ -23,7 +23,7 @@ const MainCtrl = {
 }
 web3.eth.defaultAccount = MainCtrl.publicKey;
 
-function InitMainContract () {
+async function InitMainContract () {
   
   let rawTx = {
     nonce: web3.eth.getTransactionCount(MainCtrl.publicKey),
@@ -33,8 +33,18 @@ function InitMainContract () {
   
   let tx = new Tx(rawTx);
   tx.sign(Buffer.from(MainCtrl.privateKey, 'hex'));
+  // tx.sign(Buffer.from('9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643943', 'hex'));
   let serializedTx = tx.serialize();
-  return promiseWrap(web3.eth.sendRawTransaction, ['0x'+serializedTx.toString('hex')]);
+  let transactionHash = await promiseWrap(web3.eth.sendRawTransaction, ['0x'+serializedTx.toString('hex')]).then(d => {console.log(d);return new Promise((res, rej)=> {setTimeout(res.bind(null, d), 2000)})});
+  console.log('transactionHash', transactionHash);
+  var transactionReceipt = await promiseWrap(web3.eth.getTransactionReceipt, [transactionHash]).then(d => {
+    if (!d) return new Promise((res, rej)=> {setTimeout(res.bind(null, d), 2000)})
+      .then(console.log.bind(null, 'опа'))
+      .then(()=>promiseWrap(web3.eth.getTransactionReceipt, [transactionHash]));
+    return d;
+  });
+  console.log('receipt', transactionReceipt);
+  return transactionReceipt.contractAddress;
 }
 
 function registerManufacturer ({ownerId, name}) {
@@ -44,7 +54,7 @@ function registerManufacturer ({ownerId, name}) {
   let rawTx = {
     nonce: web3.eth.getTransactionCount(this.publicKey),
     data: this.MainInstance.registerManufacturer.getData(ownerId, name, 'phisical address', 'registration number'),
-    gas: 300000,
+    gas: 400000,
     to: this.address
   }
   

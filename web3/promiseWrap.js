@@ -6,7 +6,7 @@ module.exports = function (f, args) {
     }))
   })
   .catch(err => {
-    console.error(err);
+    console.error('Error', err);
     return null;
   });
 }
