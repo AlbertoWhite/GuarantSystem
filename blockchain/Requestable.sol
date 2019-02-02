@@ -41,8 +41,12 @@ contract Requestable {
 
     function request (address _id, Request memory req) onlyOwner internal {
         require(!isSentRequest[hashRequest(req)], "Request has already been sent");
-        addSentRequest(_id, req);
-        sendRequest(_id, req);
+        if (isReceivedRequest[hashRequest(req)]) {
+            acceptRequest(_id, req);
+        } else {
+            addSentRequest(_id, req);
+            sendRequest(_id, req);
+        }
     }
 
     function acceptRequest (address _id, Request memory req) onlyOwner internal {
