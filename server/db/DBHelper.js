@@ -33,5 +33,20 @@ module.exports = {
           resolve(manuf);
         });
       })},
+      getServiceCentersByTxAddress : function(_txAddress){
+        return new Promise(function(resolve, reject) {
+        var sc = playersScheme.ServiceCenter.find({txAddress: _txAddress}, function(err, sc) { 
+          if(err) return reject(err);
+          resolve(sc);
+        });
+      })},
+      getVendorssByTxAddress : function(_txAddress){
+        return new Promise(function(resolve, reject) {
+        var vend = playersScheme.Vendor.find({txAddress: _txAddress}, function(err, vend) { 
+          if(err) return reject(err);
+          resolve(vend);
+        });
+      })}
+      
     
 }

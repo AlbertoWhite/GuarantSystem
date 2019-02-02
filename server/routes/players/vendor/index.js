@@ -101,7 +101,7 @@ router.get('/:id', function (req, res) {
   // }).catch(function(err){
   //   console.log('Error: '+ err);
   // });
-});
+
 
 router.get('/requests/apply/:reqId',function(req,res){
   res.redirect('/players/vendor/requests/list');

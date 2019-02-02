@@ -56,10 +56,23 @@ router.get('/:id', function (req, res) {
       resolve(manuf);
     });
   }).then((iam)=>{
-    var pVendorsPartners = ManufCtrl.getVendorList(iam.publicKey,iam.privateKey,iam.txAddress);
-    var pServiceCenterPartners = ManufCtrl.getServiceCenterList(iam.publicKey,iam.privateKey,iam.txAddress);
+    var vendorPromise = ManufCtrl.getVendorList(iam.publicKey,iam.privateKey,iam.txAddress)
+    .then((partners)=>{
+      var pVendorsPartners = dbhelper.getVendorssByTxAddress(partners);
+      return pVendorsPartners;
+    }).catch(function(err){
+      console.log('Error: '+ err);
+    });
 
-    Promise.all([pVendorsPartners,pServiceCenterPartners]).then(function([_listOfVendors,_listOfServiceCenters]){
+    var scPromise = anufCtrl.getServiceCenterList(iam.publicKey,iam.privateKey,iam.txAddress)
+    .then((partners)=>{
+      var pServiceCenterPartners = dbhelper.getServiceCentersByTxAddress(partners);
+      return pServiceCenterPartners;
+    }).catch(function(err){
+      console.log('Error: '+ err);
+    });
+
+    Promise.all([vendorPromise, scPromise]).then(function([_listOfVendors,_listOfServiceCenters]){
         res.render('players/manufacturer.html',{
         manufacturer : iam,
         listOfVendors : _listOfVendors,
