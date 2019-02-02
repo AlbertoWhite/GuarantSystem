@@ -25,6 +25,13 @@ module.exports = {
           if(err) return reject(err);
           resolve(user);
         });
-      })
+      }),
+      getManufacturersByTxAddress :  function(_txAddress){
+        return new Promise(function(resolve, reject) {
+        var manuf = playersScheme.Manufacturer.find({txAddress: _txAddress}, function(err, manuf) {
+          if(err) return reject(err);
+          resolve(manuf);
+        });
+      })},
     
 }

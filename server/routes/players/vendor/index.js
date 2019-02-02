@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var playersScheme = require('../../../db/DBSchema');
 var dbhelper = require('../../../db/DBHelper');
+var vendorCtrl = require('../../../../web3/VendorCtrl.');
 
 router.get('/In', function (req, res) {
   var pUser = dbhelper.getAllUsers;//TODO tmp
@@ -59,26 +60,47 @@ router.get('/:id', function (req, res) {
       if(err) return reject(err);
       resolve(vendor);
     });
+  })
+  .then((iam) => {
+    return vendorCtrl.getManufacturerList(iam.publicKey,iam.privateKey,iam.txAddress).then((partners) => {
+      dbhelper.getManufacturersByTxAddress(partners).then((_listOfManufacterer) => {
+        res.render('players/vendor.html',{
+                 listOfManufacterer : _listOfManufacterer,
+                 vendor : iam,
+                 listOfpendingItems : [{
+                   serial : 'serial',
+                   info : 'info',
+                   warrantyPeriod : 'warrantyPeriod',
+                   warrantyTerms : 'warrantyTerms'
+                 }]
+             });
+           }).catch(function(err){
+             console.log('Error: '+ err);
+           });
+      });
+    }).catch(function(err){
+      console.log('Error: '+ err);
+    });
+    
   });
 
   //TODO товары
-
-  var pManufacturer = dbhelper.getAllManufacturers;//TODO tmp
-
-  Promise.all([pManufacturer,pVendor]).then(function([manuf,vend]){//TODO tmp
-    res.render('players/vendor.html',{
-        listOfManufacterer : manuf,
-        vendor : vend,
-        listOfpendingItems : [{
-          serial : 'serial',
-          info : 'info',
-          warrantyPeriod : 'warrantyPeriod',
-          warrantyTerms : 'warrantyTerms'
-        }]
-    });
-  }).catch(function(err){
-    console.log('Error: '+ err);
-  });
+  
+  // var pManufacturer = dbhelper.getAllManufacturers;
+  // Promise.all([pManufacturer,pVendor]).then(function([manuf,vend]){//TODO tmp
+  //   res.render('players/vendor.html',{
+  //       listOfManufacterer : manuf,
+  //       vendor : vend,
+  //       listOfpendingItems : [{
+  //         serial : 'serial',
+  //         info : 'info',
+  //         warrantyPeriod : 'warrantyPeriod',
+  //         warrantyTerms : 'warrantyTerms'
+  //       }]
+  //   });
+  // }).catch(function(err){
+  //   console.log('Error: '+ err);
+  // });
 });
 
 router.get('/requests/apply/:reqId',function(req,res){

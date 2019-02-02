@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var playersScheme = require('../../../db/DBSchema');
 var dbhelper = require('../../../db/DBHelper');
+var ManufCtrl = require('../../../../web3/ManufacturerCtrl');
 
 router.get('/In', function (req, res) {
 
@@ -54,17 +55,15 @@ router.get('/:id', function (req, res) {
       if(err) return reject(err);
       resolve(manuf);
     });
-  });
+  }).then((iam)=>{
+    var pVendorsPartners = ManufCtrl.getVendorList(iam.publicKey,iam.privateKey,iam.txAddress);
+    var pServiceCenterPartners = ManufCtrl.getServiceCenterList(iam.publicKey,iam.privateKey,iam.txAddress);
 
-  //TODO товары
-  var pVendor = dbhelper.getAllVendors;//TODO tmp
-  var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
-
-  Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){//TODO tmp
-    res.render('players/manufacturer.html',{
-        manufacturer : manuf,
-        listOfVendors : vend,
-        listOfServiceCenters : sc,
+    Promise.all([pVendorsPartners,pServiceCenterPartners]).then(function([_listOfVendors,_listOfServiceCenters]){
+        res.render('players/manufacturer.html',{
+        manufacturer : iam,
+        listOfVendors : _listOfVendors,
+        listOfServiceCenters : _listOfServiceCenters,
         listOfpendingItems : [{
           serial : 'serial',
           info : 'info',
@@ -72,9 +71,32 @@ router.get('/:id', function (req, res) {
           warrantyTerms : 'warrantyTerms'
         }]
     });
+    }).catch(function(err){
+         console.log('Error: '+ err);
+       });
   }).catch(function(err){
     console.log('Error: '+ err);
   });
+
+  //TODO товары
+  // var pVendor = dbhelper.getAllVendors;//TODO tmp
+  // var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
+
+  // Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){//TODO tmp
+  //   res.render('players/manufacturer.html',{
+  //       manufacturer : manuf,
+  //       listOfVendors : vend,
+  //       listOfServiceCenters : sc,
+  //       listOfpendingItems : [{
+  //         serial : 'serial',
+  //         info : 'info',
+  //         warrantyPeriod : 'warrantyPeriod',
+  //         warrantyTerms : 'warrantyTerms'
+  //       }]
+  //   });
+  // }).catch(function(err){
+  //   console.log('Error: '+ err);
+  // });
 });
 
 router.get('/partners/addPartners', function (req, res) {

@@ -2,7 +2,7 @@ module.exports = {
   userList: function () {},
   manufacturerList: function () {},
   vendorList: function () {},
-  serviceCenterList: function (publicKey /*args*/) {/* returns txAddress */},
+  serviceCenterList: function () {},
   registerUser: function (publicKey) {/* returns txAddress */},
   registerManufacturer: function (publicKey /*args*/) {/* returns txAddress */},
   registerVendor: function (publicKey /*args*/) {/* returns txAddress */},
