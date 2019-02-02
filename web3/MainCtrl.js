@@ -40,24 +40,38 @@ async function InitMainContract () {
 }
 
 function registerManufacturer ({ownerId, name}) {
-  // console.log('register man');
-  // console.log(Object.keys(this));
-  let MainAbi = this.abi;
+  let encodedABI = this.MainInstance.methods.
+                   registerManufacturer(ownerId, name, 'phisical address', 'registration number').
+                   encodeABI();
+
   let rawTx = {
     nonce: web3.eth.getTransactionCount(this.publicKey),
-    // data: this.MainInstance.registerManufacturer.getData(ownerId, name, 'phisical address', 'registration number'),
     gas: 400000,
     to: this.MainInstance.address,
-    from: this.publicKey
+    from: this.publicKey,
+    data: encodedABI
   }
-  
-  
-  let tx = new Tx(rawTx);
-  tx.sign(Buffer.from(this.privateKey, 'hex'));
-  // console.log(Object.getOwnPropertyDescriptor(tx, 'from'));
-  // let serializedTx = tx.serialize();
-  return promiseWrap(this.MainInstance.registerManufacturer.call, [ownerId, name, 'phisical address', 'registration number', rawTx]);
-  return promiseWrap(web3.eth.sendRawTransaction, ['0x'+serializedTx.toString('hex')]);
+
+  return web3.eth.accounts.signTransaction(rawTx, this.privateKey).then(signed => {
+    var tran = web3.eth.sendSignedTransaction(signed.rawTransaction);
+
+    tran.on('confirmation', (confirmationNumber, receipt) => {
+      console.log('confirmation: ' + confirmationNumber);
+    });
+
+    tran.on('transactionHash', hash => {
+      console.log('hash');
+      console.log(hash);
+    });
+
+    tran.on('receipt', receipt => {
+      console.log('reciept');
+      console.log(receipt);
+    });
+
+    tran.on('error', console.error);
+    return tran;
+  });  
 }
 
 async function initMain () {
