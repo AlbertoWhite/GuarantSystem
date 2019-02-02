@@ -2,12 +2,17 @@ pragma solidity ^0.5.1;
 
 import "./Item.sol";
 
-import "./meta/Organization.sol";
+import "./meta/Partnerable.sol";
+import "./meta/Transferable.sol";
 
 import "./interfaces/Main.sol";
 
-contract Manufacturer is Organization {
+contract Manufacturer is Partnerable, Transferable {
     Main public main;
+
+    string public name;
+    string public physicalAddress;
+    string public registrationNumber;
 
     address[] public vendors;
     address[] public serviceCenters;
@@ -40,11 +45,11 @@ contract Manufacturer is Organization {
     function getVendors () view public returns (address[] memory) {
         return vendors;
     }
-    
+
     function getServiceCenters () view public returns (address[] memory) {
         return vendors;
     }
-    
+
     function getPendingItems () view public returns (address[] memory) {
         return pendingItems;
     }
@@ -56,9 +61,10 @@ contract Manufacturer is Organization {
 
 
     function createItem (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) onlyOwner public returns (address) {
-        Item newItem = new Item(address(main), _serial, _info, _warrantyPeriod, _warrantyTerms);
-        addPendingItem(address(newItem));
-        return (address(newItem));
+        address newItem = address(new Item(address(main), _serial, _info, _warrantyPeriod, _warrantyTerms));
+        main.registerItem(newItem);
+        addPendingItem(newItem);
+        return newItem;
     }
 
     function setVendorToItem (address vID, address iID) onlyOwner public {
@@ -85,12 +91,18 @@ contract Manufacturer is Organization {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.VENDOR, "Wrong contract type");
         }
     }
     function removeSentRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.VENDOR, "Wrong contract type");
         }
     }
 
@@ -98,12 +110,18 @@ contract Manufacturer is Organization {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.VENDOR, "Wrong contract type");
         }
     }
     function removeReceivedRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(((cType == Main.ContractType.VENDOR) || (cType == Main.ContractType.SERVICE_CENTER)), "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.VENDOR, "Wrong contract type");
         }
     }
 
@@ -114,6 +132,12 @@ contract Manufacturer is Organization {
 
             if (cType == Main.ContractType.VENDOR) { addVendor(_id); }
             else if (cType == Main.ContractType.SERVICE_CENTER) { addServiceCenter(_id); }
+        }  else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.VENDOR, "Wrong contract type");
+            for (uint i = 0; i < req.objs.length; i++) {
+                setVendorToItem(_id, req.objs[i]);
+            }
         }
     }
     function removeCompletedRequestHook (address _id, Requestable.Request memory req) internal {
@@ -123,6 +147,8 @@ contract Manufacturer is Organization {
 
             if (cType == Main.ContractType.VENDOR) { removeVendor(_id); }
             else if (cType == Main.ContractType.SERVICE_CENTER) { removeServiceCenter(_id); }
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            revert("Cannot cancel completed transfer");
         }
     }
 

@@ -35,9 +35,9 @@ contract Item {
 
 
 // Getters
-    
-    
-    
+
+
+
     function getInfo () view public returns (string memory, string memory, address, address, uint, uint, string memory, uint, Status, Action[] memory) {
         return (serial, info, manufacturerID, vendorID, created, warrantyPeriod, warrantyTerms, activated, status, history);
     }
@@ -74,6 +74,23 @@ contract Item {
 
 
 
+    function statusNormal () onlyServiceCenter public {
+        status = Status.NORMAL;
+    }
+
+    function statusOnService () onlyServiceCenter public {
+        status = Status.ON_SERVICE;
+    }
+
+    function statusDefected () onlyServiceCenter public {
+        status = Status.DEFECTED;
+    }
+
+    function statusReturned () onlyManufacturerOrVendor public {
+        status = Status.RETURNED;
+    }
+
+
 // Internal
 
 
@@ -100,6 +117,12 @@ contract Item {
 
     modifier onlyVendor {
         require((msg.sender == vendorID), "Permission denied");
+        _;
+    }
+
+    modifier onlyServiceCenter {
+        Main.ContractType cType = main.contractType(msg.sender);
+        require((cType == Main.ContractType.SERVICE_CENTER), "Permission denied");
         _;
     }
 

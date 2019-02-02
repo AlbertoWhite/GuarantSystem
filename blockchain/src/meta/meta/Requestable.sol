@@ -4,7 +4,7 @@ contract Requestable {
     address public id = address(this);
     address internal ownerID;
 
-    enum RequestType {NULL, PARTNERSHIP}
+    enum RequestType {NULL, PARTNERSHIP, TRANSFER}
 
     struct Request {
         RequestType Type;

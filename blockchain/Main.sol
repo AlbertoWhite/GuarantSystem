@@ -54,4 +54,9 @@ contract Main {
         serviceCenterList.push([_ownerID, newServiceCenter]);
         ownerToID[_ownerID] = newServiceCenter;
     }
+
+    function registerItem (address iID) public {
+        require((contractType[msg.sender] == ContractType.MANUFACTURER) && (contractType[iID] == ContractType.NON_AUTHORIZED), "Wrong contract");
+        contractType[iID] = ContractType.ITEM;
+    }
 }

@@ -1,11 +1,17 @@
 pragma solidity ^0.5.1;
 
-import "./meta/Organization.sol";
+import "./meta/Partnerable.sol";
+import "./meta/Transferable.sol";
 
 import "./interfaces/Main.sol";
+import "./interfaces/Item.sol"
 
-contract ServiceCenter is Organization {
+contract ServiceCenter is Partnerable, Transferable {
     Main public main;
+
+    string public name;
+    string public physicalAddress;
+    string public registrationNumber;
 
     address[] public manufacturers;
     address[] public pendingItems;
@@ -28,7 +34,7 @@ contract ServiceCenter is Organization {
 // Getters
 
 
-    
+
     function getInfo () view public returns (string memory, string memory, string memory) {
         return (name, physicalAddress, registrationNumber);
     }
@@ -36,7 +42,7 @@ contract ServiceCenter is Organization {
     function getManufacturers () view public returns (address[] memory) {
         return manufacturers;
     }
-    
+
     function getPendingItems () view public returns (address[] memory) {
         return pendingItems;
     }
@@ -51,12 +57,18 @@ contract ServiceCenter is Organization {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.USER, "Wrong contract type");
         }
     }
     function removeSentRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.USER, "Wrong contract type");
         }
     }
 
@@ -64,12 +76,18 @@ contract ServiceCenter is Organization {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.USER, "Wrong contract type");
         }
     }
     function removeReceivedRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
             Main.ContractType cType = main.contractType(_id);
             require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.USER, "Wrong contract type");
         }
     }
 
@@ -79,6 +97,18 @@ contract ServiceCenter is Organization {
             require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
             addManufacturer(_id);
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            Main.ContractType cType = main.contractType(_id);
+            require(cType == Main.ContractType.USER, "Wrong contract type");
+
+            for (uint i = 0; i < req.objs.length; i++) {
+                if (!isPendingItem[req.objs[i]]) {
+                  addPendingItem(req.objs[i]);
+                  Item(req.objs[i]).statusOnService();
+                } else {
+                  removePendingItem(req.objs[i]);
+                }
+            }
         }
     }
     function removeCompletedRequestHook (address _id, Requestable.Request memory req) internal {
@@ -87,6 +117,8 @@ contract ServiceCenter is Organization {
             require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
 
             removeManufacturer(_id);
+        } else if (req.Type == Requestable.RequestType.TRANSFER) {
+            revert("Cannot cancel completed transfer");
         }
     }
 
