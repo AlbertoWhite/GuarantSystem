@@ -35,8 +35,19 @@
       <ul>
       {% for ReceivedPartnership in  listofReceivedPartnerships %}
              <li>
-                {{ReceivedPartnership}}
-                <a href="/players/manufacturer/requests/list/apply/{{ReceivedPartnership}}" class="btn">Принять</a>
+
+             <table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td> {{ReceivedPartnership}}</td>
+      <td><a href="/players/vendor/requests/apply/{{ReceivedPartnership}}" class="btn">Принять</a></td>
+    </tr>
+  </tbody>
+</table>    
             </li>
              {% endfor %}
         </ul>

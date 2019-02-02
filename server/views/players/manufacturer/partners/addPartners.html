@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Партнеры</title>
+<title>Добавить партнеров</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -11,7 +11,7 @@
 <body>
       <header class="navbar">
     <section class="navbar-section" >
-      <a href="/players/manufacturer/partners/addPartners" class="btn">Добавить</a>
+      <a href="/players/manufacturer/makeGuarantee" class="btn">Создать</a>
     </section>
     <section class="navbar-section">
        <div class="btn-group btn-group-block" >
@@ -34,46 +34,64 @@
         <h1>Продавцы:</h1>
       </div>
       <ul>
-      {% for Vendor in  listOfVendors %}
-             <li>
-
+      {% for vendor in  listOfVendors %}
+    <li>
+    
 <table class="table">
   <thead>
+    <tr>
+    </tr>
   </thead>
   <tbody>
     <tr class="active">
-      <td> Название: {{Vendor.name}}</td>
-      <td> ID: {{Vendor._id}}</td>
+      <td>Название: {{vendor.name}}</td>
+       <td>ID: {{vendor._id}}</td>
+        <td>
+                Адрес: {{ vendor.physicalAddress}}
+            </td>
+            <td>
+                Регистрационный номер: {{ vendor.registrationNumber }}   
+            </td>
+      <td><a href="/players/manufacturer/partners/addPartners/apply/{{vendor._id}}" class="btn">Отправить запрос</a></td>
     </tr>
   </tbody>
-</table>
-               
-            </li>
-            
+</table> 
+</li>
+{% endfor %}
         </ul>
-         {% endfor %}
+      
 
-      <div class="text-center">    
-        <h1>Партнеры-сервис-центры:</h1>
+<div class="text-center">    
+        <h1>Сервис-центры:</h1>
       </div>
       <ul>
       {% for ServiceCenter in  listOfServiceCenters %}
-            <li>
-                <table class="table">
+    <li>
+    
+<table class="table">
   <thead>
+    <tr>
+    </tr>
   </thead>
   <tbody>
     <tr class="active">
-      <td> Название: {{ServiceCenter.name}}</td>
-      <td> ID: {{ServiceCenter._id}}</td>
-      <td> Адрес: {{ServiceCenter.physicalAddress}}</td>
-      
+      <td>Название: {{ServiceCenter.name}}</td>
+       <td>ID: {{ServiceCenter._id}}</td>
+        <td>
+                Адрес: {{ ServiceCenter.physicalAddress}}
+            </td>
+            <td>
+                Регистрационный номер: {{ ServiceCenter.registrationNumber }}   
+            </td>
+      <td><a href="/players/manufacturer/partners/addPartners/apply/{{ServiceCenter._id}}" class="btn">Отправить запрос</a></td>
     </tr>
   </tbody>
-</table>
-            </li>
-             
-        </ul>  {% endfor %}
+</table> 
+</li>
+{% endfor %}
+        </ul>
+
+       
 </div>
     <div class="column col-2 bg-image-7">
    </div>

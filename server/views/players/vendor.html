@@ -34,10 +34,10 @@
       </div>
         <ul>
              <li>
-                Наименование: {{vendor.name}}
+                Наименование: {{ vendor.name }}
             </li>
             <li>
-                ID: {{vendor.id}}
+                ID: {{vendor._id}}
             </li>
             
             <li>
@@ -62,7 +62,7 @@
       {% for manufacturer in listOfManufacterer %}
              <tr class="active">
              <td>
-                <a href="/players/manufacturer/{{manufacturer.id}}" {{manifacturer.name}} </a>
+                <a href="/players/manufacturer/{{manufacturer._id}}"> {{manufacturer.name}} </a>
              </td>
              <td>
                 {{manufacturer.physicalAddress}}

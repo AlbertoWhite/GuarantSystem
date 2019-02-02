@@ -7,17 +7,20 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res, next){
-    if(req.body.type!="Manufacterer" &&
+  console.log(req.body.type);
+    if(req.body.type!="Manufacturer" &&
     req.body.type!="Vendor" &&
     req.body.type!="ServiceCenter") return next(new Error('Incorrect type'));
   
     var player = new playersScheme[req.body.type]({
-    publickKey: req.body.publickKey,
+    publicKey: req.body.publicKey,
     secretKey: "secret",
     txAddress: "txAdd",
     name: req.body.name,
-    realAddress: req.body.physicalAddress,
-    regNumber: req.body.registrationNumber});
+    physicalAddress: req.body.physicalAddress,
+    registrationNumber: req.body.registrationNumber});
+
+    console.log(player);
 
     if(player.name!=""){
       playersScheme[req.body.type].findOne({name : player.name},function(err,player_l){
@@ -30,6 +33,8 @@ router.post('/', function (req, res, next){
             });
       });
     }
+
+    res.redirect('/players');
   });
 
 module.exports = router;

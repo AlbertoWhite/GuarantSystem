@@ -5,6 +5,8 @@ import "./Organization.sol";
 import "./Item.sol";
 
 contract ServiceCenter is Organization {
+    Main public main;
+
     address[] public manufacturers;
     address[] public pendingItems;
 
@@ -13,8 +15,8 @@ contract ServiceCenter is Organization {
 
 
 
-    constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Deployer(msg.sender).main();
+    constructor (address _main, address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
+        main = Main(_main);
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;

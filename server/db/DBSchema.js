@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
   
 // установка схемы
 const playersScheme = new Schema({
-    publickKey: String,
+    publicKey: String,
     secretKey: String,
     txAddress: String,
     name: String,
-    realAddress: String,
-    regNumber: String
+    physicalAddress: String,
+    registrationNumber: String
 });
 
 

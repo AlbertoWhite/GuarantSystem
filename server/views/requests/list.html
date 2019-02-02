@@ -30,10 +30,21 @@
         <h1>Запросы:</h1>
       </div>
       <ul>
-      {% for reguest in listOfRequests %}
+      {% for request in listOfRequests %}
              <li>
-                {{request}}
-                <a href="/requests/apply/{{request}} class="btn"">Подтвердить</a>
+
+<table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>{{request.info}}</td>
+      <td><a href="/requests/apply/{{request._id}}" class="btn">Подтвердить</a></td>
+    </tr>
+  </tbody>
+</table>  
             </li>
              {% endfor %}
         </ul>

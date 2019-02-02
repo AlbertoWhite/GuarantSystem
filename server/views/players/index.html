@@ -10,7 +10,9 @@
 </head>
 <body>
      <header class="navbar">
-    <section class="navbar-section"></section>
+    <section class="navbar-section">
+    <a href="/" class="btn">Перейти на страницу для пользователей</a>
+    </section>
     <section class="navbar-section">
       <div class="btn-group btn-group-block">
         </p><a href="/players/signin" class="btn">Вход</a>
@@ -38,7 +40,7 @@
       {% for manufacturer in listOfManufacterer %}
              <tr class="active">
              <td>
-                <a href="/players/manufacturer/{{manufacturer._id}}" {{manufacturer.name}} </a>
+                <a href="/players/manufacturer/{{manufacturer._id}}"> {{ manufacturer.name }} </a>
              </td>
              <td>
                 {{ manufacturer.physicalAddress}}
@@ -65,7 +67,7 @@
       {% for vendor in listOfVendors %}
              <tr class="active">
              <td>
-                <a href="/players/vendor/{{vendor._id}}" {{vendor.name}} </a>
+                <a href="/players/vendor/{{vendor._id}}"> {{vendor.name}} </a>
              </td>
              <td>
                 {{vendor.physicalAddress}}
@@ -92,7 +94,7 @@
       {% for serviceCenter in listOfServiceCenters %}
              <tr class="active">
              <td>
-                <a href="/players/serviceCenter/{{serviceCenter._id}}" {{serviceCenter.name}} </a>
+                <a href="/players/serviceCenter/{{serviceCenter._id}}"> {{serviceCenter.name}} </a>
              </td>
              <td>
                 {{serviceCenter.physicalAddress}}

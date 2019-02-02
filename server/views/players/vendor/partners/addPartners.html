@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Партнеры</title>
+<title>Добавить партнеров</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -9,9 +9,7 @@
 <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-
-
-  <header class="navbar">
+<header class="navbar">
     <section class="navbar-section" >
     <a href="/players/vendor/partners/addPartners" class="btn">Добавить</a>
     </section>
@@ -26,17 +24,18 @@
     </section>
   </header>
 
+
 <div class="columns">
     <div class="column col-2 bg-image-5">
     </div>
     <div class="column col-8">
       <div class="text-center">    
-        <h1>Производители-партнеры:</h1>
+        <h1>Производители:</h1>
       </div>
       <ul>
-      {% for Manufacturer in  listOfManufacterer %}
-             <li>
-
+      {% for Manufacturer in  listOfManufacterer  %}
+    <li>
+    
 <table class="table">
   <thead>
     <tr>
@@ -44,18 +43,26 @@
   </thead>
   <tbody>
     <tr class="active">
-      <td> Название: {{Manufacturer.name}}</td>
-      <td> ID: {{Manufacturer._id}}</td>
-      <td> Адрес: {{Manufacturer.physicalAddress}}</td>
-     </tr>
+      <td>Название: {{Manufacturer.name}}</td>
+       <td>ID: {{Manufacturer._id}}</td>
+        <td>
+                Адрес: {{ Manufacturer.physicalAddress}}
+            </td>
+            <td>
+                Регистрационный номер: {{ Manufacturer.registrationNumber }}   
+            </td>
+      <td><a href="/players/vendor/partners/addPartners/apply/{{Manufacturer._id}}" class="btn">Отправить запрос</a></td>
+    </tr>
   </tbody>
-</table>
+</table> 
 </li>
 {% endfor %}
+        </ul>
+      
+       
 </div>
     <div class="column col-2 bg-image-5">
    </div>
     </div>
-
 </body>
 </html>

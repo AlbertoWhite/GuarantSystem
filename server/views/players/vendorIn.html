@@ -38,19 +38,31 @@
         {% for pendingItem in listOfpendingItems %}
              <li>
                <form action="/players/vendor/In" method="POST">
-                <input class="form-input" type="text" pendingItem="input-example-1" name="pendingItem" placeholder="Наименование: {{pendingItem.name}}"> 
-                
                 <div class="form-group">
+
+    <table class="table">
+  <thead>
+    <tr>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>Наименование: {{pendingItem.info}}</td>
+      <td><div class="form-group">
                     <select class="form-select" name="user">
                         <option value="">Выберите покупателя</option>
                         {% for user in listOfUsers %}
-                             <option value = "{{user._id}}">{{user._id}}</option>
+                             <option value = {{user._id}}>{{user._id}}</option>
                         {% endfor %}
-                    </select>
+                    </select></td>
                 </div>
-
-                    <input type="hidden" name="sell" value="sell">
-                    <button class="btn">Продать</button>
+      <td>
+                    <button class="btn">Продать</button></td>
+    </tr>
+  </tbody>
+</table>
+                    
+                </div>
             </form>
 
             </li>
