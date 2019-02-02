@@ -11,7 +11,7 @@ let MainContractObj = getContract('Main');
 
 const MainCtrl = {
   publicKey: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
-  privateKey: '9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
+  privateKey: '0x9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
   mainContractAddress: '0x024ad85ae9c26d58adef4dc41957434fd152fbcf',
   // local Viktor
   // privateKey: '5fa367ab7a9388d00df20d24d9e07447b4fc3e37adff437bf98d7a99befa16dc',
@@ -49,8 +49,8 @@ function registerManufacturer ({ownerId, name}) {
 
   let rawTx = {
     nonce: web3.eth.getTransactionCount(this.publicKey),
-    gas: 1000000,
-    gasPrice: '10000000000000',
+    gas: web3.utils.toHex(1000000),
+    gasPrice: web3.utils.toHex('1000000000'),
     to: this.MainInstance.address,
     from: this.publicKey,
     data: encodedABI
@@ -73,7 +73,7 @@ function registerManufacturer ({ownerId, name}) {
       console.log(receipt);
     });
 
-    tran.on('error', console.error);
+    // tran.on('error', console.error);
     return tran;
   });  
 }
