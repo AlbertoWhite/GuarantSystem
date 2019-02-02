@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Запросы</title>
+<title>Партнеры</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -9,28 +9,32 @@
 <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-       <header class="navbar">
+
+
+  <header class="navbar">
     <section class="navbar-section" >
+    <a href="/players/vendor/partners/addPartners" class="btn">Добавить</a>
     </section>
     <section class="navbar-section">
        <div class="btn-group btn-group-block" >
-        <a href="/guarantee/list" class="btn">Гарантии</a>
-        <a href="/signout" class="btn">Выход</a>
+        <a href="/players/vendor/requests/list" class="btn">Запросы</a>
+        <a href="/players/vendor/partners/list" class="btn">Партнеры</a>
+        <a href="/players/vendor/In" class="btn">Товары</a>
+                
+        <a href="/players/signout" class="btn">Выход</a>
         </div>
     </section>
   </header>
 
-
-
 <div class="columns">
-    <div class="column col-2 bg-image-2">
+    <div class="column col-2 bg-image-5">
     </div>
     <div class="column col-8">
       <div class="text-center">    
-        <h1>Запросы:</h1>
+        <h1>Производители-партнеры:</h1>
       </div>
       <ul>
-      {% for request in listOfRequests %}
+      {% for Manufacturer in  listOfManufacterer %}
              <li>
 
 <table class="table">
@@ -40,17 +44,18 @@
   </thead>
   <tbody>
     <tr class="active">
-      <td>{{request.info}}</td>
-      <td><a href="/requests/apply/{{request._id}}" class="btn">Подтвердить</a></td>
-    </tr>
+      <td> Название: {{Manufacturer.name}}</td>
+      <td> ID: {{Manufacturer._id}}</td>
+      <td> Адрес: {{Manufacturer.physicalAddress}}</td>
+     </tr>
   </tbody>
-</table>  
-            </li>
-             {% endfor %}
-        </ul>
+</table>
+</li>
+{% endfor %}
 </div>
-    <div class="column col-2 bg-image-2">
+    <div class="column col-2 bg-image-5">
    </div>
     </div>
+
 </body>
 </html>

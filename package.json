@@ -21,7 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "testrpc": "node ./web3/index.js",
-    "compile": "cd ./blockchain && truffle compile && cd .."
+    "compile": "truffle compile"
   },
   "repository": {
     "type": "git",

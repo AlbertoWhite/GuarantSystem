@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
-<title>Запросы</title>
+<title>Товары</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -9,48 +9,41 @@
 <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-       <header class="navbar">
+
+
+  <header class="navbar">
     <section class="navbar-section" >
     </section>
     <section class="navbar-section">
        <div class="btn-group btn-group-block" >
-        <a href="/guarantee/list" class="btn">Гарантии</a>
-        <a href="/signout" class="btn">Выход</a>
+        <a href="/players/serviceCenter/requests/list" class="btn">Запросы</a>
+        <a href="/players/serviceCenter/partners/list" class="btn">Партнеры</a>
+        <a href="/players/serviceCenter/In" class="btn">Товары</a>
+                
+        <a href="/players/signout" class="btn">Выход</a>
         </div>
     </section>
   </header>
 
-
-
 <div class="columns">
-    <div class="column col-2 bg-image-2">
+    <div class="column col-2 bg-image-6">
     </div>
     <div class="column col-8">
       <div class="text-center">    
-        <h1>Запросы:</h1>
+        <h1>Товары:</h1>
       </div>
       <ul>
-      {% for request in listOfRequests %}
+      
+        {% for pendingItem in listOfpendingItems %}
              <li>
-
-<table class="table">
-  <thead>
-    <tr>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="active">
-      <td>{{request.info}}</td>
-      <td><a href="/requests/apply/{{request._id}}" class="btn">Подтвердить</a></td>
-    </tr>
-  </tbody>
-</table>  
-            </li>
+             Наименование: {{pendingItem.info}};  Серийный номер: {{pendingItem.serial}}
+               </li>
              {% endfor %}
         </ul>
 </div>
-    <div class="column col-2 bg-image-2">
+    <div class="column col-2 bg-image-6">
    </div>
     </div>
-</body>
-</html>
+
+  </body>
+  </html>

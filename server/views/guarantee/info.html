@@ -1,6 +1,7 @@
 <html>
 <head>
-<title>Единая гарантийная система</title>
+<link rel="shortcut icon" href="/static/icon1.ico" type="image/x-icon">
+<title>Гарантия</title>
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
 <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
@@ -21,7 +22,16 @@
   </header>
 
 <div class="columns">
-    <div class="column col-2"></div>
+    <div class="column col-2">
+    <div class="container">
+       </div>
+       <img src="/static/fonlight2.jpg" width=100% height=100% />
+    <style>
+       img {
+          object-fit: cover;
+        }
+    </style>
+    </div>
     <div class="column col-8">
       <div class="text-center">    
         <h1>Устройствo:</h1>
@@ -53,6 +63,9 @@
                 Срок гарантии: {{guarantee.warrantyPeriod}}
           </li>
           <li>
+                Условия хранения: {{guarantee.warrantyTerms}}
+          </li>
+          <li>
                 Дата активации гарантии: {{guarantee.activated}}
           </li>
           
@@ -61,7 +74,14 @@
             </li>
         </ul>
 </div>
-    <div class="column col-2">
+    <div class="column col-2"><div class="container">
+       </div>
+       <img src="/static/fonlight2.jpg" width=100% height=100% />
+    <style>
+       img {
+          object-fit: cover;
+        }
+    </style>
     </div>
     </div>
 

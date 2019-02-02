@@ -11,8 +11,8 @@
 
 <style>
 	body {
-		background: rgba(100, 10, 10, 0.9); /* Цвет фона */
-    background: #000 url("/static/fonlight.jpg");
+		background: rgba(0, 0, 0, 0.9); /* Цвет фона */
+    background: #000 url("/static/fonmanufact5.jpg");
     
     background-repeat: no-repeat
     background-attachment: fixed; 
@@ -25,8 +25,8 @@
         <section class="navbar-section" ></section>
         <section class="navbar-section">
           <div class="btn-group btn-group-block" >
-          </p><a href="/signin" class="btn">Вход</a>
-          <a href="/signup" class="btn">Регистрация</a>
+          </p><a href="players/signin" class="btn">Вход</a>
+          <a href="players/signup" class="btn">Регистрация</a>
           </div> 
             </section>
       </header>
@@ -37,7 +37,7 @@
       <div class="text-center">
         <h1>Вход</h1>
       </div>
-      <form action="/signin" method="POST">
+      <form action="/players/signin" method="POST">
         <label class="form-label" for="input-example-1">Введите id</label>
         <div class="input-group">
            <input class="form-input" type="text" id="input-example-1" name="email" placeholder="your id">
