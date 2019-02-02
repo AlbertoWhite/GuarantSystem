@@ -6,8 +6,6 @@ var dbhelper = require('../../db/DBHelper');
 const signup = require('./signup');
 const signin = require('./signin');
 const manufacturer = require('./manufacturer');
-const seller = require('./seller');
-const service = require('./service');
 const vendor = require('./vendor');
 const serviceCenter = require('./serviceCenter');
 
@@ -32,8 +30,6 @@ router.get('/', function (req, res) {
 router.use('/signup', signup);
 router.use('/signin', signin);
 router.use('/manufacturer', manufacturer);
-router.use('/seller', seller);
-router.use('/service', service);
 router.use('/vendor', vendor);
 router.use('/serviceCenter', serviceCenter);
 

@@ -18,10 +18,9 @@ nunjucks.configure(PATH_TO_TEMPLATES, {
 });
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_0zdbrh08:pvmuqgam253ucpoo6nao4h529b@ds227481.mlab.com:27481/heroku_0zdbrh08", { useNewUrlParser: true });
-// mongoose.on('connection', function (err) {
-//   if (!err) console.log('db connected');
-// })
-
+ mongoose.connection.on('connection', function (err) {
+   if (!err) console.log('db connected');
+ })
 
 
 // Middlewares, которые должны быть определены до passport:

@@ -57,7 +57,6 @@ router.get('/:id', function (req, res) {
     console.log('ID: '+req.params.id);
     var vendor = playersScheme.Vendor.findOne({_id : req.params.id}, function(err, vendor) {
       if(err) return reject(err);
-      console.log('Vendor ',err, vendor);
       resolve(vendor);
     });
   });
