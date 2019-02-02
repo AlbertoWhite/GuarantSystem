@@ -9,8 +9,8 @@ contract User {
     address public id = address(this);
     address private ownerID;
 
-    constructor (address _ownerID) public {
-        main = Deployer(msg.sender).main();
+    constructor (address _main, address _ownerID) public {
+        main = Main(_main);
         ownerID = _ownerID;
     }
 
