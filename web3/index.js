@@ -1,1 +1,0 @@
-var getContract = require('./getContract');
