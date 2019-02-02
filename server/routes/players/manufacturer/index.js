@@ -58,31 +58,26 @@ router.get('/:id', function (req, res) {
   }).then((iam)=>{
     var vendorPromise = ManufCtrl.getVendorList(iam.publicKey,iam.privateKey,iam.txAddress)
     .then((partners)=>{
-      var pVendorsPartners = dbhelper.getVendorssByTxAddress(partners);
-      return pVendorsPartners;
+      return dbhelper.getVendorssByTxAddress(partners);
     }).catch(function(err){
       console.log('Error: '+ err);
     });
 
-    var scPromise = anufCtrl.getServiceCenterList(iam.publicKey,iam.privateKey,iam.txAddress)
+    var scPromise = ManufCtrl.getServiceCenterList(iam.publicKey,iam.privateKey,iam.txAddress)
     .then((partners)=>{
-      var pServiceCenterPartners = dbhelper.getServiceCentersByTxAddress(partners);
-      return pServiceCenterPartners;
+      return dbhelper.getServiceCentersByTxAddress(partners);
     }).catch(function(err){
       console.log('Error: '+ err);
     });
 
-    Promise.all([vendorPromise, scPromise]).then(function([_listOfVendors,_listOfServiceCenters]){
+    var itemsPromise = ManufCtrl.getItemList(iam.publicKey,iam.privateKey,iam.txAddress);
+
+    Promise.all([vendorPromise, scPromise, itemsPromise]).then(function([_listOfVendors,_listOfServiceCenters,_listOfpendingItems]){
         res.render('players/manufacturer.html',{
         manufacturer : iam,
         listOfVendors : _listOfVendors,
         listOfServiceCenters : _listOfServiceCenters,
-        listOfpendingItems : [{
-          serial : 'serial',
-          info : 'info',
-          warrantyPeriod : 'warrantyPeriod',
-          warrantyTerms : 'warrantyTerms'
-        }]
+        listOfpendingItems : _listOfpendingItems
     });
     }).catch(function(err){
          console.log('Error: '+ err);

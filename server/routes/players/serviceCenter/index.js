@@ -49,8 +49,10 @@ router.get('/:id', function (req, res) {
       resolve(serviceCenter);
     });
   }).then((iam)=>{
-    return serviceCtrl.getManufacturerList(iam.publicKey,iam.privateKey,iam.txAddress).then((partners) => {
-      dbhelper.getManufacturersByTxAddress(partners).then((_listOfManufacterer) => {
+    return serviceCtrl.getManufacturerList(iam.publicKey,iam.privateKey,iam.txAddress)
+    .then((partners) => {
+      dbhelper.getManufacturersByTxAddress(partners)
+      .then((_listOfManufacterer) => {
         res.render('players/vendor.html',{
                  listOfManufacterer : _listOfManufacterer,
                  serviceCenter : iam,

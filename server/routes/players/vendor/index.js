@@ -62,22 +62,26 @@ router.get('/:id', function (req, res) {
     });
   })
   .then((iam) => {
-    return vendorCtrl.getManufacturerList(iam.publicKey,iam.privateKey,iam.txAddress).then((partners) => {
-      dbhelper.getManufacturersByTxAddress(partners).then((_listOfManufacterer) => {
+
+    var manufPromise = vendorCtrl.getManufacturerList(iam.publicKey,iam.privateKey,iam.txAddress)
+    .then((partners)=>{
+      return dbhelper.getManufacturersByTxAddress(partners);
+    }).catch(function(err){
+      console.log('Error: '+ err);
+    });
+
+    var itemsPromise = ManufCtrl.getItemList(iam.publicKey,iam.privateKey,iam.txAddress);
+
+    Promise.all([manufPromise,itemsPromise]).then(function([_listOfManufacterer,_listOfpendingItems]){
         res.render('players/vendor.html',{
-                 listOfManufacterer : _listOfManufacterer,
-                 vendor : iam,
-                 listOfpendingItems : [{
-                   serial : 'serial',
-                   info : 'info',
-                   warrantyPeriod : 'warrantyPeriod',
-                   warrantyTerms : 'warrantyTerms'
-                 }]
-             });
-           }).catch(function(err){
-             console.log('Error: '+ err);
-           });
+                       listOfManufacterer : _listOfManufacterer,
+                       vendor : iam,
+                       listOfpendingItems : _listOfpendingItems
+                   });
+      }).catch(function(err){
+      console.log('Error: '+ err);
       });
+
     }).catch(function(err){
       console.log('Error: '+ err);
     });
