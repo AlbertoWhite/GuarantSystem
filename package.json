@@ -14,7 +14,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "session": "^0.1.0",
-    "web3": "^0.20.6"
+    "web3": "^1.0.0-beta.41"
   },
   "devDependencies": {
     "gulp-nodemon": "^2.4.2"

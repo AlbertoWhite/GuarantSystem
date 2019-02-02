@@ -13,10 +13,14 @@ let MainContractObj = getContract('Main');
 const MainCtrl = {
   publicKey: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
   privateKey: '9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
+  // local Viktor
+  // privateKey: '5fa367ab7a9388d00df20d24d9e07447b4fc3e37adff437bf98d7a99befa16dc',
+  // publicKey: '0xae8F3FF1e592123632b5C1D4831b26b1E1b92695',
   provider,
   web3,
   initMain,
   registerManufacturer,
+  callTest,
   test: {
     f: function () {console.log(this)}
   }
@@ -43,7 +47,7 @@ async function InitMainContract () {
       .then(()=>promiseWrap(web3.eth.getTransactionReceipt, [transactionHash]));
     return d;
   });
-  console.log('receipt', transactionReceipt);
+  // console.log('receipt', transactionReceipt);
   return transactionReceipt.contractAddress;
 }
 
@@ -53,18 +57,38 @@ function registerManufacturer ({ownerId, name}) {
   let MainAbi = this.abi;
   let rawTx = {
     nonce: web3.eth.getTransactionCount(this.publicKey),
-    data: this.MainInstance.registerManufacturer.getData(ownerId, name, 'phisical address', 'registration number'),
+    // data: this.MainInstance.registerManufacturer.getData(ownerId, name, 'phisical address', 'registration number'),
     gas: 400000,
-    to: this.address
+    to: this.MainInstance.address,
+    from: this.publicKey
   }
   
   
   let tx = new Tx(rawTx);
   tx.sign(Buffer.from(this.privateKey, 'hex'));
-  let serializedTx = tx.serialize();
+  // console.log(Object.getOwnPropertyDescriptor(tx, 'from'));
+  // let serializedTx = tx.serialize();
+  return promiseWrap(this.MainInstance.registerManufacturer.call, [ownerId, name, 'phisical address', 'registration number', rawTx]);
   return promiseWrap(web3.eth.sendRawTransaction, ['0x'+serializedTx.toString('hex')]);
 }
 
+function callTest () {
+  let MainAbi = this.abi;
+  let rawTx = {
+    nonce: web3.eth.getTransactionCount(this.publicKey),
+    // data: this.MainInstance.test.getData(),
+    gas: 400000,
+    to: this.MainInstance.address,
+    // from: this.publicKey
+  }
+  
+  
+  let tx = new Tx(rawTx);
+  tx.sign(Buffer.from(this.privateKey, 'hex'));
+  // console.log(Object.getOwnPropertyDescriptor(tx, 'from'));
+  // let serializedTx = tx.serialize();
+  return this.MainInstance.test.call();
+}
 
 
 async function initMain () {
