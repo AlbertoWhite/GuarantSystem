@@ -12,7 +12,7 @@ let MainContractObj = getContract('Main');
 const MainCtrl = {
   publicKey: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
   privateKey: '9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
-  mainContractAddress: '0xcb525ba47fb300719d1690a8251586e21e9c30b5',
+  mainContractAddress: '0x024ad85ae9c26d58adef4dc41957434fd152fbcf',
   // local Viktor
   // privateKey: '5fa367ab7a9388d00df20d24d9e07447b4fc3e37adff437bf98d7a99befa16dc',
   // publicKey: '0xae8F3FF1e592123632b5C1D4831b26b1E1b92695',
@@ -49,7 +49,8 @@ function registerManufacturer ({ownerId, name}) {
 
   let rawTx = {
     nonce: web3.eth.getTransactionCount(this.publicKey),
-    gas: 400000,
+    gas: 1000000,
+    gasPrice: '10000000000000',
     to: this.MainInstance.address,
     from: this.publicKey,
     data: encodedABI
@@ -99,6 +100,7 @@ async function initMain () {
   //let MainContractAddress = null;
   // let accounts = [];
   if (this.mainContractAddress) {
+    // console.log(MainContractObj.abi, this.mainContractAddress);
     this.MainInstance =  web3.eth.Contract(MainContractObj.abi, this.mainContractAddress);
     return;
   }

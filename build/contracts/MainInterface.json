@@ -1,0 +1,309 @@
+{
+  "contractName": "MainInterface",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "contractType",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b5060dd8061001f6000396000f3fe6080604052600436106038577c01000000000000000000000000000000000000000000000000000000006000350463c5a887c58114603d575b600080fd5b348015604857600080fd5b50607960048036036020811015605d57600080fd5b503573ffffffffffffffffffffffffffffffffffffffff16609c565b60405180826005811115608857fe5b60ff16815260200191505060405180910390f35b60006020819052908152604090205460ff168156fea165627a7a72305820a2a8fa2f9e7e5f02989b411db00fb18b047253ffb2dffde517a40ff9d5e0d3e50029",
+  "deployedBytecode": "0x6080604052600436106038577c01000000000000000000000000000000000000000000000000000000006000350463c5a887c58114603d575b600080fd5b348015604857600080fd5b50607960048036036020811015605d57600080fd5b503573ffffffffffffffffffffffffffffffffffffffff16609c565b60405180826005811115608857fe5b60ff16815260200191505060405180910390f35b60006020819052908152604090205460ff168156fea165627a7a72305820a2a8fa2f9e7e5f02989b411db00fb18b047253ffb2dffde517a40ff9d5e0d3e50029",
+  "sourceMap": "25:834:12:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:834:12;;;;;;;",
+  "deployedSourceMap": "25:834:12:-;;;;;;;;;;;;;;;;;;;;;284:53;;8:9:-1;5:2;;;30:1;27;20:12;5:2;284:53:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;284:53:12;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.1;\n\ncontract MainInterface {\n    // constructor (address _userDeployer, address _manufacturerDeployer, address _vendorDeployer, address _serviceCenterDeployer) public {}\n    enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER}\n    mapping (address => ContractType) public contractType;\n\n    // function registerUser (address _ownerID) public {}\n\n    // function registerManufacturer (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {}\n\n    // function registerVendor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {}\n\n    // function registerServiceCenter (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {}\n}\n\n",
+  "sourcePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/interfaces/MainInterface.sol",
+  "ast": {
+    "absolutePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/interfaces/MainInterface.sol",
+    "exportedSymbols": {
+      "MainInterface": [
+        2584
+      ]
+    },
+    "id": 2585,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2572,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".1"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2584,
+        "linearizedBaseContracts": [
+          2584
+        ],
+        "name": "MainInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "MainInterface.ContractType",
+            "id": 2579,
+            "members": [
+              {
+                "id": 2573,
+                "name": "NON_AUTHORIZED",
+                "nodeType": "EnumValue",
+                "src": "214:14:12"
+              },
+              {
+                "id": 2574,
+                "name": "ITEM",
+                "nodeType": "EnumValue",
+                "src": "230:4:12"
+              },
+              {
+                "id": 2575,
+                "name": "USER",
+                "nodeType": "EnumValue",
+                "src": "236:4:12"
+              },
+              {
+                "id": 2576,
+                "name": "MANUFACTURER",
+                "nodeType": "EnumValue",
+                "src": "242:12:12"
+              },
+              {
+                "id": 2577,
+                "name": "VENDOR",
+                "nodeType": "EnumValue",
+                "src": "256:6:12"
+              },
+              {
+                "id": 2578,
+                "name": "SERVICE_CENTER",
+                "nodeType": "EnumValue",
+                "src": "264:14:12"
+              }
+            ],
+            "name": "ContractType",
+            "nodeType": "EnumDefinition",
+            "src": "195:84:12"
+          },
+          {
+            "constant": false,
+            "id": 2583,
+            "name": "contractType",
+            "nodeType": "VariableDeclaration",
+            "scope": 2584,
+            "src": "284:53:12",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_ContractType_$2579_$",
+              "typeString": "mapping(address => enum MainInterface.ContractType)"
+            },
+            "typeName": {
+              "id": 2582,
+              "keyType": {
+                "id": 2580,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "293:7:12",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "284:33:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_ContractType_$2579_$",
+                "typeString": "mapping(address => enum MainInterface.ContractType)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2581,
+                "name": "ContractType",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2579,
+                "src": "304:12:12",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_ContractType_$2579",
+                  "typeString": "enum MainInterface.ContractType"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2585,
+        "src": "25:834:12"
+      }
+    ],
+    "src": "0:861:12"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/interfaces/MainInterface.sol",
+    "exportedSymbols": {
+      "MainInterface": [
+        2584
+      ]
+    },
+    "id": 2585,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2572,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".1"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:12"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2584,
+        "linearizedBaseContracts": [
+          2584
+        ],
+        "name": "MainInterface",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "MainInterface.ContractType",
+            "id": 2579,
+            "members": [
+              {
+                "id": 2573,
+                "name": "NON_AUTHORIZED",
+                "nodeType": "EnumValue",
+                "src": "214:14:12"
+              },
+              {
+                "id": 2574,
+                "name": "ITEM",
+                "nodeType": "EnumValue",
+                "src": "230:4:12"
+              },
+              {
+                "id": 2575,
+                "name": "USER",
+                "nodeType": "EnumValue",
+                "src": "236:4:12"
+              },
+              {
+                "id": 2576,
+                "name": "MANUFACTURER",
+                "nodeType": "EnumValue",
+                "src": "242:12:12"
+              },
+              {
+                "id": 2577,
+                "name": "VENDOR",
+                "nodeType": "EnumValue",
+                "src": "256:6:12"
+              },
+              {
+                "id": 2578,
+                "name": "SERVICE_CENTER",
+                "nodeType": "EnumValue",
+                "src": "264:14:12"
+              }
+            ],
+            "name": "ContractType",
+            "nodeType": "EnumDefinition",
+            "src": "195:84:12"
+          },
+          {
+            "constant": false,
+            "id": 2583,
+            "name": "contractType",
+            "nodeType": "VariableDeclaration",
+            "scope": 2584,
+            "src": "284:53:12",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_enum$_ContractType_$2579_$",
+              "typeString": "mapping(address => enum MainInterface.ContractType)"
+            },
+            "typeName": {
+              "id": 2582,
+              "keyType": {
+                "id": 2580,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "293:7:12",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "284:33:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_enum$_ContractType_$2579_$",
+                "typeString": "mapping(address => enum MainInterface.ContractType)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2581,
+                "name": "ContractType",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2579,
+                "src": "304:12:12",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_ContractType_$2579",
+                  "typeString": "enum MainInterface.ContractType"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2585,
+        "src": "25:834:12"
+      }
+    ],
+    "src": "0:861:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.1+commit.c8a2cb62.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-02-02T19:34:55.943Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

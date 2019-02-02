@@ -1,8 +1,9 @@
 pragma solidity ^0.5.1;
 
-import "./src/interfaces/Deployer.sol";
+import "./src/interfaces/DeployerInterface.sol";
+import "./src/interfaces/MainInterface.sol";
 
-contract Main {
+contract Main is MainInterface {
     address public main = address(this);
 
     address[2][] public userList;
@@ -12,19 +13,18 @@ contract Main {
 
     mapping (address => address) public ownerToID;
 
-    Deployer userDeployer;
-    Deployer manufacturerDeployer;
-    Deployer vendorDeployer;
-    Deployer serviceCenterDeployer;
+    DeployerInterface userDeployer;
+    DeployerInterface manufacturerDeployer;
+    DeployerInterface vendorDeployer;
+    DeployerInterface serviceCenterDeployer;
 
-    enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER}
     mapping (address => ContractType) public contractType;
 
     constructor (address _userDeployer, address _manufacturerDeployer, address _vendorDeployer, address _serviceCenterDeployer) public {
-        userDeployer = Deployer(_userDeployer);
-        manufacturerDeployer = Deployer(_manufacturerDeployer);
-        vendorDeployer = Deployer(_vendorDeployer);
-        serviceCenterDeployer = Deployer(_serviceCenterDeployer);
+        userDeployer = DeployerInterface(_userDeployer);
+        manufacturerDeployer = DeployerInterface(_manufacturerDeployer);
+        vendorDeployer = DeployerInterface(_vendorDeployer);
+        serviceCenterDeployer = DeployerInterface(_serviceCenterDeployer);
     }
 
     function registerUser (address _ownerID) public {

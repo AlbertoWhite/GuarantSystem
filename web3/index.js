@@ -3,15 +3,23 @@ const MainCtrl = require('./MainCtrl');
 
 MainCtrl.initMain()
 .then(() => {
+  return MainCtrl.web3.eth.getBalance("0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341")
+  .then(console.log.bind(null, '1 account balance: '));
+})
+.then(() => {
+  return MainCtrl.web3.eth.getBalance("0xfA3cC8275dfc66DB694a95f0BCA9cc36CaB21a61")
+  .then(console.log.bind(null, '2 account balance: '));
+})
+.then(() => {
   console.log('init, wait for timeout');
   // MainCtrl.MainInstance.allEvents((e, d) => {
   //   console.lor(e, d);
   // })
   // return MainCtrl.callTest();
-  // return MainCtrl.registerManufacturer({
-  //   ownerId: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
-  //   name: 'TestName'
-  // })
+  return MainCtrl.registerManufacturer({
+    ownerId: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
+    name: 'TestName'
+  })
 })
 .then(d => {
   console.log('data: ',d);

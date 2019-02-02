@@ -1,17 +1,17 @@
 pragma solidity ^0.5.1;
 
-import "./interfaces/Main.sol";
-import "./interfaces/Item.sol";
+import "./interfaces/MainInterface.sol";
+import "./interfaces/ItemInterface.sol";
 
 contract User {
-    Main public main;
+    MainInterface public main;
 
     address public id = address(this);
     address private ownerID;
     address[] public items;
 
     constructor (address _main, address _ownerID) public {
-        main = Main(_main);
+        main = MainInterface(_main);
         ownerID = _ownerID;
     }
 
@@ -27,10 +27,10 @@ contract User {
 
 
     function changeOwner (address uID, address iID) onlyOwner public {
-        Main.ContractType cType = main.contractType(uID);
-        require((cType == Main.ContractType.USER), "Wrong contract type");
+        MainInterface.ContractType cType = main.contractType(uID);
+        require((cType == MainInterface.ContractType.USER), "Wrong contract type");
 
-        Item iInstance = Item(iID);
+        ItemInterface iInstance = ItemInterface(iID);
         iInstance.changeOwner(uID);
         removeFromAddressArray(items, iID);
     }

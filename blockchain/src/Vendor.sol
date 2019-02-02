@@ -2,11 +2,11 @@ pragma solidity ^0.5.1;
 
 import "./meta/Organization.sol";
 
-import "./interfaces/Main.sol";
-import "./interfaces/Item.sol";
+import "./interfaces/MainInterface.sol";
+import "./interfaces/ItemInterface.sol";
 
 contract Vendor is Organization {
-    Main public main;
+    MainInterface public main;
 
     address[] public manufacturers;
     address[] public pendingItems;
@@ -17,7 +17,7 @@ contract Vendor is Organization {
 
 
     constructor (address _main, address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Main(_main);
+        main = MainInterface(_main);
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
@@ -49,16 +49,16 @@ contract Vendor is Organization {
 
 
     function setOwnerToItem (address uID, address iID) onlyOwner public {
-        Main.ContractType cType = main.contractType(uID);
-        require((cType == Main.ContractType.USER), "Wrong contract type");
+        MainInterface.ContractType cType = main.contractType(uID);
+        require((cType == MainInterface.ContractType.USER), "Wrong contract type");
 
-        Item iInstance = Item(iID);
+        ItemInterface iInstance = ItemInterface(iID);
         iInstance.setOwner(uID);
         removePendingItem(iID);
     }
 
     function activateWarranty (address iID) onlyOwner public {
-        Item iInstance = Item(iID);
+        ItemInterface iInstance = ItemInterface(iID);
         iInstance.activateWarranty();
     }
 
@@ -70,42 +70,42 @@ contract Vendor is Organization {
 
     function addSentRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
-            Main.ContractType cType = main.contractType(_id);
-            require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+            MainInterface.ContractType cType = main.contractType(_id);
+            require(cType == MainInterface.ContractType.MANUFACTURER, "Wrong contract type");
         }
     }
     function removeSentRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
-            Main.ContractType cType = main.contractType(_id);
-            require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+            MainInterface.ContractType cType = main.contractType(_id);
+            require(cType == MainInterface.ContractType.MANUFACTURER, "Wrong contract type");
         }
     }
 
     function addReceivedRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
-            Main.ContractType cType = main.contractType(_id);
-            require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+            MainInterface.ContractType cType = main.contractType(_id);
+            require(cType == MainInterface.ContractType.MANUFACTURER, "Wrong contract type");
         }
     }
     function removeReceivedRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
-            Main.ContractType cType = main.contractType(_id);
-            require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+            MainInterface.ContractType cType = main.contractType(_id);
+            require(cType == MainInterface.ContractType.MANUFACTURER, "Wrong contract type");
         }
     }
 
     function addCompletedRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
-            Main.ContractType cType = main.contractType(_id);
-            require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+            MainInterface.ContractType cType = main.contractType(_id);
+            require(cType == MainInterface.ContractType.MANUFACTURER, "Wrong contract type");
 
             addManufacturer(_id);
         }
     }
     function removeCompletedRequestHook (address _id, Requestable.Request memory req) internal {
         if (req.Type == Requestable.RequestType.PARTNERSHIP) {
-            Main.ContractType cType = main.contractType(_id);
-            require(cType == Main.ContractType.MANUFACTURER, "Wrong contract type");
+            MainInterface.ContractType cType = main.contractType(_id);
+            require(cType == MainInterface.ContractType.MANUFACTURER, "Wrong contract type");
 
             removeManufacturer(_id);
         }
