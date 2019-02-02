@@ -1,6 +1,7 @@
 var passport       = require('passport');
 var LocalStrategy  = require('passport-local').Strategy;
 var User = require('./db/UserSchema');
+var mainCtrl = require('../web3/MainCtrl');
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -30,23 +31,27 @@ passport.deserializeUser(function(id, done) {
 });
 
 module.exports.register = function(req, res, next) {
-    var user = new User({ email: req.body.email, password: 'pass'});
-    if(user.email!="")
-    User.findOne({ email : user.email },function(err, user_l){
-        return err 
-          ? next(err)
-          : user_l
-            ? next(new Error('User already exists.'))
-            : user.save(function(err, user) {
-                return err
-                  ? next(err)
-                  : req.logIn(user, function(err) {
+    var userPromise = mainCtrl.registerUser('publicKey');
+
+    Promise.all([userPromise]).then(function([txAdd]){
+        var user = new User({ email: req.body.email, password: 'pass', txAddress: txAdd});
+        if(user.email!="")
+        User.findOne({ email : user.email },function(err, user_l){
+            return err 
+              ? next(err)
+              : user_l
+                ? next(new Error('User already exists.'))
+                : user.save(function(err, user) {
                     return err
                       ? next(err)
-                      : res.redirect('/guarantee/list');
+                      : req.logIn(user, function(err) {
+                        return err
+                          ? next(err)
+                          : res.redirect('/guarantee/list');
+                      });
                   });
-              });
-      });
+          });
+    });
 };
 
 module.exports.logout = function(req, res) {
