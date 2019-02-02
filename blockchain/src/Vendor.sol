@@ -26,6 +26,24 @@ contract Vendor is Organization {
 
 
 
+// Getters
+
+
+
+    function getInfo () view public returns (string memory, string memory, string memory) {
+        return (name, physicalAddress, registrationNumber);
+    }
+
+    function getManufacturers () view public returns (address[] memory) {
+        return manufacturers;
+    }
+    
+    function getPendingItems () view public returns (address[] memory) {
+        return pendingItems;
+    }
+    
+    
+    
 // Public
 
 
@@ -36,6 +54,7 @@ contract Vendor is Organization {
 
         Item iInstance = Item(iID);
         iInstance.setOwner(uID);
+        removePendingItem(iID);
     }
 
     function activateWarranty (address iID) onlyOwner public {
