@@ -19,15 +19,17 @@ const MainCtrl = {
   web3,
   initMain,
   registerManufacturer,
+  initDeployerContract,
 }
 web3.eth.defaultAccount = MainCtrl.publicKey;
 
-async function InitMainContract () {
+async function InitMainContract (data) {
 
   let contract = new web3.eth.Contract(MainContractObj.abi)
 
   return contract.deploy({
     data: MainContractObj.bytecode,
+    arguments: data
   })
   .send({
       from: MainCtrl.publicKey,
@@ -75,27 +77,36 @@ function registerManufacturer ({ownerId, name}) {
 }
 
 
-async function initDeployerContract(){
-  let DeployerObj = new web3.eth.Contract(getContract('Deployer').abi);
-  DeployerObj.deploy({
+async function initDeployerContract(type){
+  let DeployerObj = getContract(type+'Deployer');
+  let deployer = new web3.eth.Contract(DeployerObj.abi);
+  return deployer.deploy({
       data: DeployerObj.bytecode
   })
   .send({
       from: this.publicKey,
-      gas: 1000000
+      gas: 6700000
   })
   .then((newContractInstance) => {
       console.log(newContractInstance.options.address)
       return newContractInstance.options.address;
-  })
+  }).catch(console.log.bind(null, type, '!!!!!!!'));
 };
 
 
 async function initMain () {
   //let MainContractAddress = null;
   // let accounts = [];
+
   
-  MainContractInstance = await InitMainContract();
+  MainContractInstance = await Promise.all([
+    MainCtrl.initDeployerContract('User'),
+    MainCtrl.initDeployerContract('Manufacturer'),
+    MainCtrl.initDeployerContract('Vendor'),
+    MainCtrl.initDeployerContract('ServiceCenter'),
+  ]).then(data => {
+    return InitMainContract(data);
+  }).catch(console.log);
   
   //console.log('MainContractAddress', MainContractAddress);
   this.MainInstance = MainContractInstance;

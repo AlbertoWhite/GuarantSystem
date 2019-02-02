@@ -7,11 +7,11 @@ MainCtrl.initMain()
   // MainCtrl.MainInstance.allEvents((e, d) => {
   //   console.lor(e, d);
   // })
-  return MainCtrl.callTest();
-  return MainCtrl.registerManufacturer({
-    ownerId: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
-    name: 'TestName'
-  })
+  // return MainCtrl.callTest();
+  // return MainCtrl.registerManufacturer({
+  //   ownerId: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
+  //   name: 'TestName'
+  // })
 })
 .then(d => {
   console.log('data: ',d);
