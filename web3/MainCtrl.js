@@ -12,6 +12,7 @@ let MainContractObj = getContract('Main');
 const MainCtrl = {
   publicKey: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
   privateKey: '9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
+  mainContractAddress: '0xcb525ba47fb300719d1690a8251586e21e9c30b5',
   // local Viktor
   // privateKey: '5fa367ab7a9388d00df20d24d9e07447b4fc3e37adff437bf98d7a99befa16dc',
   // publicKey: '0xae8F3FF1e592123632b5C1D4831b26b1E1b92695',
@@ -85,19 +86,22 @@ async function initDeployerContract(type){
   })
   .send({
       from: this.publicKey,
-      gas: 6700000
+      gas: 6600000
   })
   .then((newContractInstance) => {
       console.log(newContractInstance.options.address)
       return newContractInstance.options.address;
-  }).catch(console.log.bind(null, type, '!!!!!!!'));
+  }).catch(console.log.bind(null,type, '!!!!!!!'))
 };
 
 
 async function initMain () {
   //let MainContractAddress = null;
   // let accounts = [];
-
+  if (this.mainContractAddress) {
+    this.MainInstance =  web3.eth.Contract(MainContractObj.abi, this.mainContractAddress);
+    return;
+  }
   
   MainContractInstance = await Promise.all([
     MainCtrl.initDeployerContract('User'),
@@ -105,6 +109,9 @@ async function initMain () {
     MainCtrl.initDeployerContract('Vendor'),
     MainCtrl.initDeployerContract('ServiceCenter'),
   ]).then(data => {
+    for (let i = 0; i < data.length; i++){
+      if (!data[i]) throw Error("Can't deploy some deploers");
+    }
     return InitMainContract(data);
   }).catch(console.log);
   

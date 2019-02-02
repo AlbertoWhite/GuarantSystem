@@ -210,14 +210,14 @@
     "absolutePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/meta/Organization.sol",
     "exportedSymbols": {
       "Organization": [
-        2783
+        2787
       ]
     },
-    "id": 2784,
+    "id": 2788,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2660,
+        "id": 2664,
         "literals": [
           "solidity",
           "^",
@@ -230,10 +230,10 @@
       {
         "absolutePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/meta/Requestable.sol",
         "file": "./Requestable.sol",
-        "id": 2661,
+        "id": 2665,
         "nodeType": "ImportDirective",
-        "scope": 2784,
-        "sourceUnit": 3565,
+        "scope": 2788,
+        "sourceUnit": 3569,
         "src": "25:27:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -244,41 +244,41 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2662,
+              "id": 2666,
               "name": "Requestable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3564,
+              "referencedDeclaration": 3568,
               "src": "79:11:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Requestable_$3564",
+                "typeIdentifier": "t_contract$_Requestable_$3568",
                 "typeString": "contract Requestable"
               }
             },
-            "id": 2663,
+            "id": 2667,
             "nodeType": "InheritanceSpecifier",
             "src": "79:11:13"
           }
         ],
         "contractDependencies": [
-          3564
+          3568
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2783,
+        "id": 2787,
         "linearizedBaseContracts": [
-          2783,
-          3564
+          2787,
+          3568
         ],
         "name": "Organization",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 2665,
+            "id": 2669,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 2783,
+            "scope": 2787,
             "src": "97:18:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -287,7 +287,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2664,
+              "id": 2668,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "97:6:13",
@@ -301,10 +301,10 @@
           },
           {
             "constant": false,
-            "id": 2667,
+            "id": 2671,
             "name": "physicalAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 2783,
+            "scope": 2787,
             "src": "121:29:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -313,7 +313,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2666,
+              "id": 2670,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "121:6:13",
@@ -327,10 +327,10 @@
           },
           {
             "constant": false,
-            "id": 2669,
+            "id": 2673,
             "name": "registrationNumber",
             "nodeType": "VariableDeclaration",
-            "scope": 2783,
+            "scope": 2787,
             "src": "156:32:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -339,7 +339,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2668,
+              "id": 2672,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "156:6:13",
@@ -353,37 +353,37 @@
           },
           {
             "body": {
-              "id": 2691,
+              "id": 2695,
               "nodeType": "Block",
               "src": "269:106:13",
               "statements": [
                 {
                   "assignments": [
-                    2677
+                    2681
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2677,
+                      "id": 2681,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2691,
+                      "scope": 2695,
                       "src": "279:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2676,
+                        "id": 2680,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "279:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -391,7 +391,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2678,
+                  "id": 2682,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "279:18:13"
@@ -399,7 +399,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2684,
+                    "id": 2688,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -408,28 +408,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2679,
+                        "id": 2683,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2677,
+                        "referencedDeclaration": 2681,
                         "src": "307:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2681,
+                      "id": 2685,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "307:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -439,18 +439,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2682,
+                        "id": 2686,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "318:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2683,
+                      "id": 2687,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -460,17 +460,17 @@
                       "referencedDeclaration": null,
                       "src": "318:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "307:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2685,
+                  "id": 2689,
                   "nodeType": "ExpressionStatement",
                   "src": "307:34:13"
                 },
@@ -480,11 +480,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2687,
+                        "id": 2691,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2671,
+                        "referencedDeclaration": 2675,
                         "src": "359:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -493,14 +493,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2688,
+                        "id": 2692,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2677,
+                        "referencedDeclaration": 2681,
                         "src": "364:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -512,22 +512,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2686,
+                      "id": 2690,
                       "name": "request",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2948,
+                      "referencedDeclaration": 2952,
                       "src": "351:7:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2689,
+                    "id": 2693,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -541,27 +541,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2690,
+                  "id": 2694,
                   "nodeType": "ExpressionStatement",
                   "src": "351:17:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2692,
+            "id": 2696,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2674,
+                "id": 2678,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2673,
+                  "id": 2677,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "252:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -575,15 +575,15 @@
             "name": "requestPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2672,
+              "id": 2676,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2671,
+                  "id": 2675,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2692,
+                  "scope": 2696,
                   "src": "239:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -592,7 +592,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2670,
+                    "id": 2674,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "239:7:13",
@@ -609,12 +609,12 @@
               "src": "238:13:13"
             },
             "returnParameters": {
-              "id": 2675,
+              "id": 2679,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "269:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "210:165:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -622,37 +622,37 @@
           },
           {
             "body": {
-              "id": 2714,
+              "id": 2718,
               "nodeType": "Block",
               "src": "439:112:13",
               "statements": [
                 {
                   "assignments": [
-                    2700
+                    2704
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2700,
+                      "id": 2704,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2714,
+                      "scope": 2718,
                       "src": "449:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2699,
+                        "id": 2703,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "449:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -660,7 +660,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2701,
+                  "id": 2705,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "449:18:13"
@@ -668,7 +668,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2707,
+                    "id": 2711,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -677,28 +677,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2702,
+                        "id": 2706,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2700,
+                        "referencedDeclaration": 2704,
                         "src": "477:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2704,
+                      "id": 2708,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "477:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -708,18 +708,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2705,
+                        "id": 2709,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "488:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2706,
+                      "id": 2710,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -729,17 +729,17 @@
                       "referencedDeclaration": null,
                       "src": "488:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "477:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2708,
+                  "id": 2712,
                   "nodeType": "ExpressionStatement",
                   "src": "477:34:13"
                 },
@@ -749,11 +749,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2710,
+                        "id": 2714,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2694,
+                        "referencedDeclaration": 2698,
                         "src": "535:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -762,14 +762,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2711,
+                        "id": 2715,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2700,
+                        "referencedDeclaration": 2704,
                         "src": "540:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -781,22 +781,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2709,
+                      "id": 2713,
                       "name": "acceptRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2982,
+                      "referencedDeclaration": 2986,
                       "src": "521:13:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2712,
+                    "id": 2716,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -810,27 +810,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2713,
+                  "id": 2717,
                   "nodeType": "ExpressionStatement",
                   "src": "521:23:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2715,
+            "id": 2719,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2697,
+                "id": 2701,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2696,
+                  "id": 2700,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "422:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -844,15 +844,15 @@
             "name": "acceptPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2695,
+              "id": 2699,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2694,
+                  "id": 2698,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2715,
+                  "scope": 2719,
                   "src": "409:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -861,7 +861,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2693,
+                    "id": 2697,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "409:7:13",
@@ -878,12 +878,12 @@
               "src": "408:13:13"
             },
             "returnParameters": {
-              "id": 2698,
+              "id": 2702,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "439:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "381:170:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -891,37 +891,37 @@
           },
           {
             "body": {
-              "id": 2737,
+              "id": 2741,
               "nodeType": "Block",
               "src": "616:113:13",
               "statements": [
                 {
                   "assignments": [
-                    2723
+                    2727
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2723,
+                      "id": 2727,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2737,
+                      "scope": 2741,
                       "src": "626:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2722,
+                        "id": 2726,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "626:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -929,7 +929,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2724,
+                  "id": 2728,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "626:18:13"
@@ -937,7 +937,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2730,
+                    "id": 2734,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -946,28 +946,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2725,
+                        "id": 2729,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2723,
+                        "referencedDeclaration": 2727,
                         "src": "654:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2727,
+                      "id": 2731,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "654:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -977,18 +977,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2728,
+                        "id": 2732,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "665:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2729,
+                      "id": 2733,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -998,17 +998,17 @@
                       "referencedDeclaration": null,
                       "src": "665:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "654:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2731,
+                  "id": 2735,
                   "nodeType": "ExpressionStatement",
                   "src": "654:34:13"
                 },
@@ -1018,11 +1018,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2733,
+                        "id": 2737,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2717,
+                        "referencedDeclaration": 2721,
                         "src": "713:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1031,14 +1031,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2734,
+                        "id": 2738,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2723,
+                        "referencedDeclaration": 2727,
                         "src": "718:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -1050,22 +1050,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2732,
+                      "id": 2736,
                       "name": "declineRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3011,
+                      "referencedDeclaration": 3015,
                       "src": "698:14:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2735,
+                    "id": 2739,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1079,27 +1079,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2736,
+                  "id": 2740,
                   "nodeType": "ExpressionStatement",
                   "src": "698:24:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2738,
+            "id": 2742,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2720,
+                "id": 2724,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2719,
+                  "id": 2723,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "599:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1113,15 +1113,15 @@
             "name": "declinePartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2718,
+              "id": 2722,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2717,
+                  "id": 2721,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2738,
+                  "scope": 2742,
                   "src": "586:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1130,7 +1130,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2716,
+                    "id": 2720,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "586:7:13",
@@ -1147,12 +1147,12 @@
               "src": "585:13:13"
             },
             "returnParameters": {
-              "id": 2721,
+              "id": 2725,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "616:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "557:172:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1160,37 +1160,37 @@
           },
           {
             "body": {
-              "id": 2760,
+              "id": 2764,
               "nodeType": "Block",
               "src": "793:112:13",
               "statements": [
                 {
                   "assignments": [
-                    2746
+                    2750
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2746,
+                      "id": 2750,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2760,
+                      "scope": 2764,
                       "src": "803:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2745,
+                        "id": 2749,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "803:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -1198,7 +1198,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2747,
+                  "id": 2751,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "803:18:13"
@@ -1206,7 +1206,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2753,
+                    "id": 2757,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1215,28 +1215,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2748,
+                        "id": 2752,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2746,
+                        "referencedDeclaration": 2750,
                         "src": "831:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2750,
+                      "id": 2754,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "831:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -1246,18 +1246,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2751,
+                        "id": 2755,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "842:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2752,
+                      "id": 2756,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1267,17 +1267,17 @@
                       "referencedDeclaration": null,
                       "src": "842:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "831:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2754,
+                  "id": 2758,
                   "nodeType": "ExpressionStatement",
                   "src": "831:34:13"
                 },
@@ -1287,11 +1287,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2756,
+                        "id": 2760,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2740,
+                        "referencedDeclaration": 2744,
                         "src": "889:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1300,14 +1300,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2757,
+                        "id": 2761,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2746,
+                        "referencedDeclaration": 2750,
                         "src": "894:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -1319,22 +1319,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2755,
+                      "id": 2759,
                       "name": "revertRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3040,
+                      "referencedDeclaration": 3044,
                       "src": "875:13:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2758,
+                    "id": 2762,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1348,27 +1348,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2759,
+                  "id": 2763,
                   "nodeType": "ExpressionStatement",
                   "src": "875:23:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2761,
+            "id": 2765,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2743,
+                "id": 2747,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2742,
+                  "id": 2746,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "776:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1382,15 +1382,15 @@
             "name": "revertPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2741,
+              "id": 2745,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2740,
+                  "id": 2744,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2761,
+                  "scope": 2765,
                   "src": "763:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1399,7 +1399,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2739,
+                    "id": 2743,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "763:7:13",
@@ -1416,12 +1416,12 @@
               "src": "762:13:13"
             },
             "returnParameters": {
-              "id": 2744,
+              "id": 2748,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "793:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "735:170:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1429,37 +1429,37 @@
           },
           {
             "body": {
-              "id": 2781,
+              "id": 2785,
               "nodeType": "Block",
               "src": "959:121:13",
               "statements": [
                 {
                   "assignments": [
-                    2767
+                    2771
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2767,
+                      "id": 2771,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2781,
+                      "scope": 2785,
                       "src": "969:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2766,
+                        "id": 2770,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "969:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -1467,7 +1467,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2768,
+                  "id": 2772,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "969:18:13"
@@ -1475,7 +1475,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2774,
+                    "id": 2778,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1484,28 +1484,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2769,
+                        "id": 2773,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2767,
+                        "referencedDeclaration": 2771,
                         "src": "997:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2771,
+                      "id": 2775,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "997:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -1515,18 +1515,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2772,
+                        "id": 2776,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "1008:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2773,
+                      "id": 2777,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1536,17 +1536,17 @@
                       "referencedDeclaration": null,
                       "src": "1008:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "997:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2775,
+                  "id": 2779,
                   "nodeType": "ExpressionStatement",
                   "src": "997:34:13"
                 },
@@ -1556,11 +1556,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2777,
+                        "id": 2781,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2763,
+                        "referencedDeclaration": 2767,
                         "src": "1064:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1569,14 +1569,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2778,
+                        "id": 2782,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2767,
+                        "referencedDeclaration": 2771,
                         "src": "1069:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -1588,22 +1588,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2776,
+                      "id": 2780,
                       "name": "cancelCompletedRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3081,
+                      "referencedDeclaration": 3085,
                       "src": "1041:22:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2779,
+                    "id": 2783,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1617,29 +1617,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2780,
+                  "id": 2784,
                   "nodeType": "ExpressionStatement",
                   "src": "1041:32:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2782,
+            "id": 2786,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "cancelPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2764,
+              "id": 2768,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2763,
+                  "id": 2767,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2782,
+                  "scope": 2786,
                   "src": "939:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1648,7 +1648,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2762,
+                    "id": 2766,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "939:7:13",
@@ -1665,19 +1665,19 @@
               "src": "938:13:13"
             },
             "returnParameters": {
-              "id": 2765,
+              "id": 2769,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "959:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "911:169:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2784,
+        "scope": 2788,
         "src": "54:1028:13"
       }
     ],
@@ -1687,14 +1687,14 @@
     "absolutePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/meta/Organization.sol",
     "exportedSymbols": {
       "Organization": [
-        2783
+        2787
       ]
     },
-    "id": 2784,
+    "id": 2788,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2660,
+        "id": 2664,
         "literals": [
           "solidity",
           "^",
@@ -1707,10 +1707,10 @@
       {
         "absolutePath": "/Users/viktorgronskiy/Documents/Projects/Fun/GuarantSystem/blockchain/src/meta/Requestable.sol",
         "file": "./Requestable.sol",
-        "id": 2661,
+        "id": 2665,
         "nodeType": "ImportDirective",
-        "scope": 2784,
-        "sourceUnit": 3565,
+        "scope": 2788,
+        "sourceUnit": 3569,
         "src": "25:27:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1721,41 +1721,41 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2662,
+              "id": 2666,
               "name": "Requestable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3564,
+              "referencedDeclaration": 3568,
               "src": "79:11:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Requestable_$3564",
+                "typeIdentifier": "t_contract$_Requestable_$3568",
                 "typeString": "contract Requestable"
               }
             },
-            "id": 2663,
+            "id": 2667,
             "nodeType": "InheritanceSpecifier",
             "src": "79:11:13"
           }
         ],
         "contractDependencies": [
-          3564
+          3568
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2783,
+        "id": 2787,
         "linearizedBaseContracts": [
-          2783,
-          3564
+          2787,
+          3568
         ],
         "name": "Organization",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 2665,
+            "id": 2669,
             "name": "name",
             "nodeType": "VariableDeclaration",
-            "scope": 2783,
+            "scope": 2787,
             "src": "97:18:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1764,7 +1764,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2664,
+              "id": 2668,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "97:6:13",
@@ -1778,10 +1778,10 @@
           },
           {
             "constant": false,
-            "id": 2667,
+            "id": 2671,
             "name": "physicalAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 2783,
+            "scope": 2787,
             "src": "121:29:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1790,7 +1790,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2666,
+              "id": 2670,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "121:6:13",
@@ -1804,10 +1804,10 @@
           },
           {
             "constant": false,
-            "id": 2669,
+            "id": 2673,
             "name": "registrationNumber",
             "nodeType": "VariableDeclaration",
-            "scope": 2783,
+            "scope": 2787,
             "src": "156:32:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1816,7 +1816,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2668,
+              "id": 2672,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "156:6:13",
@@ -1830,37 +1830,37 @@
           },
           {
             "body": {
-              "id": 2691,
+              "id": 2695,
               "nodeType": "Block",
               "src": "269:106:13",
               "statements": [
                 {
                   "assignments": [
-                    2677
+                    2681
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2677,
+                      "id": 2681,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2691,
+                      "scope": 2695,
                       "src": "279:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2676,
+                        "id": 2680,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "279:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -1868,7 +1868,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2678,
+                  "id": 2682,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "279:18:13"
@@ -1876,7 +1876,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2684,
+                    "id": 2688,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1885,28 +1885,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2679,
+                        "id": 2683,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2677,
+                        "referencedDeclaration": 2681,
                         "src": "307:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2681,
+                      "id": 2685,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "307:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -1916,18 +1916,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2682,
+                        "id": 2686,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "318:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2683,
+                      "id": 2687,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1937,17 +1937,17 @@
                       "referencedDeclaration": null,
                       "src": "318:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "307:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2685,
+                  "id": 2689,
                   "nodeType": "ExpressionStatement",
                   "src": "307:34:13"
                 },
@@ -1957,11 +1957,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2687,
+                        "id": 2691,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2671,
+                        "referencedDeclaration": 2675,
                         "src": "359:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1970,14 +1970,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2688,
+                        "id": 2692,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2677,
+                        "referencedDeclaration": 2681,
                         "src": "364:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -1989,22 +1989,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2686,
+                      "id": 2690,
                       "name": "request",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2948,
+                      "referencedDeclaration": 2952,
                       "src": "351:7:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2689,
+                    "id": 2693,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2018,27 +2018,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2690,
+                  "id": 2694,
                   "nodeType": "ExpressionStatement",
                   "src": "351:17:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2692,
+            "id": 2696,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2674,
+                "id": 2678,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2673,
+                  "id": 2677,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "252:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2052,15 +2052,15 @@
             "name": "requestPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2672,
+              "id": 2676,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2671,
+                  "id": 2675,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2692,
+                  "scope": 2696,
                   "src": "239:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2069,7 +2069,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2670,
+                    "id": 2674,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "239:7:13",
@@ -2086,12 +2086,12 @@
               "src": "238:13:13"
             },
             "returnParameters": {
-              "id": 2675,
+              "id": 2679,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "269:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "210:165:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2099,37 +2099,37 @@
           },
           {
             "body": {
-              "id": 2714,
+              "id": 2718,
               "nodeType": "Block",
               "src": "439:112:13",
               "statements": [
                 {
                   "assignments": [
-                    2700
+                    2704
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2700,
+                      "id": 2704,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2714,
+                      "scope": 2718,
                       "src": "449:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2699,
+                        "id": 2703,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "449:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -2137,7 +2137,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2701,
+                  "id": 2705,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "449:18:13"
@@ -2145,7 +2145,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2707,
+                    "id": 2711,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2154,28 +2154,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2702,
+                        "id": 2706,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2700,
+                        "referencedDeclaration": 2704,
                         "src": "477:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2704,
+                      "id": 2708,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "477:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -2185,18 +2185,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2705,
+                        "id": 2709,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "488:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2706,
+                      "id": 2710,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2206,17 +2206,17 @@
                       "referencedDeclaration": null,
                       "src": "488:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "477:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2708,
+                  "id": 2712,
                   "nodeType": "ExpressionStatement",
                   "src": "477:34:13"
                 },
@@ -2226,11 +2226,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2710,
+                        "id": 2714,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2694,
+                        "referencedDeclaration": 2698,
                         "src": "535:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2239,14 +2239,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2711,
+                        "id": 2715,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2700,
+                        "referencedDeclaration": 2704,
                         "src": "540:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -2258,22 +2258,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2709,
+                      "id": 2713,
                       "name": "acceptRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2982,
+                      "referencedDeclaration": 2986,
                       "src": "521:13:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2712,
+                    "id": 2716,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2287,27 +2287,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2713,
+                  "id": 2717,
                   "nodeType": "ExpressionStatement",
                   "src": "521:23:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2715,
+            "id": 2719,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2697,
+                "id": 2701,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2696,
+                  "id": 2700,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "422:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2321,15 +2321,15 @@
             "name": "acceptPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2695,
+              "id": 2699,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2694,
+                  "id": 2698,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2715,
+                  "scope": 2719,
                   "src": "409:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2338,7 +2338,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2693,
+                    "id": 2697,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "409:7:13",
@@ -2355,12 +2355,12 @@
               "src": "408:13:13"
             },
             "returnParameters": {
-              "id": 2698,
+              "id": 2702,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "439:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "381:170:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2368,37 +2368,37 @@
           },
           {
             "body": {
-              "id": 2737,
+              "id": 2741,
               "nodeType": "Block",
               "src": "616:113:13",
               "statements": [
                 {
                   "assignments": [
-                    2723
+                    2727
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2723,
+                      "id": 2727,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2737,
+                      "scope": 2741,
                       "src": "626:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2722,
+                        "id": 2726,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "626:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -2406,7 +2406,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2724,
+                  "id": 2728,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "626:18:13"
@@ -2414,7 +2414,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2730,
+                    "id": 2734,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2423,28 +2423,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2725,
+                        "id": 2729,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2723,
+                        "referencedDeclaration": 2727,
                         "src": "654:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2727,
+                      "id": 2731,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "654:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -2454,18 +2454,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2728,
+                        "id": 2732,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "665:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2729,
+                      "id": 2733,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2475,17 +2475,17 @@
                       "referencedDeclaration": null,
                       "src": "665:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "654:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2731,
+                  "id": 2735,
                   "nodeType": "ExpressionStatement",
                   "src": "654:34:13"
                 },
@@ -2495,11 +2495,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2733,
+                        "id": 2737,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2717,
+                        "referencedDeclaration": 2721,
                         "src": "713:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2508,14 +2508,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2734,
+                        "id": 2738,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2723,
+                        "referencedDeclaration": 2727,
                         "src": "718:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -2527,22 +2527,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2732,
+                      "id": 2736,
                       "name": "declineRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3011,
+                      "referencedDeclaration": 3015,
                       "src": "698:14:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2735,
+                    "id": 2739,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2556,27 +2556,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2736,
+                  "id": 2740,
                   "nodeType": "ExpressionStatement",
                   "src": "698:24:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2738,
+            "id": 2742,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2720,
+                "id": 2724,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2719,
+                  "id": 2723,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "599:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2590,15 +2590,15 @@
             "name": "declinePartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2718,
+              "id": 2722,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2717,
+                  "id": 2721,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2738,
+                  "scope": 2742,
                   "src": "586:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2607,7 +2607,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2716,
+                    "id": 2720,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "586:7:13",
@@ -2624,12 +2624,12 @@
               "src": "585:13:13"
             },
             "returnParameters": {
-              "id": 2721,
+              "id": 2725,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "616:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "557:172:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2637,37 +2637,37 @@
           },
           {
             "body": {
-              "id": 2760,
+              "id": 2764,
               "nodeType": "Block",
               "src": "793:112:13",
               "statements": [
                 {
                   "assignments": [
-                    2746
+                    2750
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2746,
+                      "id": 2750,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2760,
+                      "scope": 2764,
                       "src": "803:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2745,
+                        "id": 2749,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "803:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -2675,7 +2675,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2747,
+                  "id": 2751,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "803:18:13"
@@ -2683,7 +2683,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2753,
+                    "id": 2757,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2692,28 +2692,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2748,
+                        "id": 2752,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2746,
+                        "referencedDeclaration": 2750,
                         "src": "831:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2750,
+                      "id": 2754,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "831:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -2723,18 +2723,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2751,
+                        "id": 2755,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "842:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2752,
+                      "id": 2756,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2744,17 +2744,17 @@
                       "referencedDeclaration": null,
                       "src": "842:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "831:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2754,
+                  "id": 2758,
                   "nodeType": "ExpressionStatement",
                   "src": "831:34:13"
                 },
@@ -2764,11 +2764,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2756,
+                        "id": 2760,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2740,
+                        "referencedDeclaration": 2744,
                         "src": "889:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2777,14 +2777,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2757,
+                        "id": 2761,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2746,
+                        "referencedDeclaration": 2750,
                         "src": "894:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -2796,22 +2796,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2755,
+                      "id": 2759,
                       "name": "revertRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3040,
+                      "referencedDeclaration": 3044,
                       "src": "875:13:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2758,
+                    "id": 2762,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2825,27 +2825,27 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2759,
+                  "id": 2763,
                   "nodeType": "ExpressionStatement",
                   "src": "875:23:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2761,
+            "id": 2765,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2743,
+                "id": 2747,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2742,
+                  "id": 2746,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3563,
+                  "referencedDeclaration": 3567,
                   "src": "776:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2859,15 +2859,15 @@
             "name": "revertPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2741,
+              "id": 2745,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2740,
+                  "id": 2744,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2761,
+                  "scope": 2765,
                   "src": "763:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2876,7 +2876,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2739,
+                    "id": 2743,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "763:7:13",
@@ -2893,12 +2893,12 @@
               "src": "762:13:13"
             },
             "returnParameters": {
-              "id": 2744,
+              "id": 2748,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "793:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "735:170:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2906,37 +2906,37 @@
           },
           {
             "body": {
-              "id": 2781,
+              "id": 2785,
               "nodeType": "Block",
               "src": "959:121:13",
               "statements": [
                 {
                   "assignments": [
-                    2767
+                    2771
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2767,
+                      "id": 2771,
                       "name": "req",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2781,
+                      "scope": 2785,
                       "src": "969:18:13",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                        "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                         "typeString": "struct Requestable.Request"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 2766,
+                        "id": 2770,
                         "name": "Request",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 2801,
+                        "referencedDeclaration": 2805,
                         "src": "969:7:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_storage_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_storage_ptr",
                           "typeString": "struct Requestable.Request"
                         }
                       },
@@ -2944,7 +2944,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2768,
+                  "id": 2772,
                   "initialValue": null,
                   "nodeType": "VariableDeclarationStatement",
                   "src": "969:18:13"
@@ -2952,7 +2952,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2774,
+                    "id": 2778,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2961,28 +2961,28 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2769,
+                        "id": 2773,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2767,
+                        "referencedDeclaration": 2771,
                         "src": "997:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       },
-                      "id": 2771,
+                      "id": 2775,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "Type",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2797,
+                      "referencedDeclaration": 2801,
                       "src": "997:8:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
@@ -2992,18 +2992,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2772,
+                        "id": 2776,
                         "name": "RequestType",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2795,
+                        "referencedDeclaration": 2799,
                         "src": "1008:11:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2795_$",
+                          "typeIdentifier": "t_type$_t_enum$_RequestType_$2799_$",
                           "typeString": "type(enum Requestable.RequestType)"
                         }
                       },
-                      "id": 2773,
+                      "id": 2777,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3013,17 +3013,17 @@
                       "referencedDeclaration": null,
                       "src": "1008:23:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RequestType_$2795",
+                        "typeIdentifier": "t_enum$_RequestType_$2799",
                         "typeString": "enum Requestable.RequestType"
                       }
                     },
                     "src": "997:34:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RequestType_$2795",
+                      "typeIdentifier": "t_enum$_RequestType_$2799",
                       "typeString": "enum Requestable.RequestType"
                     }
                   },
-                  "id": 2775,
+                  "id": 2779,
                   "nodeType": "ExpressionStatement",
                   "src": "997:34:13"
                 },
@@ -3033,11 +3033,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2777,
+                        "id": 2781,
                         "name": "pID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2763,
+                        "referencedDeclaration": 2767,
                         "src": "1064:3:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -3046,14 +3046,14 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2778,
+                        "id": 2782,
                         "name": "req",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2767,
+                        "referencedDeclaration": 2771,
                         "src": "1069:3:13",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       }
@@ -3065,22 +3065,22 @@
                           "typeString": "address"
                         },
                         {
-                          "typeIdentifier": "t_struct$_Request_$2801_memory_ptr",
+                          "typeIdentifier": "t_struct$_Request_$2805_memory_ptr",
                           "typeString": "struct Requestable.Request memory"
                         }
                       ],
-                      "id": 2776,
+                      "id": 2780,
                       "name": "cancelCompletedRequest",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3081,
+                      "referencedDeclaration": 3085,
                       "src": "1041:22:13",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2801_memory_ptr_$returns$__$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_struct$_Request_$2805_memory_ptr_$returns$__$",
                         "typeString": "function (address,struct Requestable.Request memory)"
                       }
                     },
-                    "id": 2779,
+                    "id": 2783,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3094,29 +3094,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2780,
+                  "id": 2784,
                   "nodeType": "ExpressionStatement",
                   "src": "1041:32:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 2782,
+            "id": 2786,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "cancelPartnership",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2764,
+              "id": 2768,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2763,
+                  "id": 2767,
                   "name": "pID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2782,
+                  "scope": 2786,
                   "src": "939:11:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3125,7 +3125,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2762,
+                    "id": 2766,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "939:7:13",
@@ -3142,19 +3142,19 @@
               "src": "938:13:13"
             },
             "returnParameters": {
-              "id": 2765,
+              "id": 2769,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "959:0:13"
             },
-            "scope": 2783,
+            "scope": 2787,
             "src": "911:169:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2784,
+        "scope": 2788,
         "src": "54:1028:13"
       }
     ],
@@ -3166,7 +3166,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-02-02T15:05:09.682Z",
+  "updatedAt": "2019-02-02T18:23:22.349Z",
   "devdoc": {
     "methods": {}
   },
