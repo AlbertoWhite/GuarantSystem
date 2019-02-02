@@ -1,7 +1,7 @@
 pragma solidity ^0.5.1;
 
-import "./Main.sol";
-import "./Item.sol";
+import "./interfaces/Main.sol";
+import "./interfaces/Item.sol";
 
 contract User {
     Main public main;
@@ -21,7 +21,7 @@ contract User {
 
 
     function changeOwner (address uID, address iID) onlyOwner public {
-        Main.ContractType cType = main.getContractType(uID);
+        Main.ContractType cType = main.contractType(uID);
         require((cType == Main.ContractType.USER), "Wrong contract type");
 
         Item iInstance = Item(iID);

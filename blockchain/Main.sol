@@ -1,6 +1,6 @@
 pragma solidity ^0.5.1;
 
-import "./Deployer.sol";
+import "./src/interfaces/Deployer.sol";
 
 contract Main {
     address public main = address(this);
@@ -18,8 +18,7 @@ contract Main {
     Deployer serviceCenterDeployer;
 
     enum ContractType {NON_AUTHORIZED, ITEM, USER, MANUFACTURER, VENDOR, SERVICE_CENTER}
-    mapping (address => ContractType) contractType;
-    function getContractType (address a) view public returns (ContractType) { return contractType[a]; }
+    mapping (address => ContractType) public contractType;
 
     constructor (address _userDeployer, address _manufacturerDeployer, address _vendorDeployer, address _serviceCenterDeployer) public {
         userDeployer = Deployer(_userDeployer);

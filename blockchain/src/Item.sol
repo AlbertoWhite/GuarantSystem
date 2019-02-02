@@ -1,6 +1,6 @@
 pragma solidity ^0.5.1;
 
-import "./Main.sol";
+import "./interfaces/Main.sol";
 
 contract Item {
     Main public main;
@@ -22,7 +22,7 @@ contract Item {
     constructor (address _main, string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) public {
         main = Main(_main);
 
-        Main.ContractType cType = main.getContractType(msg.sender);
+        Main.ContractType cType = main.contractType(msg.sender);
         require((cType == Main.ContractType.MANUFACTURER), "Wrong contract type");
 
         manufacturerID = msg.sender;
@@ -44,20 +44,20 @@ contract Item {
 
     function setVendor (address vID) onlyManufacturer public {
         require((vendorID == address(0)), "Vendor is already set");
-        Main.ContractType cType = main.getContractType(vID);
+        Main.ContractType cType = main.contractType(vID);
         require((cType == Main.ContractType.VENDOR), "Wrong contract type");
         vendorID = vID;
     }
 
     function setOwner (address uID) onlyVendor public {
         require((ownerID == address(0)), "Owner is already set");
-        Main.ContractType cType = main.getContractType(uID);
+        Main.ContractType cType = main.contractType(uID);
         require((cType == Main.ContractType.USER), "Wrong contract type");
         ownerID = uID;
     }
 
     function changeOwner (address uID) onlyOwner public {
-        Main.ContractType cType = main.getContractType(uID);
+        Main.ContractType cType = main.contractType(uID);
         require((cType == Main.ContractType.USER), "Wrong contract type");
         ownerID = uID;
     }
