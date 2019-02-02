@@ -1,175 +1,188 @@
 pragma solidity ^0.5.1;
 
-contract Request {
-    address sender;
-    address receiver;
-
-    enum RequestType {NULL, PARTNERSHIP}
-    RequestType Type;
-    address[] objs;
-
-    constructor (address _receiver, RequestType _Type, address[] memory _objs) public {
-        sender = msg.sender;
-        receiver = _receiver;
-        Type = _Type;
-        objs = _objs;
-    }
-}
-
 contract Requestable {
     address public id = address(this);
     address internal ownerID;
 
-    address[] public receivedRequests;
-    address[] public sentRequests;
-    address[] public completedRequests;
+    enum RequestType {NULL, PARTNERSHIP}
 
-    mapping (address => bool) isReceivedRequest;
-    mapping (address => bool) isSentRequest;
-    mapping (address => bool) isCompletedRequest;
+    struct Request {
+        RequestType Type;
+        address[] objs;
+    }
+
+    mapping (bytes32 => bool) isReceivedRequest;
+    mapping (bytes32 => bool) isSentRequest;
+    mapping (bytes32 => bool) isCompletedRequest;
     mapping (address => bool) isPendingObj;
 
 
 
-// Public
-
-
-
-    function createRequest (Request.RequestType _Type, address[] memory _objs) public returns (address) {
-        Request newRequest = new Request(_Type, _objs);
-        return address(newRequest);
+    function createRequest (RequestType _Type, address[] memory _objs) internal returns (Request memory) {
+        bool pendings = false;
+        for (uint i = 0; (0 <= i) && (i < _objs.length);) {
+            if (!pendings) {
+                if (isPendingObj[_objs[i]]) {
+                    pendings = true;
+                    i--;
+                } else {
+                    isPendingObj[_objs[i]] = true;
+                    i++;
+                }
+            } else {
+                isPendingObj[_objs[i]] = false;
+                i--;
+            }
+        }
+        require(!pendings, "One of the objects is already pending");
+        Request memory req = Request(_Type, _objs);
+        return req;
     }
 
-    function request (address _id, address req) onlyOwner public {
-        require(!isSentRequest[req], "Request has already been sent");
-        _addSentRequest(_id, req);
-        _sendRequest(_id, req);
+    function request (address _id, Request memory req) onlyOwner internal {
+        require(!isSentRequest[hashRequest(req)], "Request has already been sent");
+        addSentRequest(_id, req);
+        sendRequest(_id, req);
     }
 
-    function acceptRequest (address _id, address req) onlyOwner public {
-        require(isReceivedRequest[req], "No such request");
-        _addCompletedRequest(_id, req);
-        _removeReceivedRequest(_id, req);
-        _sendRequest(_id, req);
+    function acceptRequest (address _id, Request memory req) onlyOwner internal {
+        require(isReceivedRequest[hashRequest(req)], "No such request");
+        addCompletedRequest(_id, req);
+        removeReceivedRequest(_id, req);
+        sendRequest(_id, req);
     }
 
-    function declineRequest (address _id, address req) onlyOwner public {
-        require(isReceivedRequest[req], "No such request");
-        _removeReceivedRequest(_id, req);
-        _sendRequestDecline(_id, req);
+    function declineRequest (address _id, Request memory req) onlyOwner internal {
+        require(isReceivedRequest[hashRequest(req)], "No such request");
+        removeReceivedRequest(_id, req);
+        sendRequestDecline(_id, req);
     }
 
-    function revertRequest (address _id, address req) onlyOwner public {
-        require(isSentRequest[req], "No such request");
-        _removeSentRequest(_id, req);
-        _sendRequestRevert(_id, req);
+    function revertRequest (address _id, Request memory req) onlyOwner internal {
+        require(isSentRequest[hashRequest(req)], "No such request");
+        removeSentRequest(_id, req);
+        sendRequestRevert(_id, req);
     }
 
-    function cancelCompletedRequest (address _id, address req) public {
-        require(((msg.sender == ownerID) || ((msg.sender == _id) && isCompletedRequest[req])), "Not enough permissions");
-        _removeCompletedRequest(_id, req);
-        _sendCompletedRequestCancel(_id, req);
+    function cancelCompletedRequest (address _id, Request memory req) internal {
+        require(((msg.sender == ownerID) || ((msg.sender == _id) && isCompletedRequest[hashRequest(req)])), "Not enough permissions");
+        removeCompletedRequest(_id, req);
+        sendCompletedRequestCancel(_id, req);
     }
 
-    function receiveRequest (address req) public {
+
+
+    function receiveRequest (RequestType _Type, address[] memory _objs) public {
+        Request memory req = Request(_Type, _objs);
         address _id = msg.sender;
-        require(!isReceivedRequest[req], "Request has already been received");
+        require(!isReceivedRequest[hashRequest(req)], "Request has already been received");
 
-        if (isSentRequest[req]) {
-            _addCompletedRequest(_id, req);
-            _removeSentRequest(_id, req);
+        if (isSentRequest[hashRequest(req)]) {
+            addCompletedRequest(_id, req);
+            removeSentRequest(_id, req);
         } else {
-            _addReceivedRequest(_id, req);
+            addReceivedRequest(_id, req);
         }
     }
 
-    function receiveRequestDecline (address req) public {
+    function receiveRequestDecline (RequestType _Type, address[] memory _objs) public {
+        Request memory req = Request(_Type, _objs);
         address _id = msg.sender;
-        require(isSentRequest[req], "Request has not been sent");
-        _removeSentRequest(_id, req);
+        require(isSentRequest[hashRequest(req)], "Request has not been sent");
+        removeSentRequest(_id, req);
     }
 
-    function receiveRequestRevert (address req) public {
+    function receiveRequestRevert (RequestType _Type, address[] memory _objs) public {
+        Request memory req = Request(_Type, _objs);
         address _id = msg.sender;
-        require(isReceivedRequest[req], "Request has not been received");
-        _removeReceivedRequest(_id, req);
+        require(isReceivedRequest[hashRequest(req)], "Request has not been received");
+        removeReceivedRequest(_id, req);
     }
 
-    function receiveCompletedRequestCancel (address req) public {
+    function receiveCompletedRequestCancel (RequestType _Type, address[] memory _objs) public {
+        Request memory req = Request(_Type, _objs);
         address _id = msg.sender;
-        require(isCompletedRequest[req], "Request is not completed");
-        _removeCompletedRequest(_id, req);
+        require(isCompletedRequest[hashRequest(req)], "Request is not completed");
+        removeCompletedRequest(_id, req);
     }
 
 
 
-// Internal
-
-
-
-    function _sendRequest (address _id, address req) internal {
+    function sendRequest (address _id, Request memory req) internal {
         Requestable rInstance = Requestable(_id);
-        rInstance.receiveRequest(req);
+        rInstance.receiveRequest(req.Type, req.objs);
     }
 
-    function _sendRequestDecline (address _id, address req) internal {
+    function sendRequestDecline (address _id, Request memory req) internal {
         Requestable rInstance = Requestable(_id);
-        rInstance.receiveRequestDecline(req);
+        rInstance.receiveRequestDecline(req.Type, req.objs);
     }
 
-    function _sendRequestRevert (address _id, address req) internal {
+    function sendRequestRevert (address _id, Request memory req) internal {
         Requestable rInstance = Requestable(_id);
-        rInstance.receiveRequestRevert(req);
+        rInstance.receiveRequestRevert(req.Type, req.objs);
     }
 
-    function _sendCompletedRequestCancel (address _id, address req) internal {
+    function sendCompletedRequestCancel (address _id, Request memory req) internal {
         Requestable rInstance = Requestable(_id);
-        rInstance.receiveCompletedRequestCancel(req);
+        rInstance.receiveCompletedRequestCancel(req.Type, req.objs);
     }
 
 
 
-    function _addSentRequest (address _id, address req) internal {
-        _addSentRequestMethod(_id, req);
-        isSentRequest[req] = true;
+    function addSentRequest (address _id, Request memory req) internal {
+        addSentRequestHook(_id, req);
+        isSentRequest[hashRequest(req)] = true;
     }
 
-    function _removeSentRequest (address _id, address req) internal {
-        _removeSentRequestMethod(_id, req);
-        isSentRequest[req] = false;
+    function removeSentRequest (address _id, Request memory req) internal {
+        removeSentRequestHook(_id, req);
+        removePendingObjs(req);
+        isSentRequest[hashRequest(req)] = false;
     }
 
-    function _addReceivedRequest (address _id, address req) internal {
-        _addReceivedRequestMethod(_id, req);
-        isReceivedRequest[req] = true;
+    function addReceivedRequest (address _id, Request memory req) internal {
+        addReceivedRequestHook(_id, req);
+        isReceivedRequest[hashRequest(req)] = true;
     }
 
-    function _removeReceivedRequest (address _id, address req) internal {
-        _removeReceivedRequestMethod(_id, req);
-        isReceivedRequest[req] = false;
+    function removeReceivedRequest (address _id, Request memory req) internal {
+        removeReceivedRequestHook(_id, req);
+        isReceivedRequest[hashRequest(req)] = false;
     }
 
-    function _addCompletedRequest (address _id, address req) internal {
-        _addCompletedRequestMethod(_id, req);
-        isCompletedRequest[req] = true;
+    function addCompletedRequest (address _id, Request memory req) internal {
+        addCompletedRequestHook(_id, req);
+        isCompletedRequest[hashRequest(req)] = true;
     }
 
-    function _removeCompletedRequest (address _id, address req) internal {
-        _removeCompletedRequestMethod(_id, req);
-        isCompletedRequest[req] = false;
+    function removeCompletedRequest (address _id, Request memory req) internal {
+        removeCompletedRequestHook(_id, req);
+        isCompletedRequest[hashRequest(req)] = false;
     }
 
 
 
-    function _addSentRequestMethod (address _id, address req) internal {}
-    function _removeSentRequestMethod (address _id, address req) internal {}
+    function addSentRequestHook (address _id, Request memory req) internal;
+    function removeSentRequestHook (address _id, Request memory req) internal;
 
-    function _addReceivedRequestMethod (address _id, address req) internal {}
-    function _removeReceivedRequestMethod (address _id, address req) internal {}
+    function addReceivedRequestHook (address _id, Request memory req) internal;
+    function removeReceivedRequestHook (address _id, Request memory req) internal;
 
-    function _addCompletedRequestMethod (address _id, address req) internal {}
-    function _removeCompletedRequestMethod (address _id, address req) internal {}
+    function addCompletedRequestHook (address _id, Request memory req) internal;
+    function removeCompletedRequestHook (address _id, Request memory req) internal;
 
+
+
+    function hashRequest (Request memory req) pure internal returns (bytes32) {
+        return keccak256(abi.encodePacked(req.Type, req.objs));
+    }
+
+    function removePendingObjs (Request memory req) internal {
+        for (uint i = 0; i < req.objs.length; i++) {
+            isPendingObj[req.objs[i]] = false;
+        }
+    }
 
 
 // Modifiers
