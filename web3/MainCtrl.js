@@ -74,13 +74,30 @@ function registerManufacturer ({ownerId, name}) {
   });  
 }
 
+
+async function initDeployerContract(){
+  let DeployerObj = new web3.eth.Contract(getContract('Deployer').abi);
+  DeployerObj.deploy({
+      data: DeployerObj.bytecode
+  })
+  .send({
+      from: this.publicKey,
+      gas: 1000000
+  })
+  .then((newContractInstance) => {
+      console.log(newContractInstance.options.address)
+      return newContractInstance.options.address;
+  })
+};
+
+
 async function initMain () {
-  let MainContractAddress = null;
+  //let MainContractAddress = null;
   // let accounts = [];
   
   MainContractInstance = await InitMainContract();
   
-  console.log('MainContractAddress', MainContractAddress);
+  //console.log('MainContractAddress', MainContractAddress);
   this.MainInstance = MainContractInstance;
 }
 
