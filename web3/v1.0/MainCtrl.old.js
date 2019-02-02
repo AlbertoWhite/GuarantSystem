@@ -1,6 +1,6 @@
-const getContract = require('../getContract');
+const getContract = require('./getContract');
 const Web3 = require('web3');
-const promiseWrap = require('../promiseWrap');
+const promiseWrap = require('./promiseWrap');
 const Tx = require('ethereumjs-tx');
 
 const provider = "http://54.185.11.58:8545";
@@ -28,20 +28,27 @@ const MainCtrl = {
 web3.eth.defaultAccount = MainCtrl.publicKey;
 
 async function InitMainContract () {
-
-  let contract = new web3.eth.Contract(MainContractObj.abi)
-
-  return contract.deploy({
+  
+  let rawTx = {
+    nonce: web3.eth.getTransactionCount(MainCtrl.publicKey),
     data: MainContractObj.bytecode,
-  })
-  .send({
-      from: MainCtrl.publicKey,
-      gas: 6700000,
-  })
-  .then((newContractInstance) => {
-      console.log('main address', newContractInstance.options.address); // instance with the new contract address
-      return newContractInstance;
+    gas: 6600000
+  }
+  
+  let tx = new Tx(rawTx);
+  tx.sign(Buffer.from(MainCtrl.privateKey, 'hex'));
+  // tx.sign(Buffer.from('9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643943', 'hex'));
+  let serializedTx = tx.serialize();
+  let transactionHash = await promiseWrap(web3.eth.sendRawTransaction, ['0x'+serializedTx.toString('hex')]).then(d => {console.log(d);return new Promise((res, rej)=> {setTimeout(res.bind(null, d), 2000)})});
+  console.log('transactionHash', transactionHash);
+  var transactionReceipt = await promiseWrap(web3.eth.getTransactionReceipt, [transactionHash]).then(d => {
+    if (!d) return new Promise((res, rej)=> {setTimeout(res.bind(null, d), 2000)})
+      .then(console.log.bind(null, 'опа'))
+      .then(()=>promiseWrap(web3.eth.getTransactionReceipt, [transactionHash]));
+    return d;
   });
+  // console.log('receipt', transactionReceipt);
+  return transactionReceipt.contractAddress;
 }
 
 function registerManufacturer ({ownerId, name}) {
@@ -66,23 +73,21 @@ function registerManufacturer ({ownerId, name}) {
 }
 
 function callTest () {
-  // let MainAbi = this.abi;
-  // let rawTx = {
-  //   nonce: web3.eth.getTransactionCount(this.publicKey),
-  //   // data: this.MainInstance.test.getData(),
-  //   gas: 400000,
-  //   to: this.MainInstance.address,
-  //   // from: this.publicKey
-  // }
+  let MainAbi = this.abi;
+  let rawTx = {
+    nonce: web3.eth.getTransactionCount(this.publicKey),
+    // data: this.MainInstance.test.getData(),
+    gas: 400000,
+    to: this.MainInstance.address,
+    // from: this.publicKey
+  }
   
   
-  // let tx = new Tx(rawTx);
-  // tx.sign(Buffer.from(this.privateKey, 'hex'));
+  let tx = new Tx(rawTx);
+  tx.sign(Buffer.from(this.privateKey, 'hex'));
   // console.log(Object.getOwnPropertyDescriptor(tx, 'from'));
   // let serializedTx = tx.serialize();
-  return this.MainInstance.methods.names().call({
-    // from: this.publicKey
-  });
+  return this.MainInstance.test.call();
 }
 
 
@@ -90,10 +95,11 @@ async function initMain () {
   let MainContractAddress = null;
   // let accounts = [];
   
-  MainContractInstance = await InitMainContract();
+  MainContractAddress = await InitMainContract();
   
   console.log('MainContractAddress', MainContractAddress);
-  this.MainInstance = MainContractInstance;
+  let MainContract = this.web3.eth.contract(MainContractObj.abi).at(MainContractAddress);
+  this.MainInstance = MainContract;
 }
 
 module.exports = MainCtrl;

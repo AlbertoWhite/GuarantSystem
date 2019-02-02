@@ -14,7 +14,7 @@ MainCtrl.initMain()
   })
 })
 .then(d => {
-  console.log('data: ',d.toString());
+  console.log('data: ',d);
 })
 
 // manufacturer 1 address 0x6058c18bdf1be89f3be4ffa43c28cb67aef372b83fa7b955560a9d46311d8236
