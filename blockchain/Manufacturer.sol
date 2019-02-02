@@ -5,6 +5,8 @@ import "./Organization.sol";
 import "./Item.sol";
 
 contract Manufacturer is Organization {
+    Main public main;
+
     address[] public vendors;
     address[] public serviceCenters;
     address[] public pendingItems;
@@ -15,8 +17,8 @@ contract Manufacturer is Organization {
 
 
 
-    constructor (address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
-        main = Deployer(msg.sender).main();
+    constructor (address _main, address _ownerID, string memory _name, string memory _physicalAddress, string memory _registrationNumber) public {
+        main = Main(_main);
         ownerID = _ownerID;
         name = _name;
         physicalAddress = _physicalAddress;
@@ -30,7 +32,7 @@ contract Manufacturer is Organization {
 
 
     function createItem (string memory _serial, string memory _info, uint _warrantyPeriod, string memory _warrantyTerms) onlyOwner public returns (address) {
-        Item newItem = new Item(_serial, _info, _warrantyPeriod, _warrantyTerms);
+        Item newItem = new Item(address(main), _serial, _info, _warrantyPeriod, _warrantyTerms);
         _addPendingItem(address(newItem));
         return (address(newItem));
     }
