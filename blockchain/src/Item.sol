@@ -34,6 +34,16 @@ contract Item {
 
 
 
+// Getters
+    
+    
+    
+    function getInfo () view public returns (string memory, string memory, address, address, uint, uint, string memory, uint, Status, Action[] memory) {
+        return (serial, info, manufacturerID, vendorID, created, warrantyPeriod, warrantyTerms, activated, status, history);
+    }
+
+
+
 // Public
 
 
