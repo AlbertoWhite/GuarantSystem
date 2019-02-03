@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
     var pVendor = dbhelper.getAllVendors;
     var pServiceCenter = dbhelper.getAllServiceCenter;
 
-      Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){
+      Promise.all([pManufacturer(),pVendor(),pServiceCenter()]).then(function([manuf,vend,sc]){
         res.render('players/index.html',{
             listOfManufacterer : manuf,
             listOfVendors : vend,
