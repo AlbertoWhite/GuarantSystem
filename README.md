@@ -35,14 +35,14 @@ GuarantSystem - очень прост в использовании - нужно
 
 | Технология | Ссылка |
 | ------ | ------ |
-| Solidity | [https://github.com/ethereum/solidity][PlDb] |
-| JavaScript | [https://www.javascript.com/][PlGh] |
+| Solidity | [https://github.com/ethereum/solidity] |
+| JavaScript | [https://www.javascript.com/] |
 | node Js | [https://nodejs.org/en/][PlGd] |
-| Web3 | [https://github.com/ethereum/web3.js/][PlOd] |
-| Express.js | [https://expressjs.com/ru/][PlMe] |
-| Spectrecss | [https://picturepan2.github.io/spectre/][PlGa] |
-| Geth | [https://geth.ethereum.org/][PlDb] |
-| Heroku | [https://www.heroku.com/][PlDb] |
+| Web3 | [https://github.com/ethereum/web3.js/] |
+| Express.js | [https://expressjs.com/ru/] |
+| Spectrecss | [https://picturepan2.github.io/spectre/] |
+| Geth | [https://geth.ethereum.org/] |
+| Heroku | [https://www.heroku.com/] |
 
 ### В разработке
 
