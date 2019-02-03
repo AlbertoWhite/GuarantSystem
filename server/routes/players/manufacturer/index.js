@@ -7,7 +7,7 @@ router.get('/In', function (req, res) {
 
   var pVendor = dbhelper.getAllVendors;//TODO tmp
 
-  Promise.all([pVendor]).then(function([vend]){//TODO tmp
+  Promise.all([pVendor()]).then(function([vend]){//TODO tmp
     res.render('players/manufacturerIn.html',{
         listOfVendors : vend,
         listOfpendingItems : dbhelper.getAllItems
@@ -29,7 +29,7 @@ router.get('/partners/list', function (req, res) {
   var pVendor = dbhelper.getAllVendors;//TODO tmp
   var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
 
-  Promise.all([pVendor,pServiceCenter]).then(function([vend,sc]){//TODO tmp
+  Promise.all([pVendor(),pServiceCenter()]).then(function([vend,sc]){//TODO tmp
     res.render('players/manufacturer/partners/list.html',{
         listOfVendors : vend,
         listOfServiceCenters : sc
@@ -56,7 +56,7 @@ router.get('/:id', function (req, res) {
   var pVendor = dbhelper.getAllVendors;//TODO tmp
   var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
 
-  Promise.all([pManufacturer,pVendor,pServiceCenter]).then(function([manuf,vend,sc]){//TODO tmp
+  Promise.all([pManufacturer,pVendor(),pServiceCenter()]).then(function([manuf,vend,sc]){//TODO tmp
     res.render('players/manufacturer.html',{
         manufacturer : manuf,
         listOfVendors : vend,
@@ -72,7 +72,7 @@ router.get('/partners/addPartners', function (req, res) {
   var pVendor = dbhelper.getAllVendors;//TODO tmp
   var pServiceCenter = dbhelper.getAllServiceCenter;//TODO tmp
 
-  Promise.all([pVendor,pServiceCenter]).then(function([vend,sc]){//TODO tmp
+  Promise.all([pVendor(),pServiceCenter()]).then(function([vend,sc]){//TODO tmp
     res.render('players/manufacturer/partners/addPartners.html',{
         listOfVendors : vend,
         listOfServiceCenters : sc
