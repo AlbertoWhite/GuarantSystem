@@ -11,7 +11,7 @@ let MainContractObj = getContract('Main');
 
 const MainCtrl = {
   publicKey: '0xB8a760532Ef384C6f90d95812A4Ae01DAAEfb341',
-  privateKey: '0x9b46b095f7d3b02c2ac2ca6a6877e115ec0c3a615b0d242330740bc673643981',
+  privateKey: '0xb16ff56d3f458e9c85067635fb7c69cc47804c3fe3e979dde64880eb70b1c950',
   mainContractAddress: '0x024ad85ae9c26d58adef4dc41957434fd152fbcf',
   // local Viktor
   // privateKey: '5fa367ab7a9388d00df20d24d9e07447b4fc3e37adff437bf98d7a99befa16dc',
