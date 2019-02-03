@@ -1,4 +1,5 @@
 pragma solidity ^0.5.1;
+pragma experimental ABIEncoderV2;
 
 import "./meta/Partnerable.sol";
 import "./meta/Transferable.sol";
@@ -13,8 +14,8 @@ contract Vendor is Partnerable, Transferable {
     string public physicalAddress;
     string public registrationNumber;
 
-    address[] public manufacturers;
-    address[] public pendingItems;
+    address[] manufacturers;
+    address[] pendingItems;
 
     mapping (address => bool) isInManufacturers;
     mapping (address => bool) isPendingItem;
@@ -163,17 +164,14 @@ contract Vendor is Partnerable, Transferable {
     function removeAddress (address[] storage array, mapping (address => bool) storage map, address aID) internal {
         require(map[aID], "Not found");
 
-        removeFromAddressArray(array, aID);
-        map[aID] = false;
-    }
-
-    function removeFromAddressArray (address[] storage array, address value) internal {
         for (uint i = 0; i < array.length; i++) {
-            if (array[i] == value) {
+            if (array[i] == aID) {
               array[i] = array[array.length - 1];
               delete array[array.length - 1];
               array.length--;
+              break;
             }
         }
+        map[aID] = false;
     }
 }

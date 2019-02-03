@@ -1,17 +1,18 @@
 pragma solidity ^0.5.1;
+pragma experimental ABIEncoderV2;
 
 import "./meta/Transferable.sol";
 
 import "./interfaces/Main.sol";
 import "./interfaces/Item.sol";
 
-contract User {
+contract User is Transferable {
     Main public main;
 
     address public id = address(this);
     address private ownerID;
 
-    address[] public items;
+    address[] items;
     mapping (address => bool) isInItems;
 
     constructor (address _main, address _ownerID) public {
@@ -112,29 +113,14 @@ contract User {
     function removeAddress (address[] storage array, mapping (address => bool) storage map, address aID) internal {
         require(map[aID], "Not found");
 
-        removeFromAddressArray(array, aID);
-        map[aID] = false;
-    }
-
-    function removeFromAddressArray (address[] storage array, address value) internal {
         for (uint i = 0; i < array.length; i++) {
-            if (array[i] == value) {
+            if (array[i] == aID) {
               array[i] = array[array.length - 1];
               delete array[array.length - 1];
               array.length--;
+              break;
             }
         }
-    }
-
-
-
-
-// Modifiers
-
-
-
-    modifier onlyOwner {
-        require((msg.sender == ownerID), "Permission denied");
-        _;
+        map[aID] = false;
     }
 }
