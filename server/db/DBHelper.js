@@ -38,27 +38,32 @@ module.exports = {
     serial : '1654961341981',
     info : 'Холодильник',
     warrantyPeriod : '4 года',
-    warrantyTerms : 'Использование по назначению'
+    warrantyTerms : 'Использование по назначению',
+    activated : "01/01/19"
   },{
     serial : '654984616848',
     info : 'Телевизор',
     warrantyPeriod : '3 года',
-    warrantyTerms : 'Использование по назначению'
+    warrantyTerms : 'Использование по назначению',
+    activated : "12/01/19"
   },{
     serial : '846168464365',
     info : 'Телефон',
     warrantyPeriod : '4 года',
-    warrantyTerms : 'Использование по назначению'
+    warrantyTerms : 'Использование по назначению',
+    activated : "21/12/18"
   },{
     serial : '7468196816',
     info : 'Чайник',
     warrantyPeriod : '2 года',
-    warrantyTerms : 'Использование по назначению'
+    warrantyTerms : 'Использование по назначению',
+    activated : "01/01/19"
   },{
     serial : '16541687461',
     info : 'Фен',
     warrantyPeriod : '5 лет',
-    warrantyTerms : 'Использование по назначению'
+    warrantyTerms : 'Использование по назначению',
+    activated : "01/01/19"
   }]
 
 }
