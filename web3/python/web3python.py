@@ -55,16 +55,28 @@ class MainContract(Contract):
         receipt = self.execute_call('registerServiceCenter', signatory, _ownerID, _name, _physicalAddress, _registrationNumber)
         return receipt
 
-
-def registerManufacturer(ownerID, name, physicalAddress, registrationNumber):
-    receipt = main_contract.registerManufacturer(Web3.toChecksumAddress(ownerID), name, physicalAddress, registrationNumber, account)
-
+def printReceipt(receipt):
     receipt_dict = {}
     receipt_dict['contractAddress'] = receipt.contractAddress
     receipt_dict['transactionHash'] = Web3.toHex(receipt.transactionHash)
 
     print(receipt_dict)
 
+def registerUser(ownerID):
+    receipt = main_contract.registerUser(Web3.toChecksumAddress(ownerID))
+    printReceipt(receipt)
+
+def registerManufacturer(ownerID, name, physicalAddress, registrationNumber):
+    receipt = main_contract.registerManufacturer(Web3.toChecksumAddress(ownerID), name, physicalAddress, registrationNumber, account)
+    printReceipt(receipt)
+
+def registerVendor(ownerID, name, physicalAddress, registrationNumber):
+    receipt = main_contract.registerVendor(Web3.toChecksumAddress(ownerID), name, physicalAddress, registrationNumber, account)
+    printReceipt(receipt)
+
+def registerServiceCenter(ownerID, name, physicalAddress, registrationNumber):
+    receipt = main_contract.registerServiceCenter(Web3.toChecksumAddress(ownerID), name, physicalAddress, registrationNumber, account)
+    printReceipt(receipt)
 
 def initWeb3():
     w3 = Web3(HTTPProvider('http://54.185.11.58:8545/'))
@@ -84,7 +96,12 @@ def initWeb3():
 
 w3, main_contract, account = initWeb3()
 
-
 argv = sys.argv
 if (argv[1] == 'registerManufacturer'):
     registerManufacturer(argv[2], argv[3], argv[4], argv[5])
+elif (argv[1] == 'registerUser'):
+    registerUser(argv[2])
+elif (argv[1] == 'registerVendor'):
+    registerVendor(argv[2], argv[3], argv[4], argv[5])   
+elif (argv[1] == 'registerServiceCenter'):
+    registerServiceCenter(argv[2], argv[3], argv[4], argv[5])
