@@ -33,6 +33,32 @@ module.exports = {
         resolve(user);
       });
     })
-  }
+  },
+  getAllItems : [{
+    serial : '1654961341981',
+    info : 'Холодильник',
+    warrantyPeriod : '4 года',
+    warrantyTerms : 'Использование по назначению'
+  },{
+    serial : '654984616848',
+    info : 'Телевизор',
+    warrantyPeriod : '3 года',
+    warrantyTerms : 'Использование по назначению'
+  },{
+    serial : '846168464365',
+    info : 'Телефон',
+    warrantyPeriod : '4 года',
+    warrantyTerms : 'Использование по назначению'
+  },{
+    serial : '7468196816',
+    info : 'Чайник',
+    warrantyPeriod : '2 года',
+    warrantyTerms : 'Использование по назначению'
+  },{
+    serial : '16541687461',
+    info : 'Фен',
+    warrantyPeriod : '5 лет',
+    warrantyTerms : 'Использование по назначению'
+  }]
 
 }
