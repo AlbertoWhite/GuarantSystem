@@ -47,7 +47,7 @@ contract Manufacturer is Partnerable, Transferable {
     }
 
     function getServiceCenters () view public returns (address[] memory) {
-        return vendors;
+        return serviceCenters;
     }
 
     function getPendingItems () view public returns (address[] memory) {
