@@ -10,39 +10,39 @@ contract Transferable is Requestable {
 
 
 
-    function requestTransfer (address pID, address[] memory _objs) onlyOwner public {
+    function requestTransfer (address _id, address[] memory _objs) onlyOwner public {
         RequestType Type = RequestType.TRANSFER;
         address[] memory objs = _objs;
         Request memory req = createRequest(Type, objs);
-        request(pID, req);
+        request(_id, req);
     }
 
-    function acceptTransfer (address pID, address[] memory _objs) onlyOwner public {
+    function acceptTransfer (address _id, address[] memory _objs) onlyOwner public {
         RequestType Type = RequestType.TRANSFER;
         address[] memory objs = _objs;
         Request memory req = createRequest(Type, objs);
-        acceptRequest(pID, req);
+        acceptRequest(_id, req);
     }
 
-    function declineTransfer (address pID, address[] memory _objs) onlyOwner public {
+    function declineTransfer (address _id, address[] memory _objs) onlyOwner public {
         RequestType Type = RequestType.TRANSFER;
         address[] memory objs = _objs;
         Request memory req = createRequest(Type, objs);
-        declineRequest(pID, req);
+        declineRequest(_id, req);
     }
 
-    function revertTransfer (address pID, address[] memory _objs) onlyOwner public {
+    function revertTransfer (address _id, address[] memory _objs) onlyOwner public {
         RequestType Type = RequestType.TRANSFER;
         address[] memory objs = _objs;
         Request memory req = createRequest(Type, objs);
-        revertRequest(pID, req);
+        revertRequest(_id, req);
     }
 
-    function cancelTransfer (address pID, address[] memory _objs) public {
+    function cancelTransfer (address _id, address[] memory _objs) public {
         RequestType Type = RequestType.TRANSFER;
         address[] memory objs = _objs;
         Request memory req = createRequest(Type, objs);
-        cancelCompletedRequest(pID, req);
+        cancelCompletedRequest(_id, req);
     }
 }
 

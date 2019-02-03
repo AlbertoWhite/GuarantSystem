@@ -4,7 +4,7 @@ import "./meta/Partnerable.sol";
 import "./meta/Transferable.sol";
 
 import "./interfaces/Main.sol";
-import "./interfaces/Item.sol"
+import "./interfaces/Item.sol";
 
 contract ServiceCenter is Partnerable, Transferable {
     Main public main;

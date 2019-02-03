@@ -30,16 +30,6 @@ contract User {
     }
 
 
-    function changeOwner (address uID, address iID) onlyOwner public {
-        Main.ContractType cType = main.contractType(uID);
-        require((cType == Main.ContractType.USER), "Wrong contract type");
-
-        Item iInstance = Item(iID);
-        iInstance.changeOwner(uID);
-        removeItem(iID);
-    }
-
-
 
 // Internal
 
@@ -103,7 +93,14 @@ contract User {
     function addItem (address iID) internal { addAddress(items, isInItems, iID); }
     function removeItem (address iID) internal { removeAddress(items, isInItems, iID); }
 
+    function changeOwner (address uID, address iID) onlyOwner internal {
+        Main.ContractType cType = main.contractType(uID);
+        require((cType == Main.ContractType.USER), "Wrong contract type");
 
+        Item iInstance = Item(iID);
+        iInstance.changeOwner(uID);
+        removeItem(iID);
+    }
 
     function addAddress (address[] storage array, mapping (address => bool) storage map, address aID) internal {
         require(!map[aID], "Already exists");

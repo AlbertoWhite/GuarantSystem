@@ -30,6 +30,8 @@ contract Item {
         info = _info;
         warrantyPeriod = _warrantyPeriod;
         warrantyTerms = _warrantyTerms;
+
+        history.push(Action.CREATION);
     }
 
 
@@ -57,6 +59,8 @@ contract Item {
         Main.ContractType cType = main.contractType(vID);
         require((cType == Main.ContractType.VENDOR), "Wrong contract type");
         vendorID = vID;
+
+        history.push(Action.TRANSFER);
     }
 
     function setOwner (address uID) onlyVendor public {
@@ -64,12 +68,16 @@ contract Item {
         Main.ContractType cType = main.contractType(uID);
         require((cType == Main.ContractType.USER), "Wrong contract type");
         ownerID = uID;
+
+        history.push(Action.TRANSFER);
     }
 
     function changeOwner (address uID) onlyOwner public {
         Main.ContractType cType = main.contractType(uID);
         require((cType == Main.ContractType.USER), "Wrong contract type");
         ownerID = uID;
+
+        history.push(Action.CHANGED_OWNER);
     }
 
 
@@ -80,6 +88,7 @@ contract Item {
 
     function statusOnService () onlyServiceCenter public {
         status = Status.ON_SERVICE;
+        history.push(Action.SERVICE);
     }
 
     function statusDefected () onlyServiceCenter public {
@@ -88,6 +97,7 @@ contract Item {
 
     function statusReturned () onlyManufacturerOrVendor public {
         status = Status.RETURNED;
+        history.push(Action.SERVICE);
     }
 
 

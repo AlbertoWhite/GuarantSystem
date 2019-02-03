@@ -5,7 +5,6 @@ import "./src/interfaces/Deployer.sol";
 contract Main {
     address public main = address(this);
 
-    address[2][] public userList;
     address[2][] public manufacturerList;
     address[2][] public vendorList;
     address[2][] public serviceCenterList;
@@ -27,10 +26,25 @@ contract Main {
         serviceCenterDeployer = Deployer(_serviceCenterDeployer);
     }
 
+
+
+// Getters
+
+
+
+    function getManufacturerList () view public returns (address[2][] memory) { return manufacturerList; }
+    function getVendorList () view public returns (address[2][] memory) { return vendorList; }
+    function getServiceCenterList () view public returns (address[2][] memory) { return serviceCenterList; }
+
+
+
+// Public
+
+
+
     function registerUser (address _ownerID) public {
         address newUser = userDeployer.deploy(main, _ownerID, "", "", "");
         contractType[newUser] = ContractType.USER;
-        userList.push([_ownerID, newUser]);
         ownerToID[_ownerID] = newUser;
     }
 

@@ -4,8 +4,10 @@ contract Item {
     function activateWarranty () public;
     function setOwner (address uID) public;
     function changeOwner (address uID) public;
-    function statusNormal () onlyServiceCenter public;
-    function statusOnService () onlyServiceCenter public;
-    function statusDefected () onlyServiceCenter public;
-    function statusReturned () onlyManufacturerOrVendor public;
+    function statusNormal () public;
+    function statusOnService () public;
+    function statusDefected () public;
+    function statusReturned () public;
+    enum Status {NORMAL, ON_SERVICE, DEFECTED, RETURNED}
+    enum Action {CREATION, TRANSFER, CHANGED_OWNER, SERVICE, RETURN}
 }
