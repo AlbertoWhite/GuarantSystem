@@ -52,7 +52,6 @@ router.get('/:id', function (req, res) {
     console.log('ID: '+req.params.id);
     var manuf = playersScheme.Manufacturer.findOne({_id : req.params.id}, function(err, manuf) {
       if(err) return reject(err);
-      console.log('Manufacturer',err, manuf);
       resolve(manuf);
     });
   });
@@ -90,10 +89,6 @@ router.get('/partners/addPartners', function (req, res) {
   }).catch(function(err){
     console.log('Error: '+ err);
   });
-});
-
-router.get('/:man_id/create', function (req, res) {
-  res.redirect('/players/manufacturer/:man_id');
 });
 
 router.get('/requests/apply/:reqId',function(req,res){

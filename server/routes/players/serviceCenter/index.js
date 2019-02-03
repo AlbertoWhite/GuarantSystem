@@ -45,7 +45,6 @@ router.get('/:id', function (req, res) {
     console.log('ID: '+req.params.id);
     var serviceCenter = playersScheme.ServiceCenter.findOne({_id : req.params.id}, function(err, serviceCenter) {
       if(err) return reject(err);
-      console.log('Vendor ',err, serviceCenter);
       resolve(serviceCenter);
     });
   });

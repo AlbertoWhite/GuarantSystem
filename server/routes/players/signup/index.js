@@ -7,7 +7,6 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res, next){
-  console.log(req.body.type);
     if(req.body.type!="Manufacturer" &&
     req.body.type!="Vendor" &&
     req.body.type!="ServiceCenter") return next(new Error('Incorrect type'));
@@ -19,8 +18,6 @@ router.post('/', function (req, res, next){
     name: req.body.name,
     physicalAddress: req.body.physicalAddress,
     registrationNumber: req.body.registrationNumber});
-
-    console.log(player);
 
     if(player.name!=""){
       playersScheme[req.body.type].findOne({name : player.name},function(err,player_l){
