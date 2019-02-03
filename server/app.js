@@ -43,6 +43,6 @@ app.use('/static', express.static(path.join(__dirname, './static')));
 app.use('/', routes);
 
 app.listen(process.env.PORT || 3000, function () {
-  console.log('App listening on port 3000!');
+  console.log('App listening on port '+(process.env.PORT||3000));
   console.log('Click to open in browser: http://localhost:'+(process.env.PORT||3000));
 });
