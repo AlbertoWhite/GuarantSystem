@@ -10,12 +10,8 @@ router.get('/In', function (req, res) {
   Promise.all([pVendor]).then(function([vend]){//TODO tmp
     res.render('players/manufacturerIn.html',{
         listOfVendors : vend,
-        listOfpendingItems : [{
-          serial : 'serial',
-          info : 'info',
-          warrantyPeriod : 'warrantyPeriod',
-          warrantyTerms : 'warrantyTerms'
-        }]
+        listOfpendingItems : dbhelper.getAllItems
+
     });
   }).catch(function(err){
     console.log('Error: '+ err);
@@ -65,12 +61,7 @@ router.get('/:id', function (req, res) {
         manufacturer : manuf,
         listOfVendors : vend,
         listOfServiceCenters : sc,
-        listOfpendingItems : [{
-          serial : 'serial',
-          info : 'info',
-          warrantyPeriod : 'warrantyPeriod',
-          warrantyTerms : 'warrantyTerms'
-        }]
+        listOfpendingItems : dbhelper.getAllItems
     });
   }).catch(function(err){
     console.log('Error: '+ err);

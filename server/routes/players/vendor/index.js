@@ -9,12 +9,7 @@ router.get('/In', function (req, res) {
       Promise.all([pUser]).then(function([user]){//TODO tmp
         res.render('players/vendorIn.html',{
             listOfUsers : user,
-            listOfpendingItems : [{
-              serial : 'serial',
-              info : 'info',
-              warrantyPeriod : 'warrantyPeriod',
-              warrantyTerms : 'warrantyTerms'
-            }]
+            listOfpendingItems : dbhelper.getAllItems
         });
       }).catch(function(err){
         console.log('Error: '+ err);
@@ -69,12 +64,7 @@ router.get('/:id', function (req, res) {
     res.render('players/vendor.html',{
         listOfManufacterer : manuf,
         vendor : vend,
-        listOfpendingItems : [{
-          serial : 'serial',
-          info : 'info',
-          warrantyPeriod : 'warrantyPeriod',
-          warrantyTerms : 'warrantyTerms'
-        }]
+        listOfpendingItems : dbhelper.getAllItems
     });
   }).catch(function(err){
     console.log('Error: '+ err);

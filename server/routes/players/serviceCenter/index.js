@@ -9,12 +9,7 @@ router.get('/In', function (req, res) {
       Promise.all([pUser]).then(function([user]){//TODO tmp
         res.render('players/serviceCenterIn.html',{
             listOfUsers : user,
-            listOfpendingItems : [{
-              serial : 'serial',
-              info : 'info',
-              warrantyPeriod : 'warrantyPeriod',
-              warrantyTerms : 'warrantyTerms'
-            }]
+            listOfpendingItems : dbhelper.getAllItems
         });
       }).catch(function(err){
         console.log('Error: '+ err);
@@ -57,12 +52,7 @@ router.get('/:id', function (req, res) {
     res.render('players/serviceCenter.html',{
         listOfManufacterer : manuf,
         serviceCenter : sc,
-        listOfpendingItems : [{
-          serial : 'serial',
-          info : 'info',
-          warrantyPeriod : 'warrantyPeriod',
-          warrantyTerms : 'warrantyTerms'
-        }]
+        listOfpendingItems : dbhelper.getAllItems
     });
   }).catch(function(err){
     console.log('Error: '+ err);
